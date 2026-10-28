@@ -2,6 +2,15 @@
 
 The current files support a prototype of the proposed project, with substantial limits on expression-map coverage and on validation. Source data were not changed.
 
+**October 28 update:** See [coverage and provenance](DATA_PROVENANCE.md).
+The expression barcodes exactly equal every 50th metadata barcode, and the
+metadata file's checksum matches the authors' published file. The findings below
+describe the originally supplied subset; archive recovery does not change that CSV.
+The project owner subsequently confirmed the subset was selected to fit GitHub's
+file-size limit. Full archives have now been recovered and reconciled; the
+historical unknowns and recovery recommendations below are resolved as described
+in the provenance report.
+
 ## Files and integrity
 
 `spatial_matrix.csv` contains 32,285 gene rows and 348 spot columns. `Visium_Meta_data.txt` is comma-delimited despite its extension and contains 17,370 spot records.

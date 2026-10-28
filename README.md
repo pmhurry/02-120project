@@ -18,3 +18,10 @@ The loader reads `spatial_matrix.csv` and the comma-delimited `Visium_Meta_data.
 Currently, only 348 of 17,370 metadata spots have expression measurements. Unmeasured spots must not be interpreted as having zero expression. There are two mouse samples per time point; time points do not track the same cells.
 
 See [data inspection](DATA_INSPECTION.md) for findings and scientific limitations, and the [October 27–30 checklist](CHECKPOINT_1.md) for the first build checkpoint.
+
+See [coverage and provenance](DATA_PROVENANCE.md) for the October 28 recovery
+investigation and the archive reconciliation command. The supplied expression
+barcodes are exactly every 50th metadata barcode. The project owner confirmed
+this reduction was made to fit GitHub's file-size limit. Recovered full archives
+are kept outside Git in `data/source/`; checkpoint 2 will add validated sparse
+loading for full-data analysis. The current loader still reads the subset CSV.

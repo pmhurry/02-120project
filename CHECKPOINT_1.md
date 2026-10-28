@@ -8,16 +8,23 @@ Plan for four sessions of roughly 45–60 minutes. These are effort targets, not
 - [x] Implement barcode-based loading with count and metadata validation.
 - [x] Preserve duplicate gene symbols and distinguish missing expression from zero.
 - [x] Add a runnable coverage summary and synthetic alignment checks.
-- [ ] Run the summary yourself and explain how expression columns match metadata.
-- [ ] Review changes and commit with a message in your own words.
+- [x] Run the summary yourself and explain how expression columns match metadata.
+- [x] Review changes and commit with a message in your own words.
 
 ## October 28 — Investigate coverage and provenance
 
-- [ ] Investigate how the 348 spots were selected; record unknowns if no history exists.
-- [ ] Inspect the authors' archive and determine which files provide full counts and images.
-- [ ] Obtain and reconcile full data if practical, keeping source/version information.
-- [ ] Confirm annotation provenance and coordinate units or record them as unresolved.
-- [ ] Decide whether checkpoint 1 uses full data or an explicitly limited subset.
+- [x] Investigate how the 348 spots were selected; record unknowns if no history exists.
+- [x] Inspect the authors' archive and determine which files provide full counts and images.
+- [x] Obtain and reconcile full data if practical, keeping source/version information.
+- [x] Confirm annotation provenance and coordinate units or record them as unresolved.
+- [x] Decide whether checkpoint 1 uses full data or an explicitly limited subset.
+
+October 28 findings and reproducible audit: [DATA_PROVENANCE.md](DATA_PROVENANCE.md).
+The project owner confirmed that every 50th spot was retained to fit GitHub's
+file-size limit, rather than selected by biological quality.
+Checkpoint 1 will retain the explicitly limited 348-spot workflow for normalization
+and scoring checks. Recovered full archives are kept separately; switching to full
+coverage requires a sparse-data loader and validation before app development.
 
 ## October 29 — Define normalization and the score
 

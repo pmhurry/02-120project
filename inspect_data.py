@@ -31,7 +31,8 @@ def main():
     print(f"Zero-total spots: {sum(t == 0 for t in totals)}; all-zero gene rows: {zero_genes:,}")
     duplicates = {g: n for g, n in Counter(data.genes).items() if n > 1}
     print(f"Repeated gene symbols: {len(duplicates)} (preserved as separate rows)")
-    print("Missing expression is not zero. Subset selection and preprocessing remain unverified.")
+    print("Missing expression is not zero. The owner reports every 50th spot was retained for GitHub file size.")
+    print("This summary uses the subset CSV; full-data loading and preprocessing checks remain separate.")
 
 
 if __name__ == "__main__":

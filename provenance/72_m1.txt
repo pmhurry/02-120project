@@ -1,0 +1,14 @@
+Expression barcodes equal metadata[::50]: True
+Archive MD5: 531f76f5637359de201dba8bfb44f506
+Features: 32,285; raw barcodes: 4,992
+Metadata barcodes recovered: 2,734/2,734
+Compared subset spots: 55/55; count mismatches: 0
+Coordinates equal full-resolution pixel (column, row): 2734/2734
+Metadata spots flagged in tissue: 2734/2734
+Spatial files:
+  72_m1/outs/spatial/aligned_fiducials.jpg
+  72_m1/outs/spatial/detected_tissue_image.jpg
+  72_m1/outs/spatial/scalefactors_json.json
+  72_m1/outs/spatial/tissue_hires_image.png
+  72_m1/outs/spatial/tissue_lowres_image.png
+  72_m1/outs/spatial/tissue_positions_list.csv
