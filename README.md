@@ -2,7 +2,7 @@
 
 Class project exploring annotated fibrogenic regions and extracellular matrix gene expression at 24, 48, and 72 hours after acute liver injury.
 
-The project is at the data-loading stage. An interactive app and fibrogenic score have not yet been implemented.
+The project has a checked subset loader, library-size normalization, and an exploratory collagen score. An interactive app has not yet been implemented.
 
 ## Run the data checks
 
@@ -25,3 +25,7 @@ barcodes are exactly every 50th metadata barcode. The project owner confirmed
 this reduction was made to fit GitHub's file-size limit. Recovered full archives
 are kept outside Git in `data/source/`; checkpoint 2 will add validated sparse
 loading for full-data analysis. The current loader still reads the subset CSV.
+
+## Normalization and score
+
+Run `python3 inspect_scores.py` for the 348-spot subset. See [the score definition](SCORING.md) for the fixed collagen panel, formulas, reference, edge cases, and interpretation limits. Full-data scoring remains scheduled for checkpoint 2.

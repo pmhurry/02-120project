@@ -28,11 +28,16 @@ coverage requires a sparse-data loader and validation before app development.
 
 ## October 29 — Define normalization and the score
 
-- [ ] Explain library size and implement an explicit normalization method.
-- [ ] Choose a small marker panel for a scientific reason, before testing its outcome.
-- [ ] Define the score, its reference, and its interpretation in writing.
-- [ ] Check identical profiles, known contrasts, and zero-count/zero-variance behavior.
-- [ ] Explain why agreement with collagen-derived annotations is not independent validation.
+- [x] Explain library size and implement an explicit normalization method.
+- [x] Choose a small marker panel for a scientific reason, before testing its outcome.
+- [x] Define the score, its reference, and its interpretation in writing.
+- [x] Check identical profiles, known contrasts, and zero-count/zero-variance behavior.
+- [x] Explain why agreement with collagen-derived annotations is not independent validation.
+
+October 29 implementation and explanation: [SCORING.md](SCORING.md). The panel
+was fixed before today’s score run, but had already been explored on October 27;
+it is not a blinded selection. All eight tests pass. Learning quiz and user review
+remain for this session.
 
 ## October 30 — Plot, review, and finish the checkpoint
 
