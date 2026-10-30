@@ -2,7 +2,7 @@
 
 Class project exploring annotated fibrogenic regions and extracellular matrix gene expression at 24, 48, and 72 hours after acute liver injury.
 
-The project has a checked subset loader, library-size normalization, and an exploratory collagen score. An interactive app has not yet been implemented.
+The project has a checked subset loader, library-size normalization, an exploratory collagen score, and static spatial and group-comparison figures. An interactive app has not yet been implemented.
 
 ## Run the data checks
 
@@ -29,3 +29,12 @@ loading for full-data analysis. The current loader still reads the subset CSV.
 ## Normalization and score
 
 Run `python3 inspect_scores.py` for the 348-spot subset. See [the score definition](SCORING.md) for the fixed collagen panel, formulas, reference, edge cases, and interpretation limits. Full-data scoring remains scheduled for checkpoint 2.
+
+## Checkpoint 1 figures
+
+Run `python3 plot_checkpoint.py` (standard library only). Open
+[the spatial map](results/spatial.svg) and [the per-mouse comparison](results/group_comparison.svg)
+in a browser; [the CSV](results/group_summary.csv) provides exact means and counts.
+Use `--mouse t_48h_m4 --gene Col3a1 --output /tmp/liver-plots` for another view.
+The default is `t_24h_m1` and `Col1a1`. See [plot interpretation](PLOTTING.md)
+for limitations and outstanding checkpoint review.

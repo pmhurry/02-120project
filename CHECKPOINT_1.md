@@ -41,10 +41,15 @@ remain for this session.
 
 ## October 30 — Plot, review, and finish the checkpoint
 
-- [ ] Plot annotations and one gene for an individual mouse.
-- [ ] Produce a normalized group comparison with sample/spot counts.
-- [ ] Mark missing expression clearly and keep samples spatially separate.
+- [x] Plot annotations and one gene for an individual mouse.
+- [x] Produce a normalized group comparison with sample/spot counts.
+- [x] Mark missing expression clearly and keep samples spatially separate.
 - [ ] Explain one result and the limitations in your own words.
 - [ ] Update README, review the journal requirements, and keep the repository current.
 
 Keep the dataset unchanged until provenance is clear. If recovery takes longer than planned, finish a checked subset workflow and track full coverage as follow-up work. This checklist is a plan; it does not replace the course-required Claude Code session logs.
+
+October 30 outputs: run `python3 plot_checkpoint.py`. Figures and per-mouse
+counts are in `results/`; interpretation and journal requirements are in
+[PLOTTING.md](PLOTTING.md). README is updated. User explanation, journal
+saving/review, and committing remain; these have not been marked complete.
