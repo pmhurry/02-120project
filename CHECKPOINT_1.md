@@ -1,6 +1,13 @@
-# Checkpoint 1: October 27–30, 2026
+# Checkpoint 1: Due November 1, 2026, at 11:59 p.m. (America/New_York)
 
-Plan for four sessions of roughly 45–60 minutes. These are effort targets, not a guarantee that data recovery will finish in one session. Each session includes explaining the work and reviewing changes before committing.
+The deadline was extended from October 30 to November 1. Keep the October 27–30
+work record below; use November 1 to finish review and submission.
+
+The original plan covered four sessions of roughly 45–60 minutes, October 27–30.
+Use an additional 45–60-minute session on November 1 for the checks and scientific
+summary below. These are effort targets, not a guarantee that data recovery will
+finish in one session. Each session includes explaining the work and reviewing
+changes before committing.
 
 ## October 27 — Load and check the supplied data
 
@@ -44,12 +51,39 @@ remain for this session.
 - [x] Plot annotations and one gene for an individual mouse.
 - [x] Produce a normalized group comparison with sample/spot counts.
 - [x] Mark missing expression clearly and keep samples spatially separate.
-- [ ] Explain one result and the limitations in your own words.
-- [ ] Update README, review the journal requirements, and keep the repository current.
+- [x] Explain one result and the limitations in your own words.
+- [x] Update README, review the journal requirements, and keep the repository current.
 
 Keep the dataset unchanged until provenance is clear. If recovery takes longer than planned, finish a checked subset workflow and track full coverage as follow-up work. This checklist is a plan; it does not replace the course-required Claude Code session logs.
 
 October 30 outputs: run `python3 plot_checkpoint.py`. Figures and per-mouse
 counts are in `results/`; interpretation and journal requirements are in
-[PLOTTING.md](PLOTTING.md). README is updated. User explanation, journal
-saving/review, and committing remain; these have not been marked complete.
+[PLOTTING.md](PLOTTING.md). The user confirmed that all October 30 tasks,
+including the explanation, README update, journal review, and repository upkeep,
+are complete.
+
+## November 1 — Final review and submission by 11:59 p.m.
+
+- [x] Run `python3 inspect_data.py`, `python3 inspect_scores.py`, and `python3 -m unittest discover -s tests -v`; review any failures before submission.
+- [x] Regenerate the checkpoint figures with `python3 plot_checkpoint.py` and confirm that the maps, legends, and group counts match the documented subset workflow.
+- [x] Check one mouse/gene group mean and spot count from `results/group_summary.csv` against the displayed comparison.
+- [x] Write a short checkpoint summary in your own words: the scientific question, what was built, one numerical finding, and the subset, annotation, and sample-size limitations.
+- [x] Review the normalization and score formulas with one small hand-calculated example; explain what a score of zero means.
+- [x] Record the next priorities for checkpoint 2: sparse full-data loading, barcode/count reconciliation, and full-coverage model checks before building the interface.
+- [x] Set up the build journal, export the four previous Codex sessions, and commit and push the setup.
+- [ ] Review README and checkpoint materials for completeness; review the readable journal exports.
+- [ ] Commit and push any final checkpoint changes so the journal refreshes.
+- [ ] Submit the required checkpoint materials and repository link on Canvas by 11:59 p.m. (America/New_York), and verify submission status.
+
+The build journal is now configured: raw Codex logs are in `journal/codex/` and
+readable transcripts are in `journal/readable/`. The pre-commit hook refreshes
+them automatically. Keep `journal/chat_links.md` current if using a chat app.
+
+November 1 completion notes: the user reported finishing the first three checks.
+The scientific summary, feedback, and normalization/score explanation are saved
+in [journal/session5.txt](journal/session5.txt). Both hand-calculated normalized
+counts were 100 before the logarithm; a score of zero means average standardized
+panel expression relative to the reference, not absent collagen. Checkpoint 2
+priorities are sparse full-data loading, barcode/count reconciliation, and
+full-coverage model checks before interface development (see [CHECKPOINT_2.md](CHECKPOINT_2.md)).
+Final document review, commit/push, and Canvas submission remain unconfirmed.

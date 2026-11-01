@@ -3,6 +3,9 @@
 Turn the [checkpoint 2 prototype](CHECKPOINT_2.md) into a usable deployed app with
 checked results, clear methods, and a reproducible setup.
 
+Checkpoint 1's extension to November 1 at 11:59 p.m. (America/New_York) does not
+change this checkpoint's November 20 deadline or the work dates below.
+
 Plan for four sessions of roughly 60–90 minutes, about 4–6 hours total. Suggested
 dates are November 12, 14, 16, and 18; the days between are unscheduled. Reserve
 November 19–20 for fixes and submission. Each session includes verification,

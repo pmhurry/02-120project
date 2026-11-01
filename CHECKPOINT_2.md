@@ -6,12 +6,14 @@ across 24, 48, and 72 hours after injury?
 
 Plan for five sessions of roughly 60–90 minutes, about 5–7.5 hours total. Dates
 are suggested work slots, not daily requirements; move them to fit your schedule.
-October 31, November 2, 4, and 6 are unscheduled. November 10 is a final buffer,
+Checkpoint 1 is now due November 1 at 11:59 p.m. (America/New_York), so its final
+review and submission take priority that day. Start this checkpoint on November 2;
+November 4, 6, and 8 remain unscheduled. November 10 is a final buffer,
 not a planned feature-building day. Each session includes checking the result,
 explaining it in your own words, saving the required journal, and reviewing and
 committing changes.
 
-## Session 1 — November 1: Load the recovered data
+## Session 1 — November 2: Load the recovered data
 
 - [ ] Review checkpoint 1's normalization, score definition, and remaining issues.
 - [ ] Add a sparse-data loader for the recovered archives without expanding the entire matrix into a dense table.

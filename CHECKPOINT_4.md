@@ -3,6 +3,9 @@
 Finish the [deployed app](CHECKPOINT_3.md), communicate the findings clearly, and
 submit the code, website, demonstration, and required documentation.
 
+Checkpoint 1's extension to November 1 at 11:59 p.m. (America/New_York) does not
+change the December 1 final deadline or the work dates below.
+
 Plan for three sessions of roughly 60–90 minutes, about 3–4.5 hours total, on
 November 22, 24, and 30. Keep November 23 and 25 as movable catch-up slots if
 needed. No essential work is scheduled during November 26–29, so Thanksgiving

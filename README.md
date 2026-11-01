@@ -4,6 +4,9 @@ Class project exploring annotated fibrogenic regions and extracellular matrix ge
 
 The project has a checked subset loader, library-size normalization, an exploratory collagen score, and static spatial and group-comparison figures. An interactive app has not yet been implemented.
 
+See the [build journal](journal/README.md) for all five work days, with links to
+readable Codex session exports and conversation copies.
+
 ## Run the data checks
 
 Use Python 3.10 or newer. The current loader uses only the standard library; no packages need to be installed.
