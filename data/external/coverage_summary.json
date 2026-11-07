@@ -1,0 +1,19 @@
+{
+  "features": 32285,
+  "homology_pairs": 24590,
+  "mapping_methods": {
+    "mgi_exact_symbol_requires_review": 12610,
+    "unmapped": 13981,
+    "opentargets_stable_id": 5694
+  },
+  "features_with_human_ensembl_mapping": 18295,
+  "features_with_collected_disease_evidence": 5993,
+  "unique_annotated_human_targets": 5583,
+  "disease_associations": 8849,
+  "disease_counts": {
+    "HP_0001395": 3962,
+    "MONDO_0005155": 3940,
+    "MONDO_0005359": 103,
+    "MONDO_0019542": 844
+  }
+}

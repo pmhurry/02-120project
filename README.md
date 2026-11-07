@@ -1,13 +1,29 @@
-# Spatial liver injury explorer
+# Spatial Target Prioritization Engine
 
-Class project exploring annotated fibrogenic regions and extracellular matrix gene expression at 24, 48, and 72 hours after acute liver injury.
+An interpretable scoring and ranking tool for therapeutic-target hypotheses after
+acute liver injury. It combines spatial expression evidence, human target mapping,
+tractability, and a visible safety-evidence review. RNA enrichment does not establish
+causality, treatment direction, drug efficacy, oral delivery, or clinical safety.
 
-The project has a checked subset loader, library-size normalization, an exploratory collagen score, and static spatial and group-comparison figures. An interactive app has not yet been implemented.
+**Workflow:** spatial evidence → human mapping → tractability → safety review →
+ranked hypotheses for experimental follow-up.
+
+**Current status (November 6):** full-data loading and external data preparation are
+validated. The ranking design is specified; ranking code and the Streamlit app are
+scheduled for later sessions. No target shortlist has been generated.
+
+- [Engine design and scoring rubric](ENGINE_DESIGN.md)
+- [Supporting data, coverage, and source limitations](TARGET_DATA.md)
+- [File keep/delete decisions](FILE_POLICY.md)
+- [Checkpoint 1: historical baseline](CHECKPOINT_1.md)
+- [Checkpoint 2: local engine, November 10](CHECKPOINT_2.md)
+- [Checkpoint 3: deployment and robustness, November 20](CHECKPOINT_3.md)
+- [Checkpoint 4: evidence review and final submission, December 1](CHECKPOINT_4.md)
 
 See the [build journal](journal/README.md) for all five work days, with links to
 readable Codex session exports and conversation copies.
 
-## Run the data checks
+## Historical subset checks
 
 Use Python 3.10 or newer. The current loader uses only the standard library; no packages need to be installed.
 
@@ -18,7 +34,7 @@ python3 -m unittest discover -s tests -v
 
 The loader reads `spatial_matrix.csv` and the comma-delimited `Visium_Meta_data.txt`. Expression rows are genes and columns are spots. Metadata are aligned by full barcode, not file order. Duplicate gene symbols are preserved as separate rows pending feature clarification.
 
-Currently, only 348 of 17,370 metadata spots have expression measurements. Unmeasured spots must not be interpreted as having zero expression. There are two mouse samples per time point; time points do not track the same cells.
+The original CSV workflow contains only 348 of 17,370 metadata spots. The separate full-data workflow below loads all metadata-matched spots from the recovered archives. Unmeasured spots must not be interpreted as having zero expression. There are two mouse samples per time point; time points do not track the same cells.
 
 See [data inspection](DATA_INSPECTION.md) for findings and scientific limitations, and the [October 27–30 checklist](CHECKPOINT_1.md) for the first build checkpoint.
 
@@ -26,10 +42,9 @@ See [coverage and provenance](DATA_PROVENANCE.md) for the October 28 recovery
 investigation and the archive reconciliation command. The supplied expression
 barcodes are exactly every 50th metadata barcode. The project owner confirmed
 this reduction was made to fit GitHub's file-size limit. Recovered full archives
-are kept outside Git in `data/source/`; checkpoint 2 will add validated sparse
-loading for full-data analysis. The current loader still reads the subset CSV.
+are kept outside Git in `data/source/`; checkpoint 2 adds sparse loading for full-data analysis. Existing checkpoint 1 commands still explicitly read the subset CSV.
 
-## Normalization and score
+## Historical collagen-context score
 
 Run `python3 inspect_scores.py` for the 348-spot subset. See [the score definition](SCORING.md) for the fixed collagen panel, formulas, reference, edge cases, and interpretation limits. Full-data scoring remains scheduled for checkpoint 2.
 
@@ -41,3 +56,63 @@ in a browser; [the CSV](results/group_summary.csv) provides exact means and coun
 Use `--mouse t_48h_m4 --gene Col3a1 --output /tmp/liver-plots` for another view.
 The default is `t_24h_m1` and `Col1a1`. See [plot interpretation](PLOTTING.md)
 for limitations and outstanding checkpoint review.
+
+## Full expression coverage — checkpoint 2, session 1
+
+Use Python 3.10 or newer; the sparse loader needs no third-party packages.
+Download the six original ZIPs to `data/source/` using the sample names and
+published MD5 checksums in [DATA_PROVENANCE.md](DATA_PROVENANCE.md). For example:
+
+```sh
+mkdir -p data/source
+curl --fail --location https://zenodo.org/records/10901217/files/24_m1.zip --output data/source/24_m1.zip
+```
+
+Repeat for `24_m2`, `48_m4`, `48_m5`, `72_m1`, and `72_m2`. Keep the repository's
+`Visium_Meta_data.txt` and `spatial_matrix.csv` unchanged. Then run:
+
+```sh
+python3 inspect_full_data.py
+python3 -m unittest discover -s tests -v
+```
+
+The audit verifies all six ZIP checksums, matches every metadata barcode, checks
+feature identities/order across samples, and compares every original subset count
+including zeros. It writes `results/full_data_coverage.csv`; parsing takes time
+because the raw matrices are streamed. No whole-matrix dense conversion occurs.
+
+For analysis, call `sparse_loader.load_full_dataset(source_dir, metadata_path)`.
+Use `data.feature_index("Col1a1")` or a stable feature ID, then
+`data.count(feature_index, spot_index)`. Duplicate symbols remain separate features;
+ambiguous symbol lookups raise an error. Spot order is explicit in `data.spots`.
+A missing archive/barcode causes an error rather than filling missing data with zeros.
+
+This expands expression coverage, not biological replication: there are still six
+mice, two per time point. No expression QC filtering or full-data normalization has
+been applied yet. These remain session 2 tasks. The subset figures and score outputs
+have not been regenerated with full data.
+
+Supporting mouse–human mapping and external target-evidence snapshots are documented
+in [TARGET_DATA.md](TARGET_DATA.md). Their coverage and mapping uncertainties are
+explicit; they are not yet integrated into a candidate ranking or app. This dataset
+contains no uninjured controls or treatment response measurements; region enrichment
+cannot establish causality, drug efficacy, or the desired direction of intervention.
+
+## External evidence and normal-human tissue context
+
+The versioned snapshots in `data/external/` include mouse–human homology, HGNC
+identifiers, Open Targets disease associations/tractability/drug/liability records,
+and Human Protein Atlas normal-tissue RNA/protein profiles. These add annotations,
+not extra biological replicates or missing experimental controls.
+
+Rebuild the checked tables offline:
+
+```sh
+python3 gather_target_data.py
+python3 gather_tissue_data.py
+```
+
+Use `--download` with either script to refresh its public sources. See
+[TARGET_DATA.md](TARGET_DATA.md) for attribution, checksums, coverage, and caveats.
+Normal-human tissue expression helps identify follow-up questions; it is not a
+prediction that a target or drug is toxic. Missing records remain unknown.

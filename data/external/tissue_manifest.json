@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-11-06T21:26:26.585244-05:00",
+  "release": "Human Protein Atlas 25.1; Ensembl 109",
+  "release_source": "https://www.proteinatlas.org/humanproteome/tissue/data",
+  "licence": "https://www.proteinatlas.org/about/licence",
+  "files": [
+    {
+      "file": "hpa_rna_tissue_consensus.tsv.zip",
+      "source_url": "https://www.proteinatlas.org/download/tsv/rna_tissue_consensus.tsv.zip",
+      "sha256": "b001903da23f802c8dfbd1b6b3a8c20b831fedd4932f4bb721b06622d83ae60b"
+    },
+    {
+      "file": "hpa_normal_ihc_data.tsv.zip",
+      "source_url": "https://www.proteinatlas.org/download/tsv/normal_ihc_data.tsv.zip",
+      "sha256": "fa2315e5a53ecffd9427a5bfe219c8cc41b54089ef6f6be7b5d79b5455e0677f"
+    }
+  ]
+}

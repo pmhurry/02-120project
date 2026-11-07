@@ -1,0 +1,28 @@
+{
+  "rna_genes": 20162,
+  "rna_rows": 1026292,
+  "rna_tissues": 51,
+  "protein_genes": 15312,
+  "protein_rows": 1199675,
+  "protein_tissues": 60,
+  "protein_levels": {
+    "Not detected": 569065,
+    "Medium": 303452,
+    "High": 140875,
+    "Low": 184160,
+    "N/A": 1834,
+    "Ascending": 188,
+    "Descending": 90,
+    "Not representative": 11
+  },
+  "protein_reliability": {
+    "Approved": 461910,
+    "Uncertain": 184625,
+    "Enhanced": 390130,
+    "Supported": 163010
+  },
+  "annotated_targets": 5583,
+  "targets_with_rna": 5448,
+  "targets_with_protein_rows": 4557,
+  "targets_with_measured_protein": 4362
+}

@@ -1,5 +1,9 @@
 # Normalization and exploratory collagen score — October 29, 2026
 
+The collagen score documented here is a historical/contextual spot-level score.
+The new gene-level target-ranking model is defined in [ENGINE_DESIGN.md](ENGINE_DESIGN.md);
+these two scores answer different questions.
+
 ## Scope and panel
 
 Checkpoint 1 uses the supplied 348 measured spots, not the recovered full dataset.

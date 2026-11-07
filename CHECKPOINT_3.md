@@ -1,61 +1,54 @@
-# Checkpoint 3: Deploy a complete first version — due November 20, 2026
+# Checkpoint 3: Deploy and stress-test the engine — due November 20, 2026
 
-Turn the [checkpoint 2 prototype](CHECKPOINT_2.md) into a usable deployed app with
-checked results, clear methods, and a reproducible setup.
+Turn the [checkpoint 2 engine](CHECKPOINT_2.md) into a public, interpretable target
+prioritization tool. Follow [ENGINE_DESIGN.md](ENGINE_DESIGN.md).
 
-Checkpoint 1's extension to November 1 at 11:59 p.m. (America/New_York) does not
-change this checkpoint's November 20 deadline or the work dates below.
+Four sessions of roughly 60–90 minutes on November 12, 14, 16, and 18.
+Reserve November 19–20 for blockers/submission. Each session includes checks,
+explanation, journal export, and review/commit. Reduce presentation polish if core
+model validation needs more time; tissue overlays are optional.
 
-Plan for four sessions of roughly 60–90 minutes, about 4–6 hours total. Suggested
-dates are November 12, 14, 16, and 18; the days between are unscheduled. Reserve
-November 19–20 for fixes and submission. Each session includes verification,
-explaining the changes, saving the required journal, and reviewing and committing.
+## Session 1 — November 12: Feedback and robustness
 
-## Session 1 — November 12: Address feedback and data gaps
+- [ ] Review TA feedback and resolve model/data blockers before adding features.
+- [ ] Compare default, spatial-heavy, and equal-component weights; report rank changes and top-list overlap.
+- [ ] Compare 48 h and 72 h rankings and inspect agreement between mice; retain 24 h as distinct context.
+- [ ] Check effects of low detection, orthology exclusions, annotation-linked genes, and external-data coverage bias.
+- [ ] Freeze and version the reviewed rubric; record changes and rerun affected validation.
 
-- [ ] Review TA feedback if available; separate essential corrections from optional enhancements.
-- [ ] Resolve any remaining full-data loading or scientific-model blockers from checkpoint 2 before adding features.
-- [ ] Check all six samples and record the data coverage and exclusions actually used.
-- [ ] Choose the deployment service and check its memory, dependency, and file-size constraints.
-- [ ] Decide how the deployment obtains verified data without depending on ignored local ZIPs or temporary file paths.
+## Session 2 — November 14: Complete candidate evidence profiles
 
-## Session 2 — November 14: Make maps and comparisons clear
+- [ ] Show component scores, weights, eligibility, missingness, and source versions next to each rank.
+- [ ] Add a normal-human tissue profile with RNA units and protein reliability, and traceable reported-liability details.
+- [ ] Keep drugs' overall clinical stages separate from indication-specific evidence and intervention direction.
+- [ ] Make tissue/tractability review filters explicit and reversible, with excluded counts; missing safety evidence remains unknown.
+- [ ] Check map scales and annotation meanings, and compare exported and displayed values.
+- [ ] Review candidate-specific functional literature for a manageable initial shortlist, recording supporting and contradictory evidence.
 
-- [ ] Improve selector behavior, legends, units, and explanations of gene expression and score values.
-- [ ] Use comparable color scales when comparing the same measurement across samples; label any rescaling explicitly.
-- [ ] Handle missing genes, absent data, and unavailable comparisons clearly.
-- [ ] Align a tissue image using the archive's pixel coordinates and scale factors, and visually check orientation against recognizable tissue boundaries.
-- [ ] Keep the coordinate-only map usable if image alignment remains uncertain; document that limitation.
+## Session 3 — November 16: Deploy and verify
 
-## Session 3 — November 16: Deploy and check the public workflow
+- [ ] Choose hosting based on measured memory/storage/startup requirements.
+- [ ] Package verified derived spatial summaries and evidence tables; avoid loading all raw archives at every app startup.
+- [ ] Document how the deployment obtains versioned data; do not depend on ignored local files.
+- [ ] Deploy, record the URL, and test a fresh browser session.
+- [ ] Verify ranking, filters, target lookup, maps, tissue/liability views, and downloads against CLI outputs.
+- [ ] Resolve performance or data-access issues that prevent normal use.
 
-- [ ] Deploy the app and record the public URL.
-- [ ] Verify installation, data access, caching, and startup in the hosted environment.
-- [ ] Open a fresh browser session and test the sample selectors, map modes, spot lookup, and comparison views.
-- [ ] Compare a small set of displayed spot values and group summaries against calculations outside the app.
-- [ ] Address slow interactions or memory problems that prevent normal use; measure before optimizing further.
+## Session 4 — November 18: Methods and demonstration outline
 
-## Session 4 — November 18: Finish methods and the demonstration outline
+- [ ] Explain normalization, spatial contrasts, mapping gates, component weights, missing-data policy, and sensitivity findings in the app.
+- [ ] State sample size, differing annotations, cell mixtures, lack of controls/perturbations, and limitations of tissue/safety annotations.
+- [ ] Update README with install, data retrieval, launch, deployed URL, and validated output versions.
+- [ ] Draft a demo following one target from spatial signal through tractability and safety-review evidence to a testable hypothesis.
+- [ ] Freeze core features and list remaining correctness issues.
 
-- [ ] Include the scientific question, data sources, normalization, score formula/reference, and limitations in the app.
-- [ ] Explain differing label meanings, the lack of longitudinal spot tracking, and the limits of two mice per time point.
-- [ ] Update README with installation, data retrieval, launch instructions, and the deployed URL.
-- [ ] Draft a short demonstration outline showing the question, one map, one comparison, and one limitation.
-- [ ] Review outstanding bugs and freeze the core feature set for the final checkpoint.
+## November 19–20 — Buffer and submission
 
-## November 19–20 — Buffer and checkpoint submission
+- [ ] Fix correctness/deployment blockers and rerun affected checks.
+- [ ] Verify URL, repository, sources, and required journals; submit checkpoint materials.
 
-- [ ] Fix deployment or scientific-correctness blockers and retest the affected workflow.
-- [ ] Verify the public URL, repository, and journal files, then submit the required checkpoint materials.
+**Done means:** the public engine reproduces the reviewed rankings, makes trade-offs
+and unknowns visible, and provides evidence for experimental follow-up.
 
-**Done means:** The core scientific workflow is publicly usable, its main outputs
-have been checked, and another person has instructions to run it locally.
-
-## Optional work only after the core workflow passes
-
-- [ ] Add a within-sample neighborhood explorer with an explicit distance or neighbor rule; avoid claims of cell-to-cell interaction or physical distances without calibration.
-- [ ] Add a results download or modest interface improvements if time remains.
-
-Do not let optional features consume the submission buffer. Use
-[checkpoint 4](CHECKPOINT_4.md) for final findings, reproducibility, the video, and
-submission rather than major new functionality.
+Optional after core checks: tissue-image overlays or modest interface improvements.
+No RL, docking, molecule generation, or clinical safety/efficacy prediction is required.

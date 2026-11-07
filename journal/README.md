@@ -1,6 +1,15 @@
 # Build journal
 
-Five project work days: October 27–30 and November 1, 2026.
+Checkpoint 1 work days: October 27–30 and November 1, 2026.
+
+Checkpoint 2 begins November 6 with the pivot to the Spatial Target Prioritization
+Engine. [Session 1 work notes](checkpoint2_session1_notes.md) describe data preparation
+and planning; they are not a substitute for the required conversation/session export.
+
+November 6 Codex export: [readable session](readable/rollout-2026-11-06T20-38-14-01a1b3a8-0032-7dc0-b5f0-5def554d8455.md)
+and [raw session](codex/rollout-2026-11-06T20-38-14-01a1b3a8-0032-7dc0-b5f0-5def554d8455.jsonl).
+These are Codex records, not native Claude Code logs; confirm course acceptance
+if the original tool-specific requirement still applies.
 
 The readable exports below come from the native Codex session logs in [codex/](codex/). Each entry includes the recorded conversation and tool-use notes.
 

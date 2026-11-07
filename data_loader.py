@@ -25,12 +25,8 @@ class Dataset:
     metadata: dict[str, Spot]  # Includes spots without expression measurements.
 
 
-def load_dataset(matrix_path: Path, metadata_path: Path) -> Dataset:
-    """Read counts without dropping duplicate gene symbols or filling missing spots.
-
-    Count row i corresponds to genes[i]; count column j corresponds to spots[j].
-    Missing expression is represented by absence from spots, never by zero counts.
-    """
+def load_metadata(metadata_path: Path) -> dict[str, Spot]:
+    """Read and validate spot annotations without loading expression."""
     metadata = {}
     required = {
         "Spot_barcode", "Mouse", "Time_point", "Fibrogenic_spot",
@@ -56,6 +52,17 @@ def load_dataset(matrix_path: Path, metadata_path: Path) -> Dataset:
             if spot.time_hours < 0 or not all(map(math.isfinite, (spot.x, spot.y))):
                 raise ValueError(f"Invalid time or coordinates: {barcode}")
             metadata[barcode] = spot
+
+    return metadata
+
+
+def load_dataset(matrix_path: Path, metadata_path: Path) -> Dataset:
+    """Read counts without dropping duplicate gene symbols or filling missing spots.
+
+    Count row i corresponds to genes[i]; count column j corresponds to spots[j].
+    Missing expression is represented by absence from spots, never by zero counts.
+    """
+    metadata = load_metadata(metadata_path)
 
     genes, counts = [], []
     with matrix_path.open(newline="", encoding="utf-8-sig") as handle:

@@ -1,53 +1,46 @@
-# Checkpoint 4: Finalize and submit — due December 1, 2026
+# Checkpoint 4: Final evidence and submission — due December 1, 2026
 
-Finish the [deployed app](CHECKPOINT_3.md), communicate the findings clearly, and
-submit the code, website, demonstration, and required documentation.
+Finish the [deployed engine](CHECKPOINT_3.md), evaluate the hypotheses it produces,
+and submit the app, code, video, and required documentation.
 
-Checkpoint 1's extension to November 1 at 11:59 p.m. (America/New_York) does not
-change the December 1 final deadline or the work dates below.
+Three sessions of roughly 60–90 minutes on November 22, 24, and 30. November 23
+and 25 are movable catch-up slots. Keep November 26–29 free of essential work;
+December 1 is a submission buffer. Save journals and review/commit each session.
 
-Plan for three sessions of roughly 60–90 minutes, about 3–4.5 hours total, on
-November 22, 24, and 30. Keep November 23 and 25 as movable catch-up slots if
-needed. No essential work is scheduled during November 26–29, so Thanksgiving
-break can stay free. December 1 is a submission buffer. Each session includes
-saving the required journal and reviewing and committing changes.
+## Session 1 — November 22: Findings and reproducibility
 
-## Session 1 — November 22: Finalize findings and verify reproducibility
+- [ ] Resolve correctness/usability issues without adding major features.
+- [ ] Review up to 5–10 candidate profiles; accept fewer if evidence is weak or mapping is unresolved.
+- [ ] For each candidate, state spatial observations, replicate agreement, tractability, tissue context, reported liabilities, and unresolved intervention direction.
+- [ ] Review functional evidence and contradictions with citations; explain a concrete experiment to test the hypothesis.
+- [ ] Report ranking sensitivity and compare with the spatial-only screen, including coverage and knowledge bias.
+- [ ] Distinguish hypotheses from causal, clinical efficacy, or toxicity claims; collagen-label agreement is not independent validation.
+- [ ] Test clean setup/offline rebuild using README, checksums, and exported configuration; verify hosted results agree.
 
-- [ ] Resolve remaining correctness and usability bugs; avoid adding major features.
-- [ ] Write a small set of findings supported by specific maps or sample-level comparisons, including unexpected patterns.
-- [ ] Distinguish observations from explanations; avoid claims of causation, prediction, clinical severity, or independent collagen validation.
-- [ ] State the limitations: sample size, annotation differences, any coverage/filtering choices, and any unresolved image alignment.
-- [ ] Test setup from a clean environment using only the README, including obtaining the data; ask another person to try it if practical.
-- [ ] Check that the deployed app reproduces the documented results and record remaining issues.
+## Session 2 — November 24: Demonstration and materials
 
-## Session 2 — November 24: Record the demonstration and assemble materials
+- [ ] Finalize narration: question, dataset, ranking calculation, one candidate's spatial/tractability/safety evidence, sensitivity, and limitations.
+- [ ] Record a narrated demonstration of at most five minutes and check duration, audio, and legibility.
+- [ ] Upload to a course-accepted location, verify access, and link from README and the app.
+- [ ] Assemble submission links using actual course requirements and review the required journals.
+- [ ] Keep historical logs intact; do not reconstruct missing work as if recorded contemporaneously.
 
-- [ ] Finalize a narration covering the question, data, computation, map interaction, one main finding, and limitations.
-- [ ] Record a narrated demonstration lasting at most five minutes; play it back to check audio, legibility, and duration.
-- [ ] Upload the video to the course-accepted location and check viewer access.
-- [ ] Link the video from both README and the website.
-- [ ] Assemble the required submission links and materials, checking the actual course instructions rather than relying on this plan alone.
-- [ ] Review the required session logs and journal for completeness; do not reconstruct missing work as if it were recorded at the time.
+Use November 25 for any recording retry rather than reserving essential video work
+for the deadline.
 
-Aim to have the app, documentation, and video substantially finished before the
-break. If recording needs another attempt, use November 25 rather than reserving
-all video work for the deadline.
+## Session 3 — November 30: Final review
 
-## Session 3 — November 30: Final review and submission preparation
+- [ ] Test the deployment, downloads, source links, and video in a fresh browser session.
+- [ ] Confirm repository, versioned model configuration, data manifests, citations, and known limitations are current.
+- [ ] Verify code/docs are committed and pushed and the deployment uses the same reviewed version.
+- [ ] Practice explaining barcode alignment, normalization, mouse-level contrasts, mapping uncertainty, weights, and why missing safety data are not evidence of safety.
+- [ ] Prepare for demo day and the December 3 assessment; submit early if possible.
 
-- [ ] Test the deployed app and video links from a fresh browser session.
-- [ ] Check the repository, dependency instructions, citations, data-source information, and known limitations.
-- [ ] Confirm the final code and documentation are committed and pushed, and that the deployed version matches them.
-- [ ] Practice explaining barcode alignment, normalization, the score's zero/reference, and why mice are the biological replicates.
-- [ ] Rehearse the demonstration and prepare for questions at demo day and the December 3 assessment.
-- [ ] Submit early if the submission portal is open; otherwise keep a complete submission package ready.
+## December 1 — Submission buffer
 
-## December 1 — Buffer and final submission
+- [ ] Fix submission blockers only and recheck affected outputs/links.
+- [ ] Submit all course-required materials and verify the submission receipt/status.
 
-- [ ] Fix only submission-blocking issues and recheck any affected links.
-- [ ] Submit all required materials by the course deadline and verify the submission receipt/status.
-
-**Done means:** The app, repository, video, documentation, and required journal
-are submitted and accessible, and you can explain the science and computation.
-No essential project work depends on working every day or over Thanksgiving.
+**Done means:** the engine, auditable results, candidate evidence, video, sources,
+and journals are accessible and submitted, and the model's assumptions and limits
+can be explained. No essential work depends on Thanksgiving break.

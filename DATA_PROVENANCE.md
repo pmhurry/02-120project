@@ -105,3 +105,19 @@ current dense loader is a poor default.
 The current `load_dataset` still reads the supplied CSV. Missing measurements in
 that workflow remain missing; no source files were overwritten. No full-data
 gene comparisons, image overlays, or label regeneration were performed today.
+
+## November 6 update — full-data loader validated
+
+`python3 inspect_full_data.py` now loads the recovered archives using only the
+Python standard library. All six original MD5 checksums pass. All 17,370 metadata
+spots are recovered across the six samples; all counts for the original 348 spots
+match exactly, including implicit zeros. The feature tables agree by ID, symbol,
+type, and order: 32,285 features with 40 repeated-symbol rows beyond unique symbols.
+Repeated symbols are preserved, and ambiguous symbol queries fail explicitly.
+
+The loader stores 47,885,960 positive counts as sparse per-spot index/count arrays.
+Raw barcodes outside the metadata are excluded by explicit barcode selection.
+No expression-quality filtering, imputation, normalization, human orthology mapping,
+or target-evidence enrichment was performed. The coverage table is saved in
+`results/full_data_coverage.csv`. This update supersedes the earlier statement that
+full-data loading was pending; checkpoint 1 commands still use the supplied subset.

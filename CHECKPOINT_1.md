@@ -1,5 +1,11 @@
 # Checkpoint 1: Due November 1, 2026, at 11:59 p.m. (America/New_York)
 
+**Historical checkpoint — retained as completed work.** The November 6 project
+pivot is the [Spatial Target Prioritization Engine](ENGINE_DESIGN.md). The subset
+loader, collagen score, figures, and provenance below are a reproducibility baseline;
+they are not the new target-ranking model. Current plans are in checkpoints 2–4.
+No past work or submission status is changed by this pivot.
+
 The deadline was extended from October 30 to November 1. Keep the October 27–30
 work record below; use November 1 to finish review and submission.
 

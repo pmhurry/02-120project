@@ -1,5 +1,9 @@
 # October 30 checkpoint figures
 
+These are historical checkpoint 1 subset figures, retained for reproducibility.
+The current project is the [Spatial Target Prioritization Engine](ENGINE_DESIGN.md).
+These outputs have not been recomputed with full data or turned into target ranks.
+
 `python3 plot_checkpoint.py` creates `results/spatial.svg`,
 `results/group_comparison.svg`, and `results/group_summary.csv` without extra
 packages. It reads the unchanged 348-spot subset. The default spatial view is
