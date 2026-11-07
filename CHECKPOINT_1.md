@@ -77,9 +77,9 @@ are complete.
 - [x] Review the normalization and score formulas with one small hand-calculated example; explain what a score of zero means.
 - [x] Record the next priorities for checkpoint 2: sparse full-data loading, barcode/count reconciliation, and full-coverage model checks before building the interface.
 - [x] Set up the build journal, export the four previous Codex sessions, and commit and push the setup.
-- [ ] Review README and checkpoint materials for completeness; review the readable journal exports.
-- [ ] Commit and push any final checkpoint changes so the journal refreshes.
-- [ ] Submit the required checkpoint materials and repository link on Canvas by 11:59 p.m. (America/New_York), and verify submission status.
+- [x] Review README and checkpoint materials for completeness; review the readable journal exports.
+- [x] Commit and push any final checkpoint changes so the journal refreshes.
+- [x] Submit the required checkpoint materials and repository link on Canvas by 11:59 p.m. (America/New_York), and verify submission status.
 
 The build journal is now configured: raw Codex logs are in `journal/codex/` and
 readable transcripts are in `journal/readable/`. The pre-commit hook refreshes
@@ -92,4 +92,5 @@ counts were 100 before the logarithm; a score of zero means average standardized
 panel expression relative to the reference, not absent collagen. Checkpoint 2
 priorities are sparse full-data loading, barcode/count reconciliation, and
 full-coverage model checks before interface development (see [CHECKPOINT_2.md](CHECKPOINT_2.md)).
-Final document review, commit/push, and Canvas submission remain unconfirmed.
+The completed checklist above records the student's report of final review,
+commit/push, and Canvas submission; the submission receipt was not independently checked.

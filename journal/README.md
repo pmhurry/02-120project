@@ -20,7 +20,9 @@ The readable exports below come from the native Codex session logs in [codex/](c
 | 3 | 2026-10-29 | [Session 3](readable/rollout-2026-10-29T18-05-47-01a189b2-a0ae-79f3-9d58-62d0f8cf78fa.md) | [session3.txt](session3.txt) |
 | 4 | 2026-10-30 | [Session 4](readable/rollout-2026-10-30T16-53-42-01a18e96-fcdf-7e40-9f5d-838fdb874f5d.md) | [session4.txt](session4.txt) |
 | 5 | 2026-11-01 | [Session 5](readable/rollout-2026-11-01T14-50-38-01a198a9-f808-7f60-8b15-323f6c1cfa50.md) | [session5.txt](session5.txt) |
+| 6 | 2026-11-06 | [Session 6](readable/rollout-2026-11-06T20-38-14-01a1b3a8-0032-7dc0-b5f0-5def554d8455.md) | [session6.txt](session6.txt) |
 
 The course exporter is installed at `.claude/hooks/save_journal.py`. The local pre-commit hook refreshes raw and readable exports before commits. The text conversation copies are maintained separately.
 
-See [checkpoint 1](../CHECKPOINT_1.md) for completed work and remaining submission steps.
+See [checkpoint 1](../CHECKPOINT_1.md) for the historical baseline and
+[checkpoint 2](../CHECKPOINT_2.md) for the current five-session plan.

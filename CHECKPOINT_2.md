@@ -29,8 +29,8 @@ interface polish if the core model needs more time. There is no extra buffer day
 - [x] Update the roadmap and document keep/delete decisions in FILE_POLICY.md.
 - [x] Review the implementation and document why tissue expression is not a toxicity prediction.
 - [x] Save the available Codex session export (raw and readable); course acceptance of Codex logs still requires confirmation if Claude Code is mandatory.
-- [ ] Explain the safety distinction and review today's changes in your own words (student).
-- [x] Commit the reviewed implementation and planning changes (student explanation/review remains separate).
+- [x] Complete the guided explanation/review quiz; revisit biological replicates, cross-species inference, and annotation circularity using the feedback in journal/session6.txt.
+- [x] Commit the reviewed implementation and planning changes (guided student review recorded in journal/session6.txt).
 
 ## Session 2 — November 7: Spatial evidence
 

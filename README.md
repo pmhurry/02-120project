@@ -20,8 +20,9 @@ scheduled for later sessions. No target shortlist has been generated.
 - [Checkpoint 3: deployment and robustness, November 20](CHECKPOINT_3.md)
 - [Checkpoint 4: evidence review and final submission, December 1](CHECKPOINT_4.md)
 
-See the [build journal](journal/README.md) for all five work days, with links to
-readable Codex session exports and conversation copies.
+See the [build journal](journal/README.md) for all six work days, including
+[today's conversation and quiz](journal/session6.txt), readable Codex exports,
+and conversation copies.
 
 ## Historical subset checks
 
@@ -46,7 +47,8 @@ are kept outside Git in `data/source/`; checkpoint 2 adds sparse loading for ful
 
 ## Historical collagen-context score
 
-Run `python3 inspect_scores.py` for the 348-spot subset. See [the score definition](SCORING.md) for the fixed collagen panel, formulas, reference, edge cases, and interpretation limits. Full-data scoring remains scheduled for checkpoint 2.
+Run `python3 inspect_scores.py` for the 348-spot subset. See [the score definition](SCORING.md) for the fixed collagen panel, formulas, reference, edge cases, and interpretation limits. The collagen score remains optional context; the new target-ranking model follows
+[ENGINE_DESIGN.md](ENGINE_DESIGN.md).
 
 ## Checkpoint 1 figures
 
