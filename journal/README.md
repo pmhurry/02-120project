@@ -8,8 +8,13 @@ and planning; they are not a substitute for the required conversation/session ex
 
 November 6 Codex export: [readable session](readable/rollout-2026-11-06T20-38-14-01a1b3a8-0032-7dc0-b5f0-5def554d8455.md)
 and [raw session](codex/rollout-2026-11-06T20-38-14-01a1b3a8-0032-7dc0-b5f0-5def554d8455.jsonl).
-These are Codex records, not native Claude Code logs; confirm course acceptance
-if the original tool-specific requirement still applies.
+The current [course setup instructions](https://phcompeau.github.io/ProgrammingforScientists2026Undergrad/project/journal/setup.txt)
+explicitly support both Codex and Claude Code session logs (checked November 7).
+
+November 7: [session 2 work notes](checkpoint2_session2_notes.md),
+[readable Codex export](readable/rollout-2026-11-07T22-34-35-01a1b938-e1d9-7c83-a2a2-0509e262916f.md),
+and [raw export](codex/rollout-2026-11-07T22-34-35-01a1b938-e1d9-7c83-a2a2-0509e262916f.jsonl).
+Student review is pending; work notes are not a verbatim conversation copy.
 
 The readable exports below come from the native Codex session logs in [codex/](codex/). Each entry includes the recorded conversation and tool-use notes.
 
@@ -26,3 +31,23 @@ The course exporter is installed at `.claude/hooks/save_journal.py`. The local p
 
 See [checkpoint 1](../CHECKPOINT_1.md) for the historical baseline and
 [checkpoint 2](../CHECKPOINT_2.md) for the current five-session plan.
+
+## Setup verification — November 7, 2026
+
+The exporter at `.claude/hooks/save_journal.py` and executable local Git hook at
+`.git/hooks/pre-commit` match the current published course files byte for byte.
+Codex uses the same `.claude/` exporter path; Claude-specific session hooks are
+skipped when setting up with Codex. The older `.codex/` configuration is not used
+by this Git hook and is not required by the current course setup.
+
+Manual export verified seven raw Codex sessions with seven readable Markdown
+counterparts. A scan of raw and readable journal files found no standard token
+patterns or suspicious password/key/token assignments. The exporter redacts common
+token formats; manually review any unusual credentials before sharing logs.
+Neither `journal/` nor `.claude/` is ignored. The local Git hook refreshes and stages
+journal files at commit time; `.git/hooks/` itself is not versioned.
+
+Submit the repository link on Canvas and commit/push regularly. If project work
+also happens in ChatGPT or the Claude app, maintain `journal/chat_links.md` with
+shared conversation links as described on the course journal page. No chat-app
+links were provided in this session.
