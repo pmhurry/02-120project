@@ -1,0 +1,30 @@
+{
+  "version": "spatial-v1",
+  "dataset": "full_metadata_matched_archives",
+  "features": 32285,
+  "spots": 17370,
+  "archive_md5": {
+    "24_m1": "e5c745814e430b83b32dc4641b5828f5",
+    "24_m2": "c686c9f6982676131ddeae33280209df",
+    "48_m4": "b29df9e20a484d7d9e06da267f7d6c78",
+    "48_m5": "14e3d248a0bc8a40da6938acae25ee43",
+    "72_m1": "531f76f5637359de201dba8bfb44f506",
+    "72_m2": "418a06e1f562ab50ab80234d254d92f4"
+  },
+  "normalization": "ln(1 + 10000 * count / all-feature library)",
+  "qc_rule": "exclude zero-library spots only; no detection/mitochondrial thresholds",
+  "missing_values": "empty CSV cell; not zero",
+  "aggregation": "equal mouse weight; require two mice per time",
+  "source_sha256": {
+    "Visium_Meta_data.txt": "de8e361f03a617591e3007ac92443cf91d6095185d9cffeb5142aa961ec2bfe5",
+    "spatial_evidence.py": "609861bc8b3278ede554667118faa510e358272e646548fbc33956bcd1706d8b",
+    "inspect_spatial.py": "d93a558c50726c7bb92adca961f5964a9bf8f62b8dc5b0c0fb310a9ebfdc5904"
+  },
+  "output_sha256": {
+    "equal_mouse.csv.gz": "ae33273648276e24ff888c4aeb02918e016b76b5835eb5073b71554a731f917e",
+    "library_qc.csv": "e52690b64ba8d141163ff5b733101c826695513469606c14ed6b0ce1a76c9851",
+    "per_mouse.csv.gz": "f1b36b32a102a4bc918efa70cea51dc7faeaffa802146358bccf2ebf1e305aed",
+    "spot_libraries.csv.gz": "9d05996d9a9e8a62c466d64df752a3de546c41cfef04c3dac748c15501e8d9d1",
+    "subset_comparison.csv": "f57932e20d220aa9ca2b33dbf368c4a99af4f4977a3ba608adf94719b75a3f19"
+  }
+}

@@ -5,8 +5,8 @@ Question: which genes show reproducible injury-region expression patterns and
 warrant investigation as human therapeutic-target hypotheses?
 
 Keep five sessions, November 6–10 (America/New_York), roughly 60–90 minutes each.
-Work one session at a time. Today is data preparation and planning only; ranking
-and app implementation remain later work. Save the required journal, explain the
+Work one session at a time. Session 1 covers data preparation and planning;
+ranking and app implementation belong to sessions 3 and 4. Save the required journal, explain the
 calculations, and review/commit each session. Dates are effort targets; reduce
 interface polish if the core model needs more time. There is no extra buffer day.
 
@@ -28,19 +28,24 @@ interface polish if the core model needs more time. There is no extra buffer day
 - [x] Define the engine's components, mapping gates, missing-data rules, and limits in ENGINE_DESIGN.md.
 - [x] Update the roadmap and document keep/delete decisions in FILE_POLICY.md.
 - [x] Review the implementation and document why tissue expression is not a toxicity prediction.
-- [x] Save the available Codex session export (raw and readable); course acceptance of Codex logs still requires confirmation if Claude Code is mandatory.
+- [x] Save the available Codex session export (raw and readable); current course setup explicitly supports Codex (verified November 7).
 - [x] Complete the guided explanation/review quiz; revisit biological replicates, cross-species inference, and annotation circularity using the feedback in journal/session6.txt.
 - [x] Commit the reviewed implementation and planning changes (guided student review recorded in journal/session6.txt).
 
 ## Session 2 — November 7: Spatial evidence
 
-- [ ] Review library sizes and zero-library spots by mouse; report retained/excluded counts and any QC rules.
-- [ ] Apply ln(1 + 10,000 × count/library) using all features in each library total.
-- [ ] Calculate per-feature, per-mouse annotation-group means, differences, detection fractions, and group counts.
-- [ ] Keep 24 h necrotic-region context distinct from 48/72 h annotation-based rankings.
-- [ ] Save all-feature spatial summaries; give mice equal weight and show each mouse.
-- [ ] Verify hand-calculated normalization, alignment, identical profiles, known contrasts, zero libraries, and missing groups.
-- [ ] Compare selected full-data values with the checked subset; explain coverage/reference effects.
+- [x] Review library sizes and zero-library spots by mouse; report retained/excluded counts and any QC rules.
+- [x] Apply ln(1 + 10,000 × count/library) using all features in each library total.
+- [x] Calculate per-feature, per-mouse annotation-group means, differences, detection fractions, and group counts.
+- [x] Keep 24 h necrotic-region context distinct from 48/72 h annotation-based rankings.
+- [x] Save all-feature spatial summaries; give mice equal weight and show each mouse.
+- [x] Verify hand-calculated normalization, alignment, identical profiles, known contrasts, zero libraries, and missing groups.
+- [x] Compare selected full-data values with the checked subset; explain coverage/reference effects.
+
+Session 2 outputs and validation: [SPATIAL_EVIDENCE.md](SPATIAL_EVIDENCE.md).
+- [x] Complete the guided student explanation/review; corrections are recorded in journal/checkpoint2_session2_notes.md.
+- [x] Refresh the raw/readable journal exports.
+- [x] Commit and push the reviewed session 2 work.
 
 The original collagen score is optional contextual output, not a prerequisite for
 the new ranking model. Keep it unchanged until any full-data reference is explicitly

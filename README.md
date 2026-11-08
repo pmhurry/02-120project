@@ -8,9 +8,10 @@ causality, treatment direction, drug efficacy, oral delivery, or clinical safety
 **Workflow:** spatial evidence → human mapping → tractability → safety review →
 ranked hypotheses for experimental follow-up.
 
-**Current status (November 6):** full-data loading and external data preparation are
-validated. The ranking design is specified; ranking code and the Streamlit app are
-scheduled for later sessions. No target shortlist has been generated.
+**Current status (November 7):** full-data loading, external data preparation,
+library QC, normalization, and all-feature mouse-level spatial summaries are
+validated. All 17,370 spots were retained (no zero libraries). Ranking code and the
+Streamlit app are scheduled for later sessions. No target shortlist has been generated.
 
 - [Engine design and scoring rubric](ENGINE_DESIGN.md)
 - [Supporting data, coverage, and source limitations](TARGET_DATA.md)
@@ -20,8 +21,8 @@ scheduled for later sessions. No target shortlist has been generated.
 - [Checkpoint 3: deployment and robustness, November 20](CHECKPOINT_3.md)
 - [Checkpoint 4: evidence review and final submission, December 1](CHECKPOINT_4.md)
 
-See the [build journal](journal/README.md) for all six work days, including
-[today's conversation and quiz](journal/session6.txt), readable Codex exports,
+See the [build journal](journal/README.md) for the work days, including
+[November 6's conversation and quiz](journal/session6.txt), readable Codex exports,
 and conversation copies.
 
 ## Historical subset checks
@@ -90,8 +91,8 @@ ambiguous symbol lookups raise an error. Spot order is explicit in `data.spots`.
 A missing archive/barcode causes an error rather than filling missing data with zeros.
 
 This expands expression coverage, not biological replication: there are still six
-mice, two per time point. No expression QC filtering or full-data normalization has
-been applied yet. These remain session 2 tasks. The subset figures and score outputs
+mice, two per time point. Session 2 applied zero-library QC (none excluded) and full-data normalization,
+saved separately in `results/spatial/`. The subset figures and score outputs
 have not been regenerated with full data.
 
 Supporting mouse–human mapping and external target-evidence snapshots are documented
@@ -118,3 +119,17 @@ Use `--download` with either script to refresh its public sources. See
 [TARGET_DATA.md](TARGET_DATA.md) for attribution, checksums, coverage, and caveats.
 Normal-human tissue expression helps identify follow-up questions; it is not a
 prediction that a target or drug is toxic. Missing records remain unknown.
+
+## Full-data spatial evidence — checkpoint 2, session 2
+
+```sh
+python3 inspect_spatial.py
+python3 -m unittest discover -s tests -v
+```
+
+This offline command verifies the source archives, normalizes using all-feature
+library totals, and saves every feature's group means, detection fractions, and
+within-mouse differences. It also saves equal-mouse summaries, QC, a subset
+comparison, and a provenance manifest in `results/spatial/`. The 24-hour context
+remains separate from 48/72 hours. See [methods and results](SPATIAL_EVIDENCE.md)
+for the QC table, formulas, coverage effects, missingness, and validation.

@@ -17,11 +17,29 @@ Validation: all 24 unit tests pass; full run verifies source archive checksums;
 exported row counts, availability, and output hashes checked. Updated README and
 session checklist. No ranking, app, or candidate shortlist was created.
 
-Review prompts for the student (not yet answered):
-1. Why does adding spots preserve shared-spot normalization but change group means?
-2. Why must an absent group be missing rather than zero?
-3. Why do we weight mice equally even when their spot counts differ?
-4. Why does the Col1a1 24-hour sign change not demonstrate a biological change?
+## Guided review completed
 
-Student explanation/review and commit/push remain pending. No claims of student
-answers or course submission are recorded here.
+The following records the student's answers and the feedback given. It does not
+claim that every concept was answered correctly without assistance.
+
+1. **Shared-spot normalization versus group averages.** The student said normalized
+   values were not based on the data, but group averages depend on additional data.
+   Feedback: normalization depends on the gene count and all-feature library total
+   within the same spot; adding other spots changes neither input. It adjusts for
+   depth, without fixing values to a bounded range or removing all confounding.
+2. **Missing group versus zero.** The student identified the distinction between
+   unknown and measured zero but conflated group size with expression mean.
+   Feedback: zero retained spots is a known group count; its expression mean is
+   missing. A measured zero mean requires usable spots with zero gene counts.
+3. **Equal mouse weights.** The student described this as normalization because
+   comparisons should not depend on spot count. Feedback: this is equal weighting
+   of biological replicates. More spots are more measurements within one mouse,
+   not additional independent animals.
+4. **Sign change after expanding coverage.** The student answered: "There was
+   previously missing data, so the mouse never changed". Feedback: correct;
+   previously omitted spots change group averages without changing the mouse or
+   original measurements.
+
+Points to revisit: spot-specific normalization inputs, group counts versus means,
+and biological replicate weighting. All four review prompts were discussed.
+Journal export and Git closeout follow this review; no course submission is implied.
