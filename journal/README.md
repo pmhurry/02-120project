@@ -57,3 +57,8 @@ links were provided in this session.
 November 8: [session 3 work notes](checkpoint2_session3_notes.md) and refreshed
 raw/readable exports. Ranking implementation and validation are complete. Student explanation/review
 was completed November 9; the work notes record answers and corrections.
+
+Session 8 (November 8–9): [conversation copy](session8.txt), covering ranking
+implementation, guided review, and closeout. New work sessions require a new
+numbered conversation copy; refresh the same copy during continued discussion.
+See [project journal instructions](../AGENTS.md).
