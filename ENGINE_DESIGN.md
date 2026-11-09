@@ -1,7 +1,7 @@
 # Spatial Target Prioritization Engine — version 1 plan
 
-Status: design agreed November 6, 2026; ranking implementation and validation are
-scheduled for later checkpoint 2 sessions. No ranked targets have been produced.
+Status: design agreed November 6, 2026; fixed ranking implemented and validated
+November 8. See [RANKING.md](RANKING.md) for outputs, coverage, and limitations.
 
 ## Goal and workflow
 

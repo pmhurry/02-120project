@@ -8,10 +8,11 @@ causality, treatment direction, drug efficacy, oral delivery, or clinical safety
 **Workflow:** spatial evidence → human mapping → tractability → safety review →
 ranked hypotheses for experimental follow-up.
 
-**Current status (November 7):** full-data loading, external data preparation,
-library QC, normalization, and all-feature mouse-level spatial summaries are
-validated. All 17,370 spots were retained (no zero libraries). Ranking code and the
-Streamlit app are scheduled for later sessions. No target shortlist has been generated.
+**Current status (November 8):** full-data spatial summaries and the fixed ranking
+model are implemented and validated. The default hepatic-fibrosis export screens
+32,285 features and ranks 2,248 complete-evidence hypotheses. Mapping exclusions,
+incomplete evidence, tissue context, and reported liabilities remain visible.
+The Streamlit interface is scheduled for November 9.
 
 - [Engine design and scoring rubric](ENGINE_DESIGN.md)
 - [Supporting data, coverage, and source limitations](TARGET_DATA.md)
@@ -97,7 +98,7 @@ have not been regenerated with full data.
 
 Supporting mouse–human mapping and external target-evidence snapshots are documented
 in [TARGET_DATA.md](TARGET_DATA.md). Their coverage and mapping uncertainties are
-explicit; they are not yet integrated into a candidate ranking or app. This dataset
+explicit; they are integrated into the CLI ranking. The app is pending. This dataset
 contains no uninjured controls or treatment response measurements; region enrichment
 cannot establish causality, drug efficacy, or the desired direction of intervention.
 
@@ -133,3 +134,17 @@ within-mouse differences. It also saves equal-mouse summaries, QC, a subset
 comparison, and a provenance manifest in `results/spatial/`. The 24-hour context
 remains separate from 48/72 hours. See [methods and results](SPATIAL_EVIDENCE.md)
 for the QC table, formulas, coverage effects, missingness, and validation.
+
+## Target ranking — checkpoint 2, session 3
+
+```sh
+python3 inspect_ranking.py
+python3 -m unittest discover -s tests -v
+```
+
+See [ranking methods, coverage, and checked examples](RANKING.md). Outputs in
+`results/ranking/HP_0001395/` include an all-feature mapping/component audit,
+spatial-only screen, complete ranking, compressed evidence profiles, and a
+versioned manifest. The default weights are S/T/D = 0.60/0.25/0.15. Alternative
+weight and individual-time ranks are explicit columns. These are experimental
+hypotheses; the model does not score safety or infer treatment direction.

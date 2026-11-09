@@ -53,13 +53,17 @@ computed and saved. Never switch dataset versions silently.
 
 ## Session 3 — November 8: Scoring and ranking
 
-- [ ] Implement the stable-ID, high-confidence one-to-one mapping gate and report all exclusion reasons.
-- [ ] Compute the documented spatial S, tractability T, selected-disease D, and weighted priority score.
-- [ ] Produce both a spatial-only screen and a complete-evidence ranking; keep incomplete evidence visible.
-- [ ] Attach tissue-expression context, reported liabilities, mechanism/indication evidence, and source links without inventing a safety score.
-- [ ] Save reproducible component tables, ranks, configuration, source versions, and coverage counts.
-- [ ] Verify components on synthetic examples, mapping ambiguity, missingness, deterministic ties, and that missing safety evidence confers no benefit.
-- [ ] Check a few exported targets manually; do not tune weights to preferred outcomes.
+- [x] Implement the stable-ID, high-confidence one-to-one mapping gate and report all exclusion reasons.
+- [x] Compute the documented spatial S, tractability T, selected-disease D, and weighted priority score.
+- [x] Produce both a spatial-only screen and a complete-evidence ranking; keep incomplete evidence visible.
+- [x] Attach tissue-expression context, reported liabilities, mechanism/indication evidence, and source links without inventing a safety score.
+- [x] Save reproducible component tables, ranks, configuration, source versions, and coverage counts.
+- [x] Verify components on synthetic examples, mapping ambiguity, missingness, deterministic ties, and that missing safety evidence confers no benefit.
+- [x] Check a few exported targets manually; do not tune weights to preferred outcomes.
+
+Session 3 outputs and validation: [RANKING.md](RANKING.md).
+- [x] Complete the student explanation/review (November 9); answers and corrections are recorded in journal/checkpoint2_session3_notes.md.
+- [x] Refresh journal exports and commit/push the reviewed session (November 9).
 
 ## Session 4 — November 9: Minimal interface
 

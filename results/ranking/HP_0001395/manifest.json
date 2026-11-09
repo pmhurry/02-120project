@@ -1,0 +1,147 @@
+{
+  "version": "ranking-v1",
+  "disease_id": "HP_0001395",
+  "disease_name": "Hepatic fibrosis",
+  "weights": {
+    "S": 0.6,
+    "T": 0.25,
+    "D": 0.15
+  },
+  "tie_break": "stable feature ID ascending",
+  "missing": "empty CSV cells; no weight renormalization",
+  "safety": "context only; no score",
+  "source_versions": {
+    "manifest.json": {
+      "retrieved_at": "2026-11-06T21:18:15.214875-05:00",
+      "diseases": {
+        "HP_0001395": "Hepatic fibrosis",
+        "MONDO_0005155": "cirrhosis of liver",
+        "MONDO_0005359": "drug-induced liver injury",
+        "MONDO_0019542": "acute liver failure"
+      },
+      "association_query": "query Associations($id:String!, $page:Int!, $size:Int!) {\n meta {name dataVersion {year month iteration}}\n disease(efoId:$id) {id name description\n associatedTargets(enableIndirect:false,page:{index:$page,size:$size}) {\n count rows {score datasourceScores{id score} datatypeScores{id score}\n target {id approvedSymbol}}}}}\n",
+      "target_query": "query Targets($ids:[String!]!) {meta {name dataVersion {year month iteration}} targets(ensemblIds:$ids) {id approvedSymbol approvedName\n homologues {speciesId targetGeneId targetGeneSymbol homologyType isHighConfidence}\n tractability {label modality value}\n safetyLiabilities {event datasource url literature}\n drugAndClinicalCandidates {count rows {id maxClinicalStage\n diseases {diseaseFromSource disease {id name}}\nclinicalReports {id url clinicalStage trialOverallStatus}\ndrug {id name drugType maximumClinicalStage\nmechanismsOfAction {rows {actionType mechanismOfAction targets {id approvedSymbol}}}}\n }}}}",
+      "files": [
+        {
+          "file": "HOM_MouseHumanSequence.rpt.gz",
+          "source_url": "https://www.informatics.jax.org/downloads/reports/HOM_MouseHumanSequence.rpt",
+          "sha256": "d5e989393643a4ea82ea6d8263e54406cc6a34075684b484d31b382b7c26557e",
+          "uncompressed_sha256": "08a8f98f05194d7862eb1a79b48dd3d0a136a86512c5f003b94f02a8c954889d"
+        },
+        {
+          "file": "hgnc_complete_set.txt.gz",
+          "source_url": "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt",
+          "sha256": "68859599b9247021a6f4e74ffd7af4c02af16b38fe2a9d789fe7f51c75a1868d",
+          "uncompressed_sha256": "3944cdad7affce5bc2c7d63d7079d7e68762ed28ef414fc287cc0f57c4b0d78f"
+        },
+        {
+          "file": "opentargets_evidence.json.gz",
+          "source_url": "https://api.platform.opentargets.org/api/v4/graphql",
+          "sha256": "07bca3b127d903a48f91433ba77ebb92e2f2ed3ade8ac2e0e5b10fabf1f48ecd",
+          "uncompressed_sha256": "4b4debab4ab2653ce520b50f083c1b5ba312ccf42350e8d7cc9a7aae6e190cbe"
+        }
+      ],
+      "page_sizes": [
+        3000,
+        2000,
+        1000,
+        500,
+        499,
+        333,
+        250,
+        100
+      ],
+      "pagination": "Merge unique IDs across page sizes; require exact API total",
+      "opentargets_releases": {
+        "HP_0001395": {
+          "name": "Open Targets GraphQL & REST API Beta",
+          "dataVersion": {
+            "year": "26",
+            "month": "09",
+            "iteration": null
+          }
+        },
+        "MONDO_0005155": {
+          "name": "Open Targets GraphQL & REST API Beta",
+          "dataVersion": {
+            "year": "26",
+            "month": "09",
+            "iteration": null
+          }
+        },
+        "MONDO_0005359": {
+          "name": "Open Targets GraphQL & REST API Beta",
+          "dataVersion": {
+            "year": "26",
+            "month": "09",
+            "iteration": null
+          }
+        },
+        "MONDO_0019542": {
+          "name": "Open Targets GraphQL & REST API Beta",
+          "dataVersion": {
+            "year": "26",
+            "month": "09",
+            "iteration": null
+          }
+        }
+      }
+    },
+    "tissue_manifest.json": {
+      "retrieved_at": "2026-11-06T21:26:26.585244-05:00",
+      "release": "Human Protein Atlas 25.1; Ensembl 109",
+      "release_source": "https://www.proteinatlas.org/humanproteome/tissue/data",
+      "licence": "https://www.proteinatlas.org/about/licence",
+      "files": [
+        {
+          "file": "hpa_rna_tissue_consensus.tsv.zip",
+          "source_url": "https://www.proteinatlas.org/download/tsv/rna_tissue_consensus.tsv.zip",
+          "sha256": "b001903da23f802c8dfbd1b6b3a8c20b831fedd4932f4bb721b06622d83ae60b"
+        },
+        {
+          "file": "hpa_normal_ihc_data.tsv.zip",
+          "source_url": "https://www.proteinatlas.org/download/tsv/normal_ihc_data.tsv.zip",
+          "sha256": "fa2315e5a53ecffd9427a5bfe219c8cc41b54089ef6f6be7b5d79b5455e0677f"
+        }
+      ]
+    }
+  },
+  "input_sha256": {
+    "results/spatial/per_mouse.csv.gz": "f1b36b32a102a4bc918efa70cea51dc7faeaffa802146358bccf2ebf1e305aed",
+    "results/spatial/manifest.json": "96344dde82d5e4c82919346020581f366d64fb0d8afb6d8233a4acfebc406646",
+    "data/external/target_mouse_orthologs.csv": "a68025a2e20cafdad0dfb3bf572bc38f7899051329837670cf72fe534b83a686",
+    "data/external/feature_mapping_coverage.csv": "b098592803bd67ad390368d7987fa134043eb4c45ac53acfb5587f080ecdb903",
+    "data/external/disease_target_associations.csv": "5f0c2a5e42dddd80b4c93e9bce264b3f1dc426a7a5971f391b32add9ada1045e",
+    "data/external/target_annotations.csv.gz": "49ed221efc15bdbf6380129a2a32b349cdca14998111d642011526711aaa5576",
+    "data/external/target_tissue_summary.csv": "7f5c2cee480929f94ea9b06760146a5b65481f3a3df1bf5c17b42b5922d2aaaa",
+    "data/external/manifest.json": "582d6bc4883fe588408a452c764cd696b46d73dde992902d0cee70b0b88c4074",
+    "data/external/tissue_manifest.json": "e968eb63db910c1519033a742ecc85df6f64ccd67e8067fa00b002b46aada673",
+    "target_ranking.py": "04802ef9f338ce6ade8d7bf552766b94fece0d000c79f5d0ff6cbd40ef6fd2b1",
+    "inspect_ranking.py": "b5f52aa0fee5632100b82a0972f79978eaa7cfd2a95d9ff60f2d6109aabb40e9",
+    "ENGINE_DESIGN.md": "06a2e3ec2323e77a517f8bb20df63651222d30c6d172ffcc2d525e3fb97317b1"
+  },
+  "coverage": {
+    "features": 32285,
+    "mapped_gate_pass": 4789,
+    "reproducibly_positive": 11753,
+    "spatial_ranked": 32285,
+    "complete_ranked": 2248,
+    "exclusion_counts": {
+      "missing_selected_disease": 28386,
+      "no_stable_id_mapping": 26591,
+      "not_reproducibly_positive": 20532,
+      "missing_tractability": 26802,
+      "multiple_human_targets": 178,
+      "not_one_to_one": 762,
+      "low_or_missing_confidence": 657,
+      "multiple_mouse_ids": 702
+    },
+    "top10_overlap": 0
+  },
+  "output_sha256": {
+    "complete_ranking.csv": "ea5eba3a7f3dd1633ef1c2724255d16de4a96299ad4475b97b4df35d7e7ed862",
+    "components.csv": "9c5c9b63576fe284cf6d86292bd28870c5e84c51c20e0bec7c9e6b7d9df650e2",
+    "evidence_profiles.jsonl.gz": "b24537635229b6ebbba0c2ac5592716ba92b42172f8ce818a8e8d7d4469d4c42",
+    "spatial_screen.csv": "f3dc2551dab238256748a5c2176b45fca83f33812eda8235df3f316cb89211c5"
+  }
+}

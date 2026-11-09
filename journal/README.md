@@ -14,7 +14,8 @@ explicitly support both Codex and Claude Code session logs (checked November 7).
 November 7: [session 2 work notes](checkpoint2_session2_notes.md),
 [readable Codex export](readable/rollout-2026-11-07T22-34-35-01a1b938-e1d9-7c83-a2a2-0509e262916f.md),
 and [raw export](codex/rollout-2026-11-07T22-34-35-01a1b938-e1d9-7c83-a2a2-0509e262916f.jsonl).
-Student review is pending; work notes are not a verbatim conversation copy.
+Session 2 student review is recorded in the work notes; work notes are not a
+verbatim conversation copy.
 
 The readable exports below come from the native Codex session logs in [codex/](codex/). Each entry includes the recorded conversation and tool-use notes.
 
@@ -52,3 +53,7 @@ Submit the repository link on Canvas and commit/push regularly. If project work
 also happens in ChatGPT or the Claude app, maintain `journal/chat_links.md` with
 shared conversation links as described on the course journal page. No chat-app
 links were provided in this session.
+
+November 8: [session 3 work notes](checkpoint2_session3_notes.md) and refreshed
+raw/readable exports. Ranking implementation and validation are complete. Student explanation/review
+was completed November 9; the work notes record answers and corrections.
