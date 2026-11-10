@@ -8,11 +8,20 @@ causality, treatment direction, drug efficacy, oral delivery, or clinical safety
 **Workflow:** spatial evidence → human mapping → tractability → safety review →
 ranked hypotheses for experimental follow-up.
 
-**Current status (November 8):** full-data spatial summaries and the fixed ranking
-model are implemented and validated. The default hepatic-fibrosis export screens
-32,285 features and ranks 2,248 complete-evidence hypotheses. Mapping exclusions,
-incomplete evidence, tissue context, and reported liabilities remain visible.
-The Streamlit interface is scheduled for November 9.
+**Current status (November 9):** the full-data ranking model and local Streamlit
+interface are implemented. The hepatic-fibrosis export screens 32,285 features and
+ranks 2,248 complete-evidence hypotheses. The app includes mapping exclusions,
+mouse-level evidence, spatial maps, tissue context, liabilities, and downloads.
+See [app setup and validation](APP.md).
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/streamlit run app.py --server.address localhost
+```
+
+The interface requires Python 3.11+. Expression maps require the original archives
+in `data/source/`; annotation maps and saved target evidence work without them.
 
 - [Engine design and scoring rubric](ENGINE_DESIGN.md)
 - [Supporting data, coverage, and source limitations](TARGET_DATA.md)
@@ -98,7 +107,7 @@ have not been regenerated with full data.
 
 Supporting mouse–human mapping and external target-evidence snapshots are documented
 in [TARGET_DATA.md](TARGET_DATA.md). Their coverage and mapping uncertainties are
-explicit; they are integrated into the CLI ranking. The app is pending. This dataset
+explicit; they are integrated into the CLI ranking. The local app reads the checked exports. This dataset
 contains no uninjured controls or treatment response measurements; region enrichment
 cannot establish causality, drug efficacy, or the desired direction of intervention.
 

@@ -67,12 +67,17 @@ Session 3 outputs and validation: [RANKING.md](RANKING.md).
 
 ## Session 4 — November 9: Minimal interface
 
-- [ ] Build a local Streamlit app with ranked targets, component explanations, and explicit disease/time context.
-- [ ] Add target lookup, evidence profile, and mouse/time selectors compatible with each other.
-- [ ] Map annotations or selected target expression for one mouse at a time; preserve aspect ratio and distinguish missing from zero.
-- [ ] Show each mouse's group difference and sample/spot counts, plus tissue-expression and liability context.
-- [ ] Provide source links, known drug mechanisms/indications, missing-data labels, and an evidence-table download.
-- [ ] Compare several displayed ranks, barcodes, and values with saved CLI outputs.
+- [x] Build a local Streamlit app with ranked targets, component explanations, and explicit disease/time context.
+- [x] Add target lookup, evidence profile, and mouse/time selectors compatible with each other.
+- [x] Map annotations or selected target expression for one mouse at a time; preserve aspect ratio and distinguish missing from zero.
+- [x] Show each mouse's group difference and sample/spot counts, plus tissue-expression and liability context.
+- [x] Provide source links, known drug mechanisms/indications, missing-data labels, and an evidence-table download.
+- [x] Compare several displayed ranks, barcodes, and values with saved CLI outputs.
+
+Session 4 implementation and validation: [APP.md](APP.md). Student explanation
+review is complete; answers and corrections are in the
+[session notes](journal/checkpoint2_session4_notes.md). The reviewed work and
+conversation copy are included in the session 4 Git closeout.
 
 ## Session 5 — November 10: Review, TA preparation, and submission
 

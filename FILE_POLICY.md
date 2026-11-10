@@ -17,7 +17,7 @@ remove disposable downloads/debug artifacts after verified snapshots exist.
 | All `journal/` files and journal hooks/settings | Keep: work/learning history; preserve original dates and pending review/export steps |
 | `data/external/raw/` working downloads, cached pages, and schema/debug probes | Delete after snapshot and offline rebuild validation; they duplicate the retained compressed inputs |
 | `data/external/*query.json` scratch request files | Delete: the actual acquisition query templates and variables are documented in code/manifests |
-| `.venv/` from the failed earlier dependency setup | Delete: incomplete unused environment; current data-preparation scripts require only Python's standard library |
+| `.venv/` | Ignore: local app dependency environment; reproducible through `requirements.txt` |
 | Generated `__pycache__/` / `*.pyc` | Ignore; disposable, not scientific inputs |
 
 No historical source, student-authored journal, or existing user edit is deleted.
@@ -29,3 +29,9 @@ source-version manifest; they do not exist yet.
 The app, ranking implementation, sensitivity analysis, and candidate-specific
 functional review remain future sessions. Unrelated model types, molecule-generation
 assets, docking inputs, and new large training datasets are outside this scope.
+
+November 9: keep `app.py`, `app_data.py`, `requirements.txt`, `APP.md`,
+`tests/test_app_data.py`, and `scripts/check_app.py` for the local interface and its
+checks. The implemented ranking outputs live in `results/ranking/HP_0001395/`,
+superseding the proposed `results/engine/` location above. Ranking and the local
+interface are implemented; deployment and deeper sensitivity review remain future work.
