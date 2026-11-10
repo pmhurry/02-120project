@@ -8,11 +8,22 @@ causality, treatment direction, drug efficacy, oral delivery, or clinical safety
 **Workflow:** spatial evidence → human mapping → tractability → safety review →
 ranked hypotheses for experimental follow-up.
 
-**Current status (November 9):** the full-data ranking model and local Streamlit
-interface are implemented. The hepatic-fibrosis export screens 32,285 features and
+**Current status (November 10):** the full-data workflow and local Streamlit
+interface pass checkpoint 2 automated review. The hepatic-fibrosis export screens 32,285 features and
 ranks 2,248 complete-evidence hypotheses. The app includes mapping exclusions,
 mouse-level evidence, spatial maps, tissue context, liabilities, and downloads.
 See [app setup and validation](APP.md).
+
+All 17,370 spots from six mice are recovered; none has a zero library. Of 32,285
+features, 4,789 pass mapping and 2,248 enter the complete ranking; 30,037 remain
+outside it with explicit reasons. Exclusion categories overlap. Complete ranking
+favors mapped, previously studied targets. The 24 h view is separate context;
+ranks combine 48/72 h. Chronic hepatic-fibrosis associations contextualize acute
+injury. Tissue expression and absent liability reports cannot establish safety.
+
+See [November 10 validation notes](journal/checkpoint2_session5_notes.md).
+Student explanation review is complete, and the student confirmed browser review.
+TA feedback and submission confirmation remain pending.
 
 ```sh
 python3 -m venv .venv
@@ -157,3 +168,20 @@ spatial-only screen, complete ranking, compressed evidence profiles, and a
 versioned manifest. The default weights are S/T/D = 0.60/0.25/0.15. Alternative
 weight and individual-time ranks are explicit columns. These are experimental
 hypotheses; the model does not score safety or infer treatment direction.
+
+## End-to-end validation — November 10
+
+With the saved external snapshots and six source archives installed:
+
+```sh
+python3 inspect_full_data.py
+python3 inspect_spatial.py
+python3 inspect_ranking.py
+python3 -m unittest discover -s tests -v
+.venv/bin/python scripts/check_app.py --expression
+```
+
+Ranking rebuilds external derived tables offline. Rebuild ranking after spatial
+outputs change, then restart the app. Review reproduced all spatial table contents
+and ranking outputs; all 30 tests and AppTest checks passed. Browser visual review
+is separate from automated checks.

@@ -69,3 +69,11 @@ Session 9 (November 9): [conversation copy](session9.txt),
 and [raw export](codex/rollout-2026-11-09T23-17-25-01a1c3ac-d127-7011-84f2-8ff7b40f1d82.jsonl).
 Interface implementation, automated checks, and student explanation review are
 complete. The session 4 Git closeout includes these notes and conversation copy.
+
+Session 10 (November 10): [conversation copy](session10.txt),
+[review work notes](checkpoint2_session5_notes.md),
+[readable Codex export](readable/rollout-2026-11-10T17-42-50-01a1c7a0-dcb9-7ab1-9813-1ae63616efed.md),
+and [raw export](codex/rollout-2026-11-10T17-42-50-01a1c7a0-dcb9-7ab1-9813-1ae63616efed.jsonl).
+End-to-end checks, TA preparation, and student explanation review are complete.
+The student confirmed browser review and authorized Git closeout. TA feedback and
+submission remain pending. Subsequent TA preparation is excluded from this closeout.

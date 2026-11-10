@@ -68,5 +68,6 @@ group sizes match; normalized means agree within 1e-12. A unit test separately
 checks zero-library missingness versus measured zero and coordinate alignment.
 
 AppTest exercises Streamlit rendering and interactions, not a real browser's visual
-layout. Interactive visual review by the student remains part of session review.
-Tomorrow's end-to-end/submission checklist remains in [checkpoint 2](CHECKPOINT_2.md).
+layout. The student confirmed completion of browser review on November 10.
+November 10 checks passed; see [session 5 notes](journal/checkpoint2_session5_notes.md)
+and remaining review/submission tasks in [checkpoint 2](CHECKPOINT_2.md).

@@ -81,11 +81,11 @@ conversation copy are included in the session 4 Git closeout.
 
 ## Session 5 — November 10: Review, TA preparation, and submission
 
-- [ ] Run data checks, model checks, and the complete local workflow; fix blockers.
-- [ ] Verify that the app reproduces exported components/ranks and states the weights and source versions.
-- [ ] Confirm that “none reported” and “missing” are never presented as “safe.”
-- [ ] Update README with launch commands, actual coverage, current outputs, and known limitations.
-- [ ] Prepare an explanation of the question, one candidate hypothesis, model calculations, and one follow-up experiment.
+- [x] Run data checks, model checks, and the complete local workflow; fix blockers.
+- [x] Verify that the app reproduces exported components/ranks and states the weights and source versions.
+- [x] Confirm that “none reported” and “missing” are never presented as “safe.”
+- [x] Update README with launch commands, actual coverage, current outputs, and known limitations.
+- [x] Prepare an explanation of the question, one candidate hypothesis, model calculations, and one follow-up experiment.
 - [ ] Arrange/prepare for the TA check-in during November 4–13; record actual feedback when received.
 - [ ] Review course submission/journal instructions, review and commit changes, and submit required materials.
 
@@ -93,3 +93,8 @@ conversation copy are included in the session 4 Git closeout.
 shows spatial and safety-review evidence, and can be explained. All-feature coverage
 and excluded-target counts are explicit. Deployment and deeper sensitivity review
 belong to [checkpoint 3](CHECKPOINT_3.md); no efficacy or safety claim is implied.
+
+Session 5: [validation notes](journal/checkpoint2_session5_notes.md). Student
+explanation review is complete; the student confirmed browser review. Actual TA
+feedback, live submission-requirement verification, and submission remain pending.
+The student authorized Git closeout; subsequent TA preparation stays outside it.
