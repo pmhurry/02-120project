@@ -6,6 +6,12 @@ loader, collagen score, figures, and provenance below are a reproducibility base
 they are not the new target-ranking model. Current plans are in checkpoints 2–4.
 No past work or submission status is changed by this pivot.
 
+November 11 roadmap update: checkpoints 3–4 add a separate compound-activity
+prediction task after target prioritization: audit experimental data, clean one
+activity endpoint, split by scaffold, and evaluate Morgan fingerprints plus Random
+Forest against a mean predictor. Virtual screening is conditional on credible
+held-out performance. This is future work, not a checkpoint 1 result.
+
 The deadline was extended from October 30 to November 1. Keep the October 27–30
 work record below; use November 1 to finish review and submission.
 

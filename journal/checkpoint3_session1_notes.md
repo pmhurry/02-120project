@@ -133,3 +133,21 @@ From the repository root, extract the archive to a temporary directory and run
 `--assays CHEMBL5737905` to reproduce the chosen assay's counts. See the
 [audit summary](../results/compound_activity/feasibility.json) for input hashes.
 [ChEMBL assay](https://www.ebi.ac.uk/chembl/explore/assay/CHEMBL5737905).
+
+### TA practice quiz
+
+The student identified APAP, UMI counts, and the three sampling times.
+Feedback supplied the matrix dimensions, two different mice per time point,
+and the interpretation of spot-level counts. The student identified
+glutathione's role and correctly distinguished necrotic regions at 24 h from
+collagen-linked labels at 48/72 h. Feedback clarified CYP2E1 and NAPQI, why
+injury concentrates near central veins, and why the labels describe Visium
+spots rather than individual cells or a severity scale.
+
+The student correctly recognized equal normalized expression for 10/1,000
+and 20/2,000, recognized disagreement between mice in the example contrast,
+and selected the 0.6 tractability tier. Feedback distinguished the
+within-mouse means from the across-mouse minimum, and clarified that the
+tractability score applies to the mapped human protein. The galectin-3
+selection and assay-specific endpoint were explained after the student
+asked for the rationale.

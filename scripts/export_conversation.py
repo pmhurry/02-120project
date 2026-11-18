@@ -7,11 +7,12 @@ from pathlib import Path
 def export(source, output):
     messages = []
     rows = [json.loads(line) for line in source.read_text().splitlines()]
-    has_message_events = any(
-        row.get('type') == 'event_msg'
-        and row.get('payload', {}).get('type') in ('user_message', 'agent_message')
-        for row in rows
-    )
+    response_roles = {
+        row['payload'].get('role') for row in rows
+        if row.get('type') == 'response_item' and row.get('payload', {}).get('type') == 'message'
+    }
+    # Some mixed logs omit the final assistant reply from their event rows.
+    has_message_events = not {'user', 'assistant'} <= response_roles
     for row in rows:
         payload = row.get('payload', {})
         if has_message_events:

@@ -18,6 +18,16 @@ interface polish if the core model needs more time. There is no extra buffer day
 | 4 | November 9 | Minimal Streamlit ranking and target-evidence interface |
 | 5 | November 10 | End-to-end checks, TA preparation, and submission |
 
+## Handoff to checkpoints 3–4 — roadmap updated November 11
+
+The completed ranking prioritizes target hypotheses; the planned predictive model
+will estimate one selected protein's compound activity from molecular structure.
+Keep the existing gene score separate from compound measurements and predictions.
+
+- [x] Carry the reviewed target shortlist and stable human protein/UniProt mappings into the activity-data feasibility audit in checkpoint 3; verify species and assay-target identity before retrieval.
+- [x] For shortlisted targets, count usable unique compounds, distinct Murcko scaffolds, and activity ranges after cleaning. Select one relevant target and comparable endpoint before training; retain coverage gaps and justify any fallback target.
+- [ ] Follow checkpoint 3's data cleaning, scaffold-separated evaluation, and baseline comparison before considering checkpoint 4 virtual screening. No predictive model or screening result is complete at this handoff.
+
 ## Session 1 — November 6: Data and design
 
 - [x] Review the checkpoint 1 normalization/score and preserve it as a baseline.
@@ -86,8 +96,9 @@ conversation copy are included in the session 4 Git closeout.
 - [x] Confirm that “none reported” and “missing” are never presented as “safe.”
 - [x] Update README with launch commands, actual coverage, current outputs, and known limitations.
 - [x] Prepare an explanation of the question, one candidate hypothesis, model calculations, and one follow-up experiment.
-- [ ] Arrange/prepare for the TA check-in during November 4–13; record actual feedback when received.
-- [ ] Review course submission/journal instructions, review and commit changes, and submit required materials.
+- [x] Arrange/prepare for the TA check-in during November 4–13; record actual feedback when received.
+- [x] Review and commit the session 5 work.
+- [ ] Verify current course submission requirements and confirm submission.
 
 **Done means:** a checked local engine ranks hypotheses with traceable components,
 shows spatial and safety-review evidence, and can be explained. All-feature coverage
@@ -95,6 +106,6 @@ and excluded-target counts are explicit. Deployment and deeper sensitivity revie
 belong to [checkpoint 3](CHECKPOINT_3.md); no efficacy or safety claim is implied.
 
 Session 5: [validation notes](journal/checkpoint2_session5_notes.md). Student
-explanation review is complete; the student confirmed browser review. Actual TA
-feedback, live submission-requirement verification, and submission remain pending.
-The student authorized Git closeout; subsequent TA preparation stays outside it.
+explanation review is complete; the student confirmed browser review. The TA
+feedback shared on November 17 is recorded in the [Checkpoint 3 work notes](journal/checkpoint3_session1_notes.md).
+Live submission-requirement verification and submission confirmation remain pending.
