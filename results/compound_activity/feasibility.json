@@ -1,0 +1,202 @@
+{
+  "rdkit": "2026.03.3",
+  "targets": {
+    "CD74": {
+      "chembl_id": "CHEMBL4692",
+      "input_sha256": {
+        "CHEMBL4692-activity.json": "3973535a2ffd2211035295c5ea246843d4a07c81f78d48f75e27ff50266afe12",
+        "CHEMBL4692-assay.json": "08faef8e06a44b441ed8b06e04f6d6f03b8ffd3ff95bc7581c5a5973558dd814"
+      },
+      "preliminary_records": 25,
+      "excluded": {},
+      "assays": 1,
+      "compound_count": 25,
+      "nonempty_scaffolds": 7,
+      "acyclic_compounds": 0,
+      "largest_scaffold_group": 11,
+      "assay_compound_median_range_nm": [
+        410.0,
+        4400.0
+      ],
+      "accepted_measurements": 25,
+      "largest_assays": {
+        "CHEMBL865649": {
+          "assays": 1,
+          "compound_count": 25,
+          "nonempty_scaffolds": 7,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 11,
+          "assay_compound_median_range_nm": [
+            410.0,
+            4400.0
+          ]
+        }
+      }
+    },
+    "LGALS3": {
+      "chembl_id": "CHEMBL4531",
+      "input_sha256": {
+        "CHEMBL4531-activity.json": "0086108b99a75c44488c7b71d0d752fdd47658f84595f0e8b2fc77e0a406aa2f",
+        "CHEMBL4531-assay.json": "7da365b0c691a58dbb1aaa8bdc2c43a1ee6c79111c38d7a644f880680dfb3554"
+      },
+      "preliminary_records": 496,
+      "excluded": {
+        "assay outside scope": 26,
+        "validity flag or potential duplicate": 20
+      },
+      "assays": 9,
+      "compound_count": 430,
+      "nonempty_scaffolds": 112,
+      "acyclic_compounds": 0,
+      "largest_scaffold_group": 97,
+      "assay_compound_median_range_nm": [
+        5.0,
+        11110.0
+      ],
+      "accepted_measurements": 450,
+      "largest_assays": {
+        "CHEMBL5737905": {
+          "assays": 1,
+          "compound_count": 322,
+          "nonempty_scaffolds": 84,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 86,
+          "assay_compound_median_range_nm": [
+            8.7,
+            11110.0
+          ]
+        },
+        "CHEMBL5737063": {
+          "assays": 1,
+          "compound_count": 31,
+          "nonempty_scaffolds": 10,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 14,
+          "assay_compound_median_range_nm": [
+            43.0,
+            7430.0
+          ]
+        },
+        "CHEMBL5036763": {
+          "assays": 1,
+          "compound_count": 29,
+          "nonempty_scaffolds": 12,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 9,
+          "assay_compound_median_range_nm": [
+            5.0,
+            352.0
+          ]
+        },
+        "CHEMBL5126288": {
+          "assays": 1,
+          "compound_count": 22,
+          "nonempty_scaffolds": 4,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 18,
+          "assay_compound_median_range_nm": [
+            6.9,
+            306.0
+          ]
+        },
+        "CHEMBL5337686": {
+          "assays": 1,
+          "compound_count": 17,
+          "nonempty_scaffolds": 3,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 10,
+          "assay_compound_median_range_nm": [
+            7.2,
+            109.0
+          ]
+        }
+      }
+    },
+    "CTSS": {
+      "chembl_id": "CHEMBL2954",
+      "input_sha256": {
+        "CHEMBL2954-activity.json": "3f4c1aaecc0aafc6f0bda5dbe619291f54666fc4b8baa71c0e4e3d453f92ddf7",
+        "CHEMBL2954-assay.json": "779d97760720614876508135d6f517f605ccc9801e73f1151d2da9c27186c3ec"
+      },
+      "preliminary_records": 2059,
+      "excluded": {
+        "assay outside scope": 525,
+        "validity flag or potential duplicate": 51
+      },
+      "assays": 94,
+      "compound_count": 1313,
+      "nonempty_scaffolds": 581,
+      "acyclic_compounds": 2,
+      "largest_scaffold_group": 28,
+      "assay_compound_median_range_nm": [
+        0.029,
+        78000.0
+      ],
+      "accepted_measurements": 1483,
+      "largest_assays": {
+        "CHEMBL3705320": {
+          "assays": 1,
+          "compound_count": 83,
+          "nonempty_scaffolds": 34,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 28,
+          "assay_compound_median_range_nm": [
+            0.029,
+            6857.0
+          ]
+        },
+        "CHEMBL5732038": {
+          "assays": 1,
+          "compound_count": 79,
+          "nonempty_scaffolds": 29,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 28,
+          "assay_compound_median_range_nm": [
+            24.0,
+            4321.0
+          ]
+        },
+        "CHEMBL5735310": {
+          "assays": 1,
+          "compound_count": 69,
+          "nonempty_scaffolds": 18,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 14,
+          "assay_compound_median_range_nm": [
+            0.349,
+            542.0
+          ]
+        },
+        "CHEMBL3705487": {
+          "assays": 1,
+          "compound_count": 62,
+          "nonempty_scaffolds": 20,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 22,
+          "assay_compound_median_range_nm": [
+            0.296,
+            22.26
+          ]
+        },
+        "CHEMBL3705395": {
+          "assays": 1,
+          "compound_count": 48,
+          "nonempty_scaffolds": 14,
+          "acyclic_compounds": 0,
+          "largest_scaffold_group": 11,
+          "assay_compound_median_range_nm": [
+            0.3,
+            1738.0
+          ]
+        }
+      }
+    }
+  },
+  "source_release": "ChEMBL_37",
+  "selected": {
+    "symbol": "LGALS3",
+    "assay_id": "CHEMBL5737905",
+    "endpoint": "IC50 (nM)",
+    "document_id": "CHEMBL5729012"
+  }
+}

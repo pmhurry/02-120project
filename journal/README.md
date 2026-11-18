@@ -1,5 +1,19 @@
 # Build journal
 
+Session 13 (November 17) covers checkpoint 3 ranking robustness and the initial
+compound shortlist. See the [conversation copy](session13.txt) and
+[work notes](checkpoint3_session1_notes.md). The copy ends at the last message
+available during export.
+
+Session 12 (November 11): [conversation copy](session12.txt), reviewing the future
+compound-activity modeling and virtual-screening plan and updating checkpoints 1–4.
+Includes recorded messages
+available at export time; the final response requires a subsequent refresh.
+
+Session 11 (November 11): [conversation copy](session11.txt), discussing predictive
+extensions to the spatial target prioritization project. The copy includes messages
+available at export time; later replies require refreshing the export.
+
 Checkpoint 1 work days: October 27–30 and November 1, 2026.
 
 Checkpoint 2 begins November 6 with the pivot to the Spatial Target Prioritization

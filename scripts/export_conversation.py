@@ -6,23 +6,39 @@ from pathlib import Path
 
 def export(source, output):
     messages = []
-    for line in source.read_text().splitlines():
-        row = json.loads(line)
+    rows = [json.loads(line) for line in source.read_text().splitlines()]
+    has_message_events = any(
+        row.get('type') == 'event_msg'
+        and row.get('payload', {}).get('type') in ('user_message', 'agent_message')
+        for row in rows
+    )
+    for row in rows:
         payload = row.get('payload', {})
-        if row.get('type') != 'event_msg':
-            continue
-        kind = payload.get('type')
-        if kind not in ('user_message', 'agent_message'):
-            continue
-        text = payload.get('message', '')
-        if kind == 'user_message':
+        if has_message_events:
+            kind = payload.get('type')
+            if row.get('type') != 'event_msg' or kind not in ('user_message', 'agent_message'):
+                continue
+            role = 'user' if kind == 'user_message' else 'assistant'
+            text = payload.get('message', '')
+        else:
+            role = payload.get('role')
+            if (row.get('type') != 'response_item' or payload.get('type') != 'message'
+                    or role not in ('user', 'assistant')):
+                continue
+            text = '\n'.join(
+                part.get('text', '') for part in payload.get('content', [])
+                if part.get('type') in ('input_text', 'output_text')
+            )
+        if role == 'user':
             if '## My request:' in text:
                 text = text.split('## My request:', 1)[1]
-            elif text.lstrip().startswith(('<environment_context>', '<external_codex_apps_open_page>')):
+            elif text.lstrip().startswith((
+                '<environment_context>', '<external_', '# AGENTS.md instructions for ',
+            )):
                 continue
         text = text.strip()
         if text:
-            messages.append(('USER' if kind == 'user_message' else 'ASSISTANT', text))
+            messages.append((role.upper(), text))
     if not messages:
         raise ValueError('No conversation messages found')
     header = (f'Chat transcript — {output.stem}\n\n'
