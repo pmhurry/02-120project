@@ -16,6 +16,16 @@ TARGETS = {"CD74": "CHEMBL4692", "LGALS3": "CHEMBL4531", "CTSS": "CHEMBL2954"}
 UNCHARGER = rdMolStandardize.Uncharger()
 
 
+def standardized_parent(smiles):
+    molecule = Chem.MolFromSmiles(smiles) if smiles else None
+    if molecule is None:
+        return None, "missing or invalid structure"
+    parent = UNCHARGER.uncharge(rdMolStandardize.FragmentParent(molecule))
+    if parent.GetNumAtoms() == 0:
+        return None, "empty parent"
+    return Chem.MolToSmiles(parent, isomericSmiles=True), None
+
+
 def audit(activities, assays, selected_assay_ids=None):
     """Group accepted activity by assay and standardized parent compound."""
     groups = defaultdict(lambda: defaultdict(list))
@@ -31,20 +41,15 @@ def audit(activities, assays, selected_assay_ids=None):
         if row["data_validity_comment"] or row["potential_duplicate"] == 1:
             exclusions["validity flag or potential duplicate"] += 1
             continue
-        smiles = row["canonical_smiles"]
-        molecule = Chem.MolFromSmiles(smiles) if smiles else None
-        if molecule is None:
-            exclusions["missing or invalid structure"] += 1
-            continue
-        parent = UNCHARGER.uncharge(rdMolStandardize.FragmentParent(molecule))
-        if parent.GetNumAtoms() == 0:
-            exclusions["empty parent"] += 1
+        parent_smiles, reason = standardized_parent(row["canonical_smiles"])
+        if reason:
+            exclusions[reason] += 1
             continue
         value = float(row["standard_value"])
         if not isfinite(value) or value <= 0:
             exclusions["invalid activity"] += 1
             continue
-        groups[assay_id][Chem.MolToSmiles(parent, isomericSmiles=True)].append(value)
+        groups[assay_id][parent_smiles].append(value)
     return groups, exclusions
 
 

@@ -1,6 +1,7 @@
 """Local, read-only interface for the checked target-ranking exports."""
 import os
 os.environ.setdefault('MPLCONFIGDIR', '/tmp/02-120-matplotlib')
+import hashlib
 import json
 
 import matplotlib
@@ -9,7 +10,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 
-from app_data import ROOT, RANKING, load_mouse, read_components, read_profile, spot_rows, verify_exports
+from app_data import ROOT, load_mouse, read_components, read_profile, spot_rows, verify_exports
 from data_loader import load_metadata
 
 st.set_page_config(page_title='Spatial target evidence', layout='wide')
@@ -25,6 +26,23 @@ def components():
     return frame
 
 
+@st.cache_data
+def tissue_review_data(expected_hash):
+    source = ROOT / 'data/external/target_tissue_summary.csv'
+    if hashlib.sha256(source.read_bytes()).hexdigest() != expected_hash:
+        raise ValueError('Tissue summary checksum mismatch')
+    tissue = pd.read_csv(source).set_index('human_ensembl_id')
+    if not tissue.index.is_unique:
+        raise ValueError('Tissue summary contains duplicate human gene IDs')
+    return tissue
+
+
+@st.cache_data
+def reviewed_compounds():
+    return pd.read_csv(ROOT / 'results/compound_activity/reviewed_compounds.csv',
+                       keep_default_na=False)
+
+
 profile_for = st.cache_data(max_entries=16)(read_profile)
 mouse_data = st.cache_resource(max_entries=2)(load_mouse)
 checked_manifest = st.cache_data(verify_exports)
@@ -37,6 +55,7 @@ def main():
     try:
         frame = components()
         manifest = checked_manifest()
+        tissue = tissue_review_data(manifest['input_sha256']['data/external/target_tissue_summary.csv'])
     except (OSError, ValueError) as error:
         st.error(f'Cannot read saved ranking: {error}. Run python3 inspect_ranking.py first.')
         st.stop()
@@ -61,12 +80,25 @@ def main():
         table = frame[frame.spatial_rank.notna()].sort_values('spatial_rank')
     else:
         table = frame.sort_values('feature_id')
+    with st.expander('Optional review filters'):
+        minimum = st.select_slider('Minimum small-molecule tractability score',
+                                   [0.0, 0.3, 0.6, 0.8, 1.0], value=0.0)
+        require_liver = st.checkbox('Require a measured normal-human liver RNA value')
+        before = len(table)
+        if minimum > 0:
+            table = table[table['T'].ge(minimum)]
+        st.caption(f'{before - len(table):,} excluded by the tractability filter.')
+        before = len(table)
+        if require_liver:
+            table = table[table.human_ensembl_id.map(tissue.liver_ntpm).notna()]
+        st.caption(f'{before - len(table):,} additionally excluded by the liver RNA coverage filter.')
+        st.caption('Filters apply in order before search. Clear both controls to restore the full view.')
     if search:
         mask = table[['symbol', 'human_symbol', 'feature_id', 'human_ensembl_id']].fillna('').apply(
             lambda col: col.str.contains(search, case=False, regex=False)).any(axis=1)
         table = table[mask]
-    columns = ['priority_rank', 'spatial_rank', 'symbol', 'feature_id', 'human_symbol', 'S', 'T', 'D', 'priority', 'exclusion_reasons']
-    st.caption(f'{len(table):,} matching features. Blank numeric cells mean unavailable, not zero. Ranks remain those of the full saved export.')
+    columns = ['priority_rank', 'spatial_rank', 'symbol', 'feature_id', 'human_symbol', 'S', 'T', 'D', 'priority', 'reproducibly_positive', 'exclusion_reasons']
+    st.caption(f'{len(table):,} matching features. Blank numeric cells mean unavailable, not zero. Ranks remain those of the full saved export. Weights and source versions appear above.')
     st.dataframe(table[columns].head(250), hide_index=True)
     st.download_button('Download matching evidence table (CSV)', table.to_csv(index=False), 'target_evidence.csv', 'text/csv')
     if table.empty:
@@ -87,24 +119,23 @@ def main():
     time = st.selectbox('Spatial time (hours)', [48, 72, 24])
     evidence = pd.DataFrame(profile['mouse_evidence'])
     selected = evidence[evidence.time_hours.astype(int) == time]
-    st.caption('24 h: necrotic-region context only.' if time == 24 else '48/72 h: collagen-linked annotated region; both mice contribute equally to S.')
+    st.caption('24 h: necrotic-region context only.' if time == 24 else '48/72 h: collagen-linked annotated region; the smaller contrast of the two mice determines the contribution at this time.')
     st.dataframe(selected[['mouse', 'annotation_context', 'difference', 'annotated_mean', 'other_mean', 'annotated_detection', 'other_detection', 'annotated_n', 'other_n', 'status']], hide_index=True)
     st.caption('n columns are retained spot counts, not biological replicates. Each row represents one mouse. Difference = annotated mean − other mean.')
     mouse = st.selectbox('Mouse', selected.mouse.tolist())
     mode = st.radio('Map layer', ['Annotations', 'Selected target expression'], horizontal=True)
-    if mode == 'Annotations':
-        spots = [s for s in load_metadata(ROOT / 'Visium_Meta_data.txt').values() if s.mouse == mouse]
-        points = pd.DataFrame([dict(barcode=s.barcode, x=s.x, y=s.y, annotated=s.fibrogenic) for s in spots])
-    else:
+    if mode == 'Selected target expression':
         try:
             with st.spinner('Loading and checksum-checking this mouse’s full sparse archive…'):
                 points = pd.DataFrame(spot_rows(mouse_data(mouse), feature_id))
         except (OSError, ValueError) as error:
-            st.error(f'Expression map unavailable: {error}. Restore the matching archive in data/source; see DATA_PROVENANCE.md.')
+            st.error(f'Expression map unavailable: {error}. Restore the matching archive in data/source. See DATA_PROVENANCE.md.')
             mode = 'Annotations'
-            spots = [s for s in load_metadata(ROOT / 'Visium_Meta_data.txt').values() if s.mouse == mouse]
-            points = pd.DataFrame([dict(barcode=s.barcode, x=s.x, y=s.y, annotated=s.fibrogenic) for s in spots])
             st.info('Showing annotations while expression is unavailable.')
+    if mode == 'Annotations':
+        spots = [s for s in load_metadata(ROOT / 'Visium_Meta_data.txt').values() if s.mouse == mouse]
+        points = pd.DataFrame([dict(barcode=s.barcode, mouse=s.mouse, time_hours=s.time_hours,
+                                    x=s.x, y=s.y, annotated=s.fibrogenic) for s in spots])
     fig, ax = plt.subplots(figsize=(8, 6))
     if mode == 'Annotations':
         for flag, color, label in [(False, '#b9c5ce', 'Other'), (True, '#d77731', 'Annotated')]:
@@ -113,13 +144,17 @@ def main():
         ax.legend()
     else:
         valid = points.expression.notna()
-        scatter = ax.scatter(points.loc[valid, 'x'], points.loc[valid, 'y'], c=points.loc[valid, 'expression'], s=7, cmap='viridis', vmin=0)
+        maximum = points.loc[valid, 'expression'].max() if valid.any() else 0
+        upper = maximum if maximum > 0 else 1
+        scatter = ax.scatter(points.loc[valid, 'x'], points.loc[valid, 'y'],
+                             c=points.loc[valid, 'expression'], s=7, cmap='viridis',
+                             vmin=0, vmax=upper)
         fig.colorbar(scatter, ax=ax, label='ln(1 + 10,000 × count / all-feature library)')
         missing = points[~valid]
         if len(missing):
             ax.scatter(missing.x, missing.y, color='gray', marker='x', label='Missing (zero library)')
             ax.legend()
-        st.caption(f'{valid.sum():,} measured spots; {(~valid).sum():,} missing. Measured zeros use the zero color. Color scale is specific to this mouse/target.')
+        st.caption(f'{valid.sum():,} measured spots; {(~valid).sum():,} missing. Measured zeros use the zero color. The color scale runs from 0 to {upper:.3g} for this mouse and target.')
     ax.set_aspect('equal', adjustable='box')
     ax.invert_yaxis()
     ax.set(xlabel='Visium x', ylabel='Visium y', title=f'{mouse} · {mode}')
@@ -130,12 +165,48 @@ def main():
     st.subheader('Human tissue and reported liabilities')
     st.write('Liability evidence:', profile['liability_status'])
     st.caption('“None reported in collected sources” and missing records do not establish safety. Normal-human tissue expression is context, not a toxicity prediction.')
+    st.caption('RNA is reported in normalized transcripts per million (nTPM). Protein is summarized from immunohistochemistry with HPA reliability categories.')
     st.json(profile['tissue_summary'] or {'status': 'unavailable'})
     with st.expander('Reported liability records and references'):
         st.json(profile['reported_liabilities'])
     with st.expander('Known drug mechanisms, indications, and clinical records'):
         st.caption('Target-level tractability does not mean a drug is approved for liver injury or that inhibition helps recovery. Empty rows mean no records in this snapshot.')
-        st.json(profile['drug_and_clinical_candidates'])
+        candidates = profile['drug_and_clinical_candidates']['rows']
+        if not candidates:
+            st.write('No drug records in this snapshot.')
+        for candidate in candidates:
+            drug = candidate['drug']
+            st.markdown(f"**{drug['name']}** · {drug['id']}")
+            st.write('Overall clinical stage in snapshot', drug['maximumClinicalStage'])
+            st.json({'mechanisms': drug['mechanismsOfAction']['rows'],
+                     'listed_indications': candidate['diseases'],
+                     'individual_clinical_records': candidate['clinicalReports']})
+    st.subheader('Reviewed compound and intervention evidence')
+    try:
+        compounds = reviewed_compounds()
+    except (OSError, ValueError) as error:
+        st.error(f'Compound evidence unavailable: {error}')
+    else:
+        selected_compounds = compounds[compounds.target == row.human_symbol]
+        if selected_compounds.empty:
+            st.info('No curated compound evidence for this target. Intervention direction is unknown.')
+        for entry in selected_compounds.to_dict('records'):
+            st.markdown(f"**{entry['compound']}** · {entry['compound_id']}")
+            st.caption(f"Evidence review {entry['review_version']} · {entry['snapshot_source']}")
+            st.write('Target direction for acute APAP follow-up', entry['target_direction'])
+            st.write(entry['target_experiment'])
+            st.write(entry['counter_evidence'])
+            st.write('Compound action', entry['compound_action'])
+            st.write('Published assay or study', entry['activity_type'])
+            if entry['activity_value'] != '':
+                st.write('Measured value', f"{entry['activity_value']} {entry['activity_unit']}")
+            for field in ('liver_evidence', 'selectivity', 'liabilities', 'decision'):
+                st.write(entry[field])
+            for i, link in enumerate((entry['target_sources'] + ' | ' + entry['compound_sources']).split(' | '), 1):
+                st.link_button(f"{entry['compound']} study {i}", link)
+        st.download_button('Download reviewed compound evidence (CSV)',
+                           (ROOT / 'results/compound_activity/reviewed_compounds.csv').read_bytes(),
+                           'reviewed_compounds.csv', 'text/csv')
     with st.expander('Disease evidence and tractability records'):
         st.json({'disease': profile['disease_evidence'], 'tractability': profile['tractability']})
     for i, link in enumerate(profile['source_links'], 1):

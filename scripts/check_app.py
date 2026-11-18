@@ -1,13 +1,14 @@
 """Integration checks against actual exports; run with .venv/bin/python."""
 import csv
-import json
 from pathlib import Path
 import sys
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from streamlit.testing.v1 import AppTest
-from app_data import RANKING, read_components
+import streamlit as st
+from app_data import RANKING, read_components, spot_rows, load_mouse
 
 app = AppTest.from_file(str(ROOT / 'app.py'), default_timeout=120).run()
 assert not app.exception, [e.message for e in app.exception]
@@ -19,6 +20,16 @@ for i in range(5):
     assert shown.iloc[i].priority_rank == int(expected[i]['priority_rank'])
     assert abs(shown.iloc[i].priority - float(expected[i]['priority'])) < 1e-10
 
+app.select_slider[0].set_value(1.0).run()
+assert app.dataframe[0].value['T'].eq(1).all()
+assert len(app.dataframe[0].value) < min(len(expected), 250)
+app.select_slider[0].set_value(0.0).run()
+assert list(app.dataframe[0].value.feature_id.head(5)) == [r['feature_id'] for r in expected[:5]]
+app.checkbox[0].check().run()
+assert not app.exception
+assert any('additionally excluded by the liver RNA coverage filter' in c.value for c in app.caption)
+app.checkbox[0].uncheck().run()
+
 for symbol in ['Cd74', 'Lgals3', 'Ctss', 'Col3a1']:
     app.text_input[0].set_value(symbol).run()
     assert not app.exception
@@ -27,6 +38,11 @@ for symbol in ['Cd74', 'Lgals3', 'Ctss', 'Col3a1']:
     shown = app.dataframe[1].value.iloc[0]
     assert abs(shown.priority - float(exact['priority'])) < 1e-10
     assert shown.priority_rank == int(exact['priority_rank'])
+
+assert any('No curated compound evidence' in item.value for item in app.info)
+app.text_input[0].set_value('Lgals3').run()
+assert any('TD139' in item.value for item in app.markdown)
+assert any('mixed/context-dependent' in item.value for item in app.markdown)
 
 app.radio[0].set_value('All features / mapping audit').run()
 app.text_input[0].set_value('Lyz2').run()
@@ -47,7 +63,19 @@ print('App checks passed: top-five CLI ranks, four target scores, excluded Lyz2,
 if '--expression' in sys.argv:
     app.text_input[0].set_value('Cd74').run()
     app.selectbox[2].set_value('t_48h_m4').run()
-    app.radio[1].set_value('Selected target expression').run(timeout=120)
+    with patch.object(st, 'download_button', wraps=st.download_button) as downloads:
+        app.radio[1].set_value('Selected target expression').run(timeout=120)
+    calls = [call.args for call in downloads.call_args_list]
+    map_csv = next(args[1] for args in calls if args[0].startswith('Download displayed map data'))
+    actual = list(csv.DictReader(map_csv.splitlines()))
+    expected_rows = spot_rows(load_mouse('t_48h_m4'), 'ENSMUSG00000024610')
+    assert len(actual) == len(expected_rows)
+    for row, expected_row in zip(actual, expected_rows):
+        assert row['barcode'] == expected_row['barcode']
+        assert row['annotated'] == str(expected_row['annotated'])
+        assert float(row['expression']) == expected_row['expression']
+    reviewed_csv = next(args[1] for args in calls if args[0].startswith('Download reviewed compound'))
+    assert reviewed_csv == (ROOT / 'results/compound_activity/reviewed_compounds.csv').read_bytes()
     assert not app.exception, [e.message for e in app.exception]
     assert any('2,965 measured spots; 0 missing' in x.value for x in app.caption)
     assert app.get('download_button')

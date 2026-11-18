@@ -1,5 +1,10 @@
 # Build journal
 
+Session 14 (November 18) covers the compound evidence review and the frozen
+galectin-3 dataset split. See the [conversation copy](session14.txt) and
+[work notes](checkpoint3_session2_notes.md). The copy includes messages available
+at export time.
+
 Session 13 (November 17) covers checkpoint 3 ranking robustness and the initial
 compound shortlist. See the [conversation copy](session13.txt) and
 [work notes](checkpoint3_session1_notes.md). The copy ends at the last message

@@ -1,0 +1,80 @@
+{
+  "version": "galectin3-ic50-v1",
+  "chembl_version": "ChEMBL_37",
+  "snapshot_sha256": "f74fdbc1782f36a95b78f991006f5610c2e5eb82d591730be82f0a4efac0105e",
+  "dataset_sha256": "8d9307372612cb11ba67f176caee380f268fc3fd1475d1321697ed4381e69452",
+  "target": "CHEMBL4531",
+  "uniprot": "P17931",
+  "assay": "CHEMBL5737905",
+  "document": "CHEMBL5729012",
+  "rdkit": "2026.03.3",
+  "input_records": 496,
+  "assay_metadata": {
+    "assay_type": "B",
+    "confidence_score": 9,
+    "relationship_type": "D",
+    "assay_tax_id": 9606,
+    "target_chembl_id": "CHEMBL4531",
+    "document_chembl_id": "CHEMBL5729012",
+    "variant_sequence": null
+  },
+  "endpoint": "HTRF competition IC50 (nM), exported as pIC50 = 9 - log10(IC50 in nM)",
+  "parent_policy": "RDKit FragmentParent and Uncharger; canonical isomeric SMILES",
+  "aggregation": "Median of exact nM values within the standardized parent and selected assay",
+  "split_policy": "Size-descending Murcko groups, then scaffold SMILES; greatest remaining target count, ties in train/validation/test order",
+  "excluded_from_prefiltered_snapshot": {
+    "censored": 0,
+    "different assay": 162,
+    "validity flag or potential duplicate": 9
+  },
+  "censored_upstream_count": null,
+  "measurements_retained": 325,
+  "merged_parent_groups": 3,
+  "acyclic_compounds": 0,
+  "split_fractions": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "split_summary": {
+    "train": {
+      "compounds": 226,
+      "scaffold_groups": 27,
+      "pIC50_range": [
+        4.9542859411,
+        8.0604807474
+      ]
+    },
+    "validation": {
+      "compounds": 48,
+      "scaffold_groups": 28,
+      "pIC50_range": [
+        5.3506651413,
+        7.9586073148
+      ],
+      "nearest_train_tanimoto": {
+        "minimum": 0.7012987012987013,
+        "median": 0.7686733556298774,
+        "maximum": 0.987012987012987
+      }
+    },
+    "test": {
+      "compounds": 48,
+      "scaffold_groups": 29,
+      "pIC50_range": [
+        5.0,
+        7.5376020021
+      ],
+      "nearest_train_tanimoto": {
+        "minimum": 0.5301204819277109,
+        "median": 0.7799145299145299,
+        "maximum": 0.974025974025974
+      }
+    }
+  },
+  "similarity_fingerprint": {
+    "radius": 2,
+    "bits": 2048,
+    "chirality": true
+  }
+}

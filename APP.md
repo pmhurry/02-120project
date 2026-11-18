@@ -71,3 +71,19 @@ AppTest exercises Streamlit rendering and interactions, not a real browser's vis
 layout. The student confirmed completion of browser review on November 10.
 November 10 checks passed; see [session 5 notes](journal/checkpoint2_session5_notes.md)
 and remaining review/submission tasks in [checkpoint 2](CHECKPOINT_2.md).
+
+## November 18 evidence review controls
+
+The optional filters are applied before text search and never recompute rank.
+The tractability filter excludes missing scores when enabled above zero. The
+tissue filter requires a measured normal-human liver RNA value, including a
+measured zero. Both filters report exclusions, and neither is a safety filter.
+
+The reviewed compound section displays published measurements and separate
+target-direction judgments for CD74, LGALS3, and CTSS. The downloadable CSV
+keeps experimental context, compound action, selectivity, liabilities, and
+the reasons each case remains unresolved or warrants follow-up. The previously
+collected clinical records retain each drug's overall stage, listed indications,
+and individual records. Stage alone gives no evidence of efficacy for APAP injury.
+Expression-map scales start at zero and are specific to the selected mouse
+and gene. Compare the exported numeric values when judging differences across maps.
