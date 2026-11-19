@@ -10,6 +10,7 @@ from sparse_loader import ARCHIVES, SparseDataset, read_archive
 from spatial_evidence import normalized_count
 
 ROOT = Path(__file__).resolve().parent
+MAPS = ROOT / 'results/spatial/reviewed_maps'
 RANKING = ROOT / 'results/ranking/HP_0001395'
 
 
@@ -57,3 +58,21 @@ def spot_rows(data, feature_id):
                  count=data.count(i, j), library_size=sum(data.values[j]),
                  expression=normalized_count(data.count(i, j), sum(data.values[j])))
             for j, s in enumerate(data.spots)]
+
+
+def read_packaged_map(mouse, feature_id):
+    """Return verified CSV bytes for a packaged target, or None for other targets."""
+    manifest_path = MAPS / 'manifest.json'
+    if not manifest_path.exists():
+        return None
+    manifest = json.loads(manifest_path.read_text())
+    name = f'{mouse}_{feature_id}.csv.gz'
+    expected = manifest['files'].get(name)
+    if expected is None:
+        return None
+    if hashlib.sha256((RANKING / 'manifest.json').read_bytes()).hexdigest() != manifest['ranking_manifest_sha256']:
+        raise ValueError('Packaged maps use a different ranking version')
+    payload = (MAPS / name).read_bytes()
+    if hashlib.sha256(payload).hexdigest() != expected:
+        raise ValueError(f'Packaged map checksum mismatch: {name}')
+    return gzip.decompress(payload)

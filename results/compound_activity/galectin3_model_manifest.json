@@ -1,0 +1,119 @@
+{
+  "version": "galectin3-rf-v1",
+  "dataset_version": "galectin3-ic50-v1",
+  "dataset_sha256": "8d9307372612cb11ba67f176caee380f268fc3fd1475d1321697ed4381e69452",
+  "dataset_manifest_sha256": "430bac53470054e7516b7536ff466964d5b4b27bfe3a3e440363be5609beb2d8",
+  "artifact_sha256": "528a5fb0cbadc1811e3a7866b3471d31105b37132e401d9e915e077de8bc483e",
+  "validation_predictions_sha256": "eb26d06ee360d0f44f63ff785f342b84b3401769b3f67e89536196689c4ba7fc",
+  "endpoint": "HTRF competition IC50 (nM), exported as pIC50 = 9 - log10(IC50 in nM)",
+  "target": "CHEMBL4531",
+  "assay": "CHEMBL5737905",
+  "fingerprint": {
+    "radius": 2,
+    "fpSize": 2048,
+    "includeChirality": true
+  },
+  "selection": "Lowest validation RMSE; first candidate wins a tie; final artifact fit on training only",
+  "train_count": 226,
+  "validation_count": 48,
+  "training_mean_pic50": 6.8329727656929204,
+  "baseline_validation": {
+    "rmse": 0.6825453132124524,
+    "mae": 0.5841243288982116,
+    "r2": -0.0011727372205676545
+  },
+  "rf_validation": {
+    "rmse": 0.4492521367275342,
+    "mae": 0.3606507091182963,
+    "r2": 0.5662631312063711
+  },
+  "trial_settings": [
+    {
+      "settings": {
+        "n_estimators": 256,
+        "random_state": 19,
+        "n_jobs": 1,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "validation": {
+        "rmse": 0.5582014378265363,
+        "mae": 0.45989748044734347,
+        "r2": 0.3303807366173417
+      }
+    },
+    {
+      "settings": {
+        "n_estimators": 256,
+        "random_state": 19,
+        "n_jobs": 1,
+        "min_samples_leaf": 3,
+        "max_features": 0.25
+      },
+      "validation": {
+        "rmse": 0.4492521367275342,
+        "mae": 0.3606507091182963,
+        "r2": 0.5662631312063711
+      }
+    },
+    {
+      "settings": {
+        "n_estimators": 256,
+        "random_state": 19,
+        "n_jobs": 1,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "validation": {
+        "rmse": 0.4727599987196834,
+        "mae": 0.3691302078459458,
+        "r2": 0.5196835256178775
+      }
+    },
+    {
+      "settings": {
+        "n_estimators": 256,
+        "random_state": 19,
+        "n_jobs": 1,
+        "min_samples_leaf": 1,
+        "max_features": 0.25
+      },
+      "validation": {
+        "rmse": 0.4687449726111722,
+        "mae": 0.3735778036280017,
+        "r2": 0.5278072845670339
+      }
+    }
+  ],
+  "selected_settings": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "criterion": "squared_error",
+    "max_depth": null,
+    "max_features": 0.25,
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 3,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 256,
+    "n_jobs": 1,
+    "oob_score": false,
+    "random_state": 19,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "python": "3.14.7",
+  "dependencies": {
+    "rdkit": "2026.3.3",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.8.0",
+    "narwhals": "2.28.0",
+    "cloudpickle": "3.1.3"
+  }
+}

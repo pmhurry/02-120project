@@ -1,4 +1,4 @@
-# Local target-evidence app — November 9, 2026
+# Spatial target evidence app
 
 Python 3.11+ is needed for the pinned interface dependencies. The existing CLI
 analysis still uses Python 3.10+ and the standard library.
@@ -9,7 +9,7 @@ python3 -m venv .venv
 .venv/bin/streamlit run app.py --server.address localhost
 ```
 
-Open the local URL printed by Streamlit. The interface is local and read-only.
+Open the local URL printed by Streamlit. The interface is read-only.
 It reads `results/ranking/HP_0001395/` and checks the export hashes against the
 saved manifest. No model is recalculated or external service queried by the app.
 Restart Streamlit after regenerating exports or replacing data; its bounded caches
@@ -30,9 +30,10 @@ zero components remain numeric zero. Exclusion reasons remain visible.
 
 Each profile shows both mice at the selected time, their group means, differences,
 detection fractions, and retained spot counts. Spot counts are not mouse replicate
-counts. Annotation maps need only metadata. Expression maps load and checksum-check
-one original full-data ZIP on demand from `data/source/` (see
-[archive setup](DATA_PROVENANCE.md)). They normalize counts with **all features**
+counts. Annotation maps need only metadata. CD74, LGALS3, and CTSS have packaged
+expression maps for all six mice. Other expression maps use a checksum-checked
+local ZIP on demand from `data/source/` (see [archive setup](DATA_PROVENANCE.md)).
+Both paths normalize counts with **all features**
 in each spot's library, never the historical 348-spot subset. Map data downloads
 include full barcodes and coordinates, counts, library sizes, and normalized values.
 Equal x/y scaling preserves aspect ratio; y increases downward. Color scales vary
@@ -87,3 +88,29 @@ collected clinical records retain each drug's overall stage, listed indications,
 and individual records. Stage alone gives no evidence of efficacy for APAP injury.
 Expression-map scales start at zero and are specific to the selected mouse
 and gene. Compare the exported numeric values when judging differences across maps.
+
+
+## Hosting the reviewed app
+
+Render can run the Python app and its WebSocket connection on a single free
+web service. The [Blueprint](render.yaml) pins Python 3.14.7, installs the
+existing app dependencies, binds Streamlit to the assigned port, and checks
+its health endpoint. In the Render Dashboard, create a Blueprint from
+`pmhurry/02-120project` on `main`. This requires a Render account with access
+to the GitHub repository. The free service spins down after 15 idle minutes,
+so allow time for it to wake before the demo.
+[Render free web services](https://render.com/docs/free) ·
+[Render WebSockets](https://render.com/docs/websocket)
+
+The Git revision pins the ranking, tissue and compound tables, annotation
+metadata, and 18 compressed expression maps. At runtime the app verifies the
+ranking export, tissue summary, and each requested packaged map by SHA-256.
+Run `python3 scripts/package_expression_maps.py` with the six original archives
+to rebuild maps. Public deployments can display annotations for every feature
+and expression for the three reviewed targets. The app also supports local
+archives for expression maps of other targets.
+
+The local archive-free test used 40.5 MiB of app files and data, rendered in
+1.10 seconds, and peaked at 309.1 MiB RSS including AppTest during target
+switching. Actual host resource usage and startup latency require hosted
+verification.

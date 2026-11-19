@@ -351,3 +351,10 @@ Add, commit, and push all required thigns
 
 ASSISTANT:
 I’ll refresh the journal, review what needs to be staged, then commit and push the November 18 closeout.
+
+---
+
+ASSISTANT:
+Committed the November 18 quiz notes and Session 14 journal exports as `7559778`. Pushed all checkpoint commits and verified that `main` is up to date with `origin/main`.
+
+`TA_QUIZ.md` is still untracked, as requested for the local study notes.

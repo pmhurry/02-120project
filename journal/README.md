@@ -1,5 +1,12 @@
 # Build journal
 
+Session 15 (November 19) covers deployment preparation and galectin-3 model
+training and validation. See the [conversation copy](session15.txt),
+[work notes](checkpoint3_session3_notes.md),
+[readable export](readable/rollout-2026-11-19T17-54-27-01a1f604-bb45-7c43-b982-bb0160f689bc.md),
+and [raw export](codex/rollout-2026-11-19T17-54-27-01a1f604-bb45-7c43-b982-bb0160f689bc.jsonl).
+The conversation copy includes messages available at export time.
+
 Session 14 (November 18) covers the compound evidence review and the frozen
 galectin-3 dataset split. See the [conversation copy](session14.txt) and
 [work notes](checkpoint3_session2_notes.md). The copy includes messages available

@@ -1,5 +1,6 @@
 """Integration checks against actual exports; run with .venv/bin/python."""
 import csv
+import json
 from pathlib import Path
 import sys
 from unittest.mock import patch
@@ -8,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from streamlit.testing.v1 import AppTest
 import streamlit as st
-from app_data import RANKING, read_components, spot_rows, load_mouse
+from app_data import RANKING, read_components, read_profile, spot_rows, load_mouse
 
 app = AppTest.from_file(str(ROOT / 'app.py'), default_timeout=120).run()
 assert not app.exception, [e.message for e in app.exception]
@@ -40,9 +41,30 @@ for symbol in ['Cd74', 'Lgals3', 'Ctss', 'Col3a1']:
     assert shown.priority_rank == int(exact['priority_rank'])
 
 assert any('No curated compound evidence' in item.value for item in app.info)
-app.text_input[0].set_value('Lgals3').run()
-assert any('TD139' in item.value for item in app.markdown)
-assert any('mixed/context-dependent' in item.value for item in app.markdown)
+reviewed = ROOT / 'results/compound_activity/reviewed_compounds.csv'
+with reviewed.open(newline='') as handle:
+    compounds = list(csv.DictReader(handle))
+for target in ('Cd74', 'Lgals3', 'Ctss'):
+    with patch.object(st, 'download_button', wraps=st.download_button) as downloads, \
+         patch.object(st, 'link_button', wraps=st.link_button) as links:
+        app.text_input[0].set_value(target).run()
+    assert not app.exception
+    displayed = '\n'.join(item.value for item in app.markdown)
+    for entry in (entry for entry in compounds if entry['target'] == target.upper()):
+        for field in ('compound', 'compound_id', 'target_direction', 'compound_action',
+                      'target_experiment', 'counter_evidence'):
+            assert entry[field] in displayed
+        if entry['activity_value']:
+            assert f"{entry['activity_value']} {entry['activity_unit']}" in displayed
+        source_urls = (entry['target_sources'] + ' | ' + entry['compound_sources']).split(' | ')
+        assert set(source_urls) <= {call.args[1] for call in links.call_args_list}
+    download_data = {call.args[0]: call.args[1] for call in downloads.call_args_list}
+    assert download_data['Download reviewed compound evidence (CSV)'] == reviewed.read_bytes()
+    profile = read_profile(app.selectbox[0].value)
+    assert json.loads(download_data['Download complete selected evidence profile (JSON)']) == profile
+    rendered_json = [json.loads(item.value) for item in app.json]
+    assert profile['tissue_summary'] in rendered_json
+    assert profile['reported_liabilities'] in rendered_json
 
 app.radio[0].set_value('All features / mapping audit').run()
 app.text_input[0].set_value('Lyz2').run()
@@ -67,6 +89,8 @@ if '--expression' in sys.argv:
         app.radio[1].set_value('Selected target expression').run(timeout=120)
     calls = [call.args for call in downloads.call_args_list]
     map_csv = next(args[1] for args in calls if args[0].startswith('Download displayed map data'))
+    if isinstance(map_csv, bytes):
+        map_csv = map_csv.decode()
     actual = list(csv.DictReader(map_csv.splitlines()))
     expected_rows = spot_rows(load_mouse('t_48h_m4'), 'ENSMUSG00000024610')
     assert len(actual) == len(expected_rows)

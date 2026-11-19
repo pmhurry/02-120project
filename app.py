@@ -1,8 +1,9 @@
-"""Local, read-only interface for the checked target-ranking exports."""
+"""Read-only interface for the checked target-ranking exports."""
 import os
 os.environ.setdefault('MPLCONFIGDIR', '/tmp/02-120-matplotlib')
 import hashlib
 import json
+from io import BytesIO
 
 import matplotlib
 matplotlib.use('Agg')
@@ -10,7 +11,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 
-from app_data import ROOT, load_mouse, read_components, read_profile, spot_rows, verify_exports
+from app_data import ROOT, load_mouse, read_components, read_packaged_map, read_profile, spot_rows, verify_exports
 from data_loader import load_metadata
 
 st.set_page_config(page_title='Spatial target evidence', layout='wide')
@@ -44,6 +45,7 @@ def reviewed_compounds():
 
 
 profile_for = st.cache_data(max_entries=16)(read_profile)
+packaged_map = st.cache_data(max_entries=18)(read_packaged_map)
 mouse_data = st.cache_resource(max_entries=2)(load_mouse)
 checked_manifest = st.cache_data(verify_exports)
 
@@ -124,12 +126,21 @@ def main():
     st.caption('n columns are retained spot counts, not biological replicates. Each row represents one mouse. Difference = annotated mean − other mean.')
     mouse = st.selectbox('Mouse', selected.mouse.tolist())
     mode = st.radio('Map layer', ['Annotations', 'Selected target expression'], horizontal=True)
+    saved = None
     if mode == 'Selected target expression':
         try:
-            with st.spinner('Loading and checksum-checking this mouse’s full sparse archive…'):
-                points = pd.DataFrame(spot_rows(mouse_data(mouse), feature_id))
+            saved = packaged_map(mouse, feature_id)
+            if saved is not None:
+                points = pd.read_csv(BytesIO(saved))
+            else:
+                try:
+                    with st.spinner('Loading this mouse’s full sparse archive…'):
+                        points = pd.DataFrame(spot_rows(mouse_data(mouse), feature_id))
+                except FileNotFoundError:
+                    mode = 'Annotations'
+                    st.info('Expression maps are packaged for CD74, LGALS3, and CTSS. Other targets require the local source archive. Showing annotations.')
         except (OSError, ValueError) as error:
-            st.error(f'Expression map unavailable: {error}. Restore the matching archive in data/source. See DATA_PROVENANCE.md.')
+            st.error(f'Expression map unavailable: {error}. See DATA_PROVENANCE.md.')
             mode = 'Annotations'
             st.info('Showing annotations while expression is unavailable.')
     if mode == 'Annotations':
@@ -160,7 +171,8 @@ def main():
     ax.set(xlabel='Visium x', ylabel='Visium y', title=f'{mouse} · {mode}')
     st.pyplot(fig)
     plt.close(fig)
-    st.download_button('Download displayed map data (full barcodes)', points.to_csv(index=False), f'{mouse}_{feature_id}_spots.csv', 'text/csv')
+    map_csv = saved if mode == 'Selected target expression' and saved is not None else points.to_csv(index=False)
+    st.download_button('Download displayed map data (full barcodes)', map_csv, f'{mouse}_{feature_id}_spots.csv', 'text/csv')
 
     st.subheader('Human tissue and reported liabilities')
     st.write('Liability evidence:', profile['liability_status'])
