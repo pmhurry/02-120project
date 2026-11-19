@@ -81,3 +81,14 @@ selectors, checked known and unknown compound evidence, and matched the actual
 matched the reviewed CSV byte for byte. An offline rebuild reproduced both
 model dataset files byte for byte. All 322 parent identities are unique, and
 each of the 84 scaffold groups stays in one split.
+
+## Explanation quiz
+
+The student identified galectin-3's larger compound dataset, correctly interpreted
+the 100-fold IC50 difference, recognized that splitting near-identical compounds
+could inflate apparent performance, and explained that larger error means the
+Random Forest underperformed the baseline. Feedback clarified assay comparability
+and that the training-mean baseline gives the same prediction for each test
+compound. The student identified the remaining uncertainty about TD139 in mouse
+injury. The relevant follow-up distinction is lifelong gene loss versus dosing a
+compound after injury, with both injury and recovery measured.
