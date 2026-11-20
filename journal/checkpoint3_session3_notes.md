@@ -94,3 +94,9 @@ existing CSV exports. The Streamlit health endpoint, expression map, and
 compound CSV download also passed. The 30 unit tests and existing
 application integration checks passed.
 [Public React preview](https://spatial-target-evidence.vercel.app/preview)
+
+The student preferred React and requested animations. Added brief reveals for
+target profiles, evidence tabs and maps, an animated score bar fill, and
+control transitions. The preview honors the browser's reduced-motion
+preference. Fresh local and Vercel Chrome checks passed with normal and
+reduced motion, including the existing desktop and mobile interactions.
