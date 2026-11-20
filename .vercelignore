@@ -1,0 +1,14 @@
+.venv/
+.claude/
+.codex/
+journal/
+provenance/
+scripts/
+tests/
+data/source/
+data/external/raw/
+spatial_matrix.csv
+results/compound_activity/galectin3_*
+results/spatial/*.csv
+results/spatial/*.csv.gz
+TA_QUIZ.md

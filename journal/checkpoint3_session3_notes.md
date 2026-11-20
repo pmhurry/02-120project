@@ -2,15 +2,12 @@
 
 ## Spatial app
 
-Render was selected after the student asked for an alternative to Streamlit
-Community Cloud. Its free web service provides 512 MB of RAM and supports
-Python and WebSockets. An
-archive-free local copy held 40.5 MiB of code and data, rendered its first
-AppTest page in 1.10 seconds, and reached 309.1 MiB peak RSS with AppTest while
-switching targets and maps. The six original archives occupy about 297 MiB.
-Hosting setup is in [APP.md](../APP.md).
-[Render compute plans](https://render.com/docs/compute-plans) ·
-[Render WebSockets](https://render.com/docs/websocket)
+The student selected Vercel. A FastAPI ASGI adapter mounts the existing
+Streamlit app with its startup and shutdown lifecycle. An archive-free local
+copy held 40.5 MiB of code and data, rendered its first AppTest page in 1.10
+seconds, and reached 309.1 MiB peak RSS with AppTest while switching targets
+and maps. The six original archives occupy about 297 MiB.
+[Hosting setup](../APP.md) · [Vercel FastAPI documentation](https://vercel.com/docs/frameworks/backend/fastapi)
 
 The package contains 18 SHA-256-checked expression maps for CD74, LGALS3 and
 CTSS across all six mice. It is tied to the ranking manifest and uses
@@ -26,8 +23,7 @@ action, measurement units, evidence direction, counter-evidence and citations.
 Tissue and liability displays and the profile JSON matched saved profiles.
 The compound CSV download matched the reviewed CSV byte for byte. All 30 unit
 tests passed. Headless Chrome with a fresh local profile rendered the ranking,
-tissue section, compound evidence and download controls. A public deployment
-and fresh hosted browser verification require Render account access.
+tissue section, compound evidence and download controls. Hosted verification status is recorded below.
 
 ## Model training and validation
 
@@ -60,3 +56,15 @@ distinct columns. The final 48 test compounds were excluded from fingerprint
 generation, fitting, prediction and model selection today. Validation estimates
 were used for model selection. Final test evaluation remains scheduled for
 November 20.
+
+## Vercel deployment verification
+
+A fresh local Chrome session opened the FastAPI entry point, rendered an
+expression map, and downloaded the reviewed compound CSV byte for byte.
+All 30 unit tests passed after the hosting change.
+
+The anonymous Vercel build using `requirements.txt` reported a 378.04 MB
+optimized function bundle and stopped at its 225 MB temporary-deployment
+limit. Vercel documents a 500 MB standard Python Function limit. A signed-in
+Vercel project and fresh hosted verification are pending.
+[Vercel Python runtime limits](https://vercel.com/docs/functions/runtimes/python#controlling-what-gets-bundled)

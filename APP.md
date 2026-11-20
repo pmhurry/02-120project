@@ -92,15 +92,23 @@ and gene. Compare the exported numeric values when judging differences across ma
 
 ## Hosting the reviewed app
 
-Render can run the Python app and its WebSocket connection on a single free
-web service. The [Blueprint](render.yaml) pins Python 3.14.7, installs the
-existing app dependencies, binds Streamlit to the assigned port, and checks
-its health endpoint. In the Render Dashboard, create a Blueprint from
-`pmhurry/02-120project` on `main`. This requires a Render account with access
-to the GitHub repository. The free service spins down after 15 idle minutes,
-so allow time for it to wake before the demo.
-[Render free web services](https://render.com/docs/free) ·
-[Render WebSockets](https://render.com/docs/websocket)
+Vercel runs the Python app as a FastAPI function. The [ASGI entry point](main.py)
+mounts Streamlit at the root and starts its runtime through FastAPI's lifespan.
+Import `pmhurry/02-120project` on `main` as a FastAPI project with Fluid
+compute. The [Vercel configuration](vercel.json) excludes journals, source
+archives, and the model artifact from the function bundle.
+[Vercel FastAPI guide](https://vercel.com/docs/frameworks/backend/fastapi)
+
+To test the same entry point locally after installing `requirements.txt`:
+
+```sh
+.venv/bin/python -m uvicorn main:app --host 127.0.0.1 --port 8520
+```
+
+Vercel WebSockets remain tied to a function instance for the duration of the
+connection. Verify hosted downloads and the app's behavior when a session
+reconnects before using it for the demo.
+[Vercel WebSocket documentation](https://vercel.com/kb/guide/do-vercel-serverless-functions-support-websocket-connections)
 
 The Git revision pins the ranking, tissue and compound tables, annotation
 metadata, and 18 compressed expression maps. At runtime the app verifies the

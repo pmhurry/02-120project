@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "fastapi",
+  "functions": {
+    "main.py": {
+      "excludeFiles": "{journal/**,tests/**,scripts/**,provenance/**,data/source/**,data/external/raw/**,spatial_matrix.csv,results/spatial/*.csv,results/spatial/*.csv.gz,results/compound_activity/galectin3_*,.venv/**,.claude/**,.codex/**}"
+    }
+  }
+}

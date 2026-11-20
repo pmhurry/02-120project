@@ -42,3 +42,43 @@ I’ll use the Sites skill to check whether it can host the existing app with it
 
 ASSISTANT:
 I’ve prepared a Render Blueprint for the existing Streamlit app. Render’s free service supports Python and WebSockets, and its 512 MB memory limit leaves room above the local peak. Creating the public service requires a Render account with access to the repo.
+
+---
+
+ASSISTANT:
+I’ll use the plugin-management skill to check whether Render can be connected from this session.
+
+---
+
+ASSISTANT:
+I pushed the November 19 work to `main` in commit `e46b8f3`, including the [Session 15 journal](/Users/praneelhurry/Documents/GitHub/02-120project/journal/session15.txt).
+
+- **App:** Packaged 18 expression maps for CD74, LGALS3, and CTSS across all six mice. All 18 matched the CLI summaries, all 30 unit tests passed, and the app rendered in a fresh local Chrome profile. The hosted package supports annotation maps for every target. Expression maps for other targets require the local source archives.
+- **Model:** The frozen galectin-3 Random Forest achieved **0.449 pIC50 RMSE** versus **0.683** for the training-mean baseline on 48 validation compounds. The model rebuilt byte for byte. The 48 final test compounds remain reserved for November 20. [Model and verification notes](/Users/praneelhurry/Documents/GitHub/02-120project/journal/checkpoint3_session3_notes.md)
+
+**Public deployment is pending Render account access.** The [Render Blueprint](/Users/praneelhurry/Documents/GitHub/02-120project/render.yaml) is on `main`. Install and connect the Render plugin so I can deploy it and verify the public URL.
+
+---
+
+USER:
+I want to use vercel to deploy
+
+---
+
+ASSISTANT:
+I’ll check Vercel’s runtime support and what it would take to deploy the existing app there.
+
+---
+
+ASSISTANT:
+Vercel now supports Python WebSockets, and Streamlit exposes an ASGI entry point. I’ll test a small FastAPI wrapper around the existing app so it can run on Vercel without a frontend rewrite. [Vercel WebSocket support](https://vercel.com/changelog/websocket-support-is-now-generally-available) · [Streamlit ASGI API](https://docs.streamlit.io/develop/api-reference/server/st.app)
+
+---
+
+ASSISTANT:
+The Vercel entry point passed a fresh local Chrome test. It rendered an expression map and downloaded the exact reviewed compound CSV. The first hosted attempt stopped because the CLI needed `uv`. I’ve installed it and retried with the app-only bundle.
+
+---
+
+ASSISTANT:
+The temporary Vercel build hit a platform limit. The Python bundle was 378 MB after optimization, above the anonymous deployment cap of 225 MB. Vercel documents a 500 MB limit for standard Python Functions, so the next hosted test needs a signed-in project. [Vercel Python bundle limits](https://vercel.com/docs/functions/runtimes/python#controlling-what-gets-bundled)
