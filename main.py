@@ -1,4 +1,4 @@
-"""Vercel ASGI entry point and stateless media downloads for Streamlit."""
+"""Serve the React app, versioned exports, and the Streamlit comparison app."""
 from functools import lru_cache
 import json
 import os
@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Annotated, Literal
 
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse, Response, StreamingResponse
+from fastapi.responses import FileResponse, RedirectResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 import pandas as pd
 import streamlit as st
@@ -108,12 +108,27 @@ def preview_ranking(
     }
 
 
-preview = ROOT / 'frontend_dist'
-if preview.is_dir():
-    @app.get('/preview')
-    def preview_page():
-        return FileResponse(preview / 'index.html')
+frontend = ROOT / 'frontend_dist'
 
-    app.mount('/preview', StaticFiles(directory=preview, html=True))
 
-app.mount('/', streamlit_app)
+@app.api_route('/', methods=['GET', 'HEAD'])
+def frontend_page():
+    index = frontend / 'index.html'
+    if not index.is_file():
+        raise HTTPException(503, 'Build the React app with npm run build --prefix frontend')
+    return FileResponse(index)
+
+
+@app.api_route('/preview', methods=['GET', 'HEAD'])
+@app.api_route('/preview/', methods=['GET', 'HEAD'])
+def former_preview():
+    return RedirectResponse('/')
+
+
+@app.api_route('/streamlit', methods=['GET', 'HEAD'])
+def streamlit_page():
+    return RedirectResponse('/streamlit/')
+
+
+app.mount('/assets', StaticFiles(directory=frontend, check_dir=False))
+app.mount('/streamlit', streamlit_app)

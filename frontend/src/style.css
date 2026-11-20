@@ -38,7 +38,6 @@ h3 { font-size: 1.17rem; }
   background: #b9adf6; color: #252045; border-radius: 10px; font-size: 1.42rem;
 }
 .top-links a { color: #f1edff; font-size: .9rem; }
-.preview-label { color: #d3c8fb; border: 1px solid #716694; border-radius: 100px; padding: 4px 11px; font-size: .88rem; }
 .workspace {
   width: min(1380px, calc(100% - 48px)); margin: 32px auto; display: grid;
   grid-template-columns: minmax(285px, 330px) minmax(0, 1fr); gap: 26px; align-items: start;

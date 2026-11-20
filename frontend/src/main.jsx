@@ -222,8 +222,8 @@ function App() {
   const rankLabel = view === 'spatial_rank' ? 'Spatial rank' : 'Rank';
   return <>
     <header className="topbar">
-      <a className="brand" href="/preview/"><span className="mark" aria-hidden="true">✳</span><span>Spatial Target Evidence</span></a>
-      <div className="top-links"><span className="preview-label">React preview</span><a href="/">Open Streamlit app</a></div>
+      <a className="brand" href="/"><span className="mark" aria-hidden="true">✳</span><span>Spatial Target Evidence</span></a>
+      <div className="top-links"><a href="/streamlit/">Compare with Streamlit</a></div>
     </header>
     <main className="workspace">
       <aside className="card explorer">

@@ -227,3 +227,25 @@ I’ll add subtle motion to the React preview for target changes, maps, tabs, an
 
 ASSISTANT:
 Chrome confirmed that the panels and maps fade in and the score bars fill on selection. With reduced motion enabled, those animations are off. The Vercel build is running now.
+
+---
+
+ASSISTANT:
+The [React preview](https://spatial-target-evidence.vercel.app/preview) now has gentle fades for target profiles, maps, and evidence panels, plus animated score bars and smoother control transitions.
+
+I verified the live preview in Chrome on desktop and mobile, including that animations turn off when reduced motion is enabled. Pushed to `main` in `ca6fc70`.
+
+---
+
+USER:
+We should use React
+
+---
+
+ASSISTANT:
+I’ll make React the default at the public URL and keep Streamlit available at a separate link for comparison. Then I’ll verify both routes on Vercel.
+
+---
+
+ASSISTANT:
+React passed at the root locally, and Streamlit’s map and CSV download worked under `/streamlit/`. I’ll check those routes again on the live site, along with the redirect from the old preview URL.

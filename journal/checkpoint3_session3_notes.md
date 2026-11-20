@@ -100,3 +100,10 @@ target profiles, evidence tabs and maps, an animated score bar fill, and
 control transitions. The preview honors the browser's reduced-motion
 preference. Fresh local and Vercel Chrome checks passed with normal and
 reduced motion, including the existing desktop and mobile interactions.
+
+The student selected React as the primary interface. On Vercel, React now
+opens at the root, both former preview URLs redirect there, and Streamlit
+has a comparison link at `/streamlit/`. Fresh Chrome passed the live React
+desktop, mobile, reduced-motion, data, and interaction checks. The Streamlit
+comparison route also rendered the expression map and downloaded the saved
+compound CSV. All 30 unit tests passed.

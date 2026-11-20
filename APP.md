@@ -1,5 +1,27 @@
 # Spatial target evidence app
 
+## React app
+
+The [React app](https://spatial-target-evidence.vercel.app/) is the default.
+The [Streamlit comparison](https://spatial-target-evidence.vercel.app/streamlit/)
+uses the same ranking and filter functions, profile JSON, and versioned spot
+and compound CSVs. React shows the target list, score
+components, spatial evidence, curated compounds and tissue context. The
+profile JSON includes the full underlying clinical and source records.
+
+To build and open the React app locally with Node.js and the app dependencies:
+
+```sh
+npm ci --prefix frontend
+npm run build --prefix frontend
+.venv/bin/python -m uvicorn main:app --host 127.0.0.1 --port 8522
+```
+
+Open `http://127.0.0.1:8522/`. The former `/preview` URL redirects to the main app.
+Vercel’s build command produces the same static frontend from the package lockfile.
+
+## Run Streamlit locally
+
 Python 3.11+ is needed for the pinned interface dependencies. The existing CLI
 analysis still uses Python 3.10+ and the standard library.
 
@@ -95,7 +117,8 @@ and gene. Compare the exported numeric values when judging differences across ma
 [Open the public app](https://spatial-target-evidence.vercel.app)
 
 Vercel runs the Python app as a FastAPI function. The [ASGI entry point](main.py)
-mounts Streamlit at the root and starts its runtime through FastAPI's lifespan.
+serves React at the root, exposes the data and export routes, and mounts
+Streamlit at `/streamlit/`.
 Import `pmhurry/02-120project` on `main` as a FastAPI project with Fluid
 compute. The [Vercel configuration](vercel.json) excludes journals, source
 archives, and the model artifact from the function bundle.
@@ -126,22 +149,3 @@ The local archive-free test used 40.5 MiB of app files and data, rendered in
 1.10 seconds, and peaked at 309.1 MiB RSS including AppTest during target
 switching. Hosted memory and startup latency were not separately measured. The production
 release was published using the Vercel CLI from the reviewed app files.
-
-## React preview
-
-The [React preview](https://spatial-target-evidence.vercel.app/preview) is served at `/preview`. It uses the same ranking and
-filter functions, profile JSON, and versioned spot and compound CSVs as the
-Streamlit interface at `/`. The preview shows the target list, score
-components, spatial evidence, curated compounds and tissue context. The
-profile JSON includes the full underlying clinical and source records.
-
-To build and open the preview locally with Node.js and the app dependencies:
-
-```sh
-npm ci --prefix frontend
-npm run build --prefix frontend
-.venv/bin/python -m uvicorn main:app --host 127.0.0.1 --port 8522
-```
-
-Open `http://127.0.0.1:8522/preview/`. Vercel's build command produces the
-same static frontend from the package lockfile.
