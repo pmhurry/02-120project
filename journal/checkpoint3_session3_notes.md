@@ -107,3 +107,10 @@ has a comparison link at `/streamlit/`. Fresh Chrome passed the live React
 desktop, mobile, reduced-motion, data, and interaction checks. The Streamlit
 comparison route also rendered the expression map and downloaded the saved
 compound CSV. All 30 unit tests passed.
+
+The React site now includes a Project guide explaining dataset development,
+ranking and sensitivity, compound evidence, assay-model validation, project
+limits, and current deliverables. It distinguishes validation results from
+the pending final test and prediction view. Verified guide navigation,
+mobile layout, the published figures, and export links on Vercel.
+[Project guide](https://spatial-target-evidence.vercel.app/?view=guide)

@@ -7,7 +7,9 @@ The [Streamlit comparison](https://spatial-target-evidence.vercel.app/streamlit/
 uses the same ranking and filter functions, profile JSON, and versioned spot
 and compound CSVs. React shows the target list, score
 components, spatial evidence, curated compounds and tissue context. The
-profile JSON includes the full underlying clinical and source records.
+profile JSON includes the full underlying clinical and source records. The
+[Project guide](https://spatial-target-evidence.vercel.app/?view=guide) explains
+the project’s development, methods, validation results, limits, and deliverables.
 
 To build and open the React app locally with Node.js and the app dependencies:
 

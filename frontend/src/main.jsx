@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import Papa from 'papaparse';
+import ProjectGuide from './ProjectGuide.jsx';
 import './style.css';
 
 const query = (values) => new URLSearchParams(values).toString();
@@ -208,7 +209,7 @@ function Profile({row}) {
   </section>;
 }
 
-function App() {
+function Explorer() {
   const [view, setView] = useState('priority_rank');
   const [search, setSearch] = useState('');
   const [min, setMin] = useState('0');
@@ -221,10 +222,6 @@ function App() {
   const change = (setter, value) => {setter(value); setOffset(0);};
   const rankLabel = view === 'spatial_rank' ? 'Spatial rank' : 'Rank';
   return <>
-    <header className="topbar">
-      <a className="brand" href="/"><span className="mark" aria-hidden="true">✳</span><span>Spatial Target Evidence</span></a>
-      <div className="top-links"><a href="/streamlit/">Compare with Streamlit</a></div>
-    </header>
     <main className="workspace">
       <aside className="card explorer">
         <div className="explorer-heading"><h2>Target explorer</h2><a href={`/exports/ranking?${params}`}>CSV</a></div>
@@ -258,6 +255,20 @@ function App() {
         : <section className="card empty" role="status">{error || (data ? 'No targets match these filters.' : 'Preparing the target explorer…')}</section>}
     </main>
     <footer>Exploratory target hypotheses · 2 mice per time point · No uninjured controls</footer>
+  </>;
+}
+
+function App() {
+  const showGuide = new URLSearchParams(window.location.search).get('view') === 'guide';
+  return <>
+    <header className="topbar">
+      <a className="brand" href="/"><span className="mark" aria-hidden="true">✳</span><span>Spatial Target Evidence</span></a>
+      <nav className="top-links" aria-label="Main navigation">
+        <a href="/" aria-current={!showGuide ? 'page' : undefined}>Explorer</a>
+        <a href="/?view=guide" aria-current={showGuide ? 'page' : undefined}>Project guide</a>
+      </nav>
+    </header>
+    {showGuide ? <ProjectGuide/> : <Explorer/>}
   </>;
 }
 

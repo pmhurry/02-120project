@@ -249,3 +249,25 @@ I’ll make React the default at the public URL and keep Streamlit available at 
 
 ASSISTANT:
 React passed at the root locally, and Streamlit’s map and CSV download worked under `/streamlit/`. I’ll check those routes again on the live site, along with the redirect from the old preview URL.
+
+---
+
+ASSISTANT:
+[React is now the default interface](https://spatial-target-evidence.vercel.app/). The old `/preview` link redirects there, and [Streamlit is available for comparison](https://spatial-target-evidence.vercel.app/streamlit/).
+
+I verified both routes on Vercel, including React’s mobile layout and reduced-motion behavior. Pushed to `main` in `f10c8e6`.
+
+---
+
+USER:
+Explain all the developments and the deliverables in the site
+
+---
+
+ASSISTANT:
+I’ll add a project overview to the React site that explains what we built, how the evidence fits together, and which deliverables are available now.
+
+---
+
+ASSISTANT:
+The guide covers the move from 348 sampled spots to the full six-mouse analysis, how targets are ranked, and where to find the downloads. It also labels the galectin-3 results as validation and shows that final test evaluation is still pending.
