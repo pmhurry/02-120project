@@ -114,3 +114,15 @@ limits, and current deliverables. It distinguishes validation results from
 the pending final test and prediction view. Verified guide navigation,
 mobile layout, the published figures, and export links on Vercel.
 [Project guide](https://spatial-target-evidence.vercel.app/?view=guide)
+
+## Explanation quiz
+
+The student correctly identified React as the interface, FastAPI as the
+connection to the data, and Vercel as the host. The review clarified that both
+interfaces use the same ranks. After a map example, the student identified
+annotations as available for other genes, with packaged expression for the
+three reviewed genes. The student correctly identified the lower validation
+RMSE and the need for an untouched final test. In the final answer, the student
+recognized that additional biology can change what happens in an injury model.
+Feedback distinguished pIC50 in the competition assay from binding affinity and
+reviewed the need to test target engagement, injury, and recovery directly.
