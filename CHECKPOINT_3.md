@@ -81,7 +81,7 @@ November 18 results are recorded in the [evidence review and split notes](journa
 - [x] Choose hosting based on measured memory/storage/startup requirements.
 - [x] Package verified derived spatial summaries and evidence tables; avoid loading all raw archives at every app startup.
 - [x] Document how the deployment obtains versioned data; do not depend on ignored local files.
-- [ ] Deploy, record the URL, and test a fresh browser session.
+- [x] Deploy, record the URL, and test a fresh browser session.
 - [x] Verify ranking, filters, target lookup, maps, tissue/liability views, and downloads against CLI outputs.
 - [x] Add a compound section to selected target profiles and a downloadable evidence table; verify compound identity, action direction, measurements, and citations against the saved table.
 - [x] Show target action labels and their supporting/contradictory evidence in the app and download. Keep these separate from gene rank; verify that missing evidence stays unknown and a compound's action is not confused with whether that action helps.
@@ -89,7 +89,7 @@ November 18 results are recorded in the [evidence review and split notes](journa
 - [x] Compute 2,048-bit Morgan fingerprints with a documented radius (initially 2), chirality policy, and RDKit version; train a Random Forest regressor to predict the selected pActivity endpoint. Compare with a baseline that always predicts the training-set mean; choose settings using training/validation groups only.
 - [x] Save the training script, cleaned-data manifest, split assignments, model settings, dependency versions, and model artifact. Check deterministic rebuilding and separate measured values from model predictions in all outputs.
 
-November 19 results are recorded in the [deployment and model notes](journal/checkpoint3_session3_notes.md). Vercel is the selected host. See the deployment notes for verification status.
+November 19 results are recorded in the [deployment and model notes](journal/checkpoint3_session3_notes.md). The [public Vercel app](https://spatial-target-evidence.vercel.app) passed fresh Chrome and export checks.
 
 ## Session 4 — November 20: Methods, demonstration, and submission
 

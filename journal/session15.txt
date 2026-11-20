@@ -82,3 +82,42 @@ The Vercel entry point passed a fresh local Chrome test. It rendered an expressi
 
 ASSISTANT:
 The temporary Vercel build hit a platform limit. The Python bundle was 378 MB after optimization, above the anonymous deployment cap of 225 MB. Vercel documents a 500 MB limit for standard Python Functions, so the next hosted test needs a signed-in project. [Vercel Python bundle limits](https://vercel.com/docs/functions/runtimes/python#controlling-what-gets-bundled)
+
+---
+
+ASSISTANT:
+I configured the existing Streamlit app for Vercel and pushed it to `main` in commit `919541b`. A fresh local Chrome session rendered the expression map and downloaded a byte-for-byte match of the reviewed compound CSV. All 30 tests passed. [Deployment setup](/Users/praneelhurry/Documents/GitHub/02-120project/APP.md)
+
+**The public deployment is pending.** The optimized build was 378 MB, above Vercel’s 225 MB anonymous deployment cap. Standard Python Functions allow up to 500 MB. [Vercel Python runtime limits](https://vercel.com/docs/functions/runtimes/python#controlling-what-gets-bundled)
+
+Install and connect Vercel so I can deploy and verify the public URL. You can also import `pmhurry/02-120project` from `main` in your signed-in Vercel account. [Import project](https://vercel.com/new)
+
+---
+
+USER:
+I have a vercel account
+
+---
+
+ASSISTANT:
+I’ll check whether your Vercel account is already connected here so I can deploy the app.
+
+---
+
+ASSISTANT:
+Vercel sign-in succeeded. I’ll deploy the app-only bundle to your account, then verify it from a fresh browser session.
+
+---
+
+ASSISTANT:
+The public Vercel URL is up, and the expression view rendered. The compound CSV failed to download in the hosted browser, so I’ll trace that request before calling the deployment complete.
+
+---
+
+ASSISTANT:
+The browser trace showed that some map and download requests reached a Vercel instance that didn’t have the Streamlit session’s files. I’ve switched the hosted app to inline map images and download URLs that work from any instance. The fix passed locally and is rebuilding on Vercel.
+
+---
+
+ASSISTANT:
+The revised app passed the public checks. Fresh Chrome rendered the expression map and downloaded the exact compound CSV. The hosted ranking, map, profile, and compound exports also matched the local outputs. I’ll record the live URL and push the deployment fix.

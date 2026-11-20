@@ -92,6 +92,8 @@ and gene. Compare the exported numeric values when judging differences across ma
 
 ## Hosting the reviewed app
 
+[Open the public app](https://spatial-target-evidence.vercel.app)
+
 Vercel runs the Python app as a FastAPI function. The [ASGI entry point](main.py)
 mounts Streamlit at the root and starts its runtime through FastAPI's lifespan.
 Import `pmhurry/02-120project` on `main` as a FastAPI project with Fluid
@@ -106,8 +108,10 @@ To test the same entry point locally after installing `requirements.txt`:
 ```
 
 Vercel WebSockets remain tied to a function instance for the duration of the
-connection. Verify hosted downloads and the app's behavior when a session
-reconnects before using it for the demo.
+connection. The hosted app sends map images inline and serves downloads through
+HTTP routes that can run on any instance. Fresh Chrome verification covered
+the expression view and compound download. Hosted ranking, spot, profile, and
+compound exports were compared with the versioned data.
 [Vercel WebSocket documentation](https://vercel.com/kb/guide/do-vercel-serverless-functions-support-websocket-connections)
 
 The Git revision pins the ranking, tissue and compound tables, annotation
@@ -120,5 +124,5 @@ archives for expression maps of other targets.
 
 The local archive-free test used 40.5 MiB of app files and data, rendered in
 1.10 seconds, and peaked at 309.1 MiB RSS including AppTest during target
-switching. Actual host resource usage and startup latency require hosted
-verification.
+switching. Hosted memory and startup latency were not separately measured. The production
+release was published using the Vercel CLI from the reviewed app files.

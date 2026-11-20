@@ -1,9 +1,11 @@
 """Read-only interface for the checked target-ranking exports."""
 import os
 os.environ.setdefault('MPLCONFIGDIR', '/tmp/02-120-matplotlib')
-import hashlib
+from base64 import b64encode
 import json
+from html import escape
 from io import BytesIO
+from urllib.parse import urlencode
 
 import matplotlib
 matplotlib.use('Agg')
@@ -11,31 +13,25 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 
-from app_data import ROOT, load_mouse, read_components, read_packaged_map, read_profile, spot_rows, verify_exports
-from data_loader import load_metadata
+from app_data import ROOT, annotation_rows, load_mouse, read_packaged_map, read_profile, spot_rows, verify_exports
+from app_tables import VIEWS, filter_components, load_components, load_tissue_review_data
 
 st.set_page_config(page_title='Spatial target evidence', layout='wide')
 
 
-@st.cache_data
-def components():
-    frame = pd.DataFrame(read_components()).replace('', None)
-    numeric = ['S', 'S_48', 'S_72', 'T', 'D', 'priority', 'priority_rank', 'spatial_rank',
-               'rank_spatial_heavy', 'rank_equal_components', 'rank_48h', 'rank_72h']
-    for column in numeric:
-        frame[column] = pd.to_numeric(frame[column], errors='coerce')
-    return frame
+components = st.cache_data(load_components)
+tissue_review_data = st.cache_data(load_tissue_review_data)
+HTTP_EXPORTS = os.environ.get('SPATIAL_HTTP_EXPORTS') == '1'
 
 
-@st.cache_data
-def tissue_review_data(expected_hash):
-    source = ROOT / 'data/external/target_tissue_summary.csv'
-    if hashlib.sha256(source.read_bytes()).hexdigest() != expected_hash:
-        raise ValueError('Tissue summary checksum mismatch')
-    tissue = pd.read_csv(source).set_index('human_ensembl_id')
-    if not tissue.index.is_unique:
-        raise ValueError('Tissue summary contains duplicate human gene IDs')
-    return tissue
+def download(label, filename, content_type, data, route, **query):
+    if HTTP_EXPORTS:
+        url = f'/exports/{route}'
+        if query:
+            url = f'{url}?{urlencode(query)}'
+        st.html(f'<a href="{escape(url)}" download="{escape(filename)}">{escape(label)}</a>')
+    else:
+        st.download_button(label, data(), filename, content_type)
 
 
 @st.cache_data
@@ -74,35 +70,23 @@ def main():
         st.json({'version': manifest['version'], 'weights': manifest['weights'], 'sources': manifest['source_versions']})
 
     st.subheader('Target ranking and lookup')
-    view = st.radio('Evidence view', ['Complete-evidence ranking', 'Spatial-only screen', 'All features / mapping audit'], horizontal=True)
-    search = st.text_input('Find mouse/human symbol or stable ID', help='Case-insensitive literal lookup; switch to all features to find excluded targets.')
-    if view == 'Complete-evidence ranking':
-        table = frame[frame.priority_rank.notna()].sort_values('priority_rank')
-    elif view == 'Spatial-only screen':
-        table = frame[frame.spatial_rank.notna()].sort_values('spatial_rank')
-    else:
-        table = frame.sort_values('feature_id')
+    view = st.radio('Evidence view', list(VIEWS), horizontal=True)
+    search = st.text_input('Find mouse/human symbol or stable ID', max_chars=500, help='Case-insensitive literal lookup; switch to all features to find excluded targets.')
     with st.expander('Optional review filters'):
         minimum = st.select_slider('Minimum small-molecule tractability score',
                                    [0.0, 0.3, 0.6, 0.8, 1.0], value=0.0)
         require_liver = st.checkbox('Require a measured normal-human liver RNA value')
-        before = len(table)
-        if minimum > 0:
-            table = table[table['T'].ge(minimum)]
-        st.caption(f'{before - len(table):,} excluded by the tractability filter.')
-        before = len(table)
-        if require_liver:
-            table = table[table.human_ensembl_id.map(tissue.liver_ntpm).notna()]
-        st.caption(f'{before - len(table):,} additionally excluded by the liver RNA coverage filter.')
+        table, tractability_excluded, tissue_excluded = filter_components(
+            frame, tissue, VIEWS[view], minimum, require_liver, search)
+        st.caption(f'{tractability_excluded:,} excluded by the tractability filter.')
+        st.caption(f'{tissue_excluded:,} additionally excluded by the liver RNA coverage filter.')
         st.caption('Filters apply in order before search. Clear both controls to restore the full view.')
-    if search:
-        mask = table[['symbol', 'human_symbol', 'feature_id', 'human_ensembl_id']].fillna('').apply(
-            lambda col: col.str.contains(search, case=False, regex=False)).any(axis=1)
-        table = table[mask]
     columns = ['priority_rank', 'spatial_rank', 'symbol', 'feature_id', 'human_symbol', 'S', 'T', 'D', 'priority', 'reproducibly_positive', 'exclusion_reasons']
     st.caption(f'{len(table):,} matching features. Blank numeric cells mean unavailable, not zero. Ranks remain those of the full saved export. Weights and source versions appear above.')
     st.dataframe(table[columns].head(250), hide_index=True)
-    st.download_button('Download matching evidence table (CSV)', table.to_csv(index=False), 'target_evidence.csv', 'text/csv')
+    download('Download matching evidence table (CSV)', 'target_evidence.csv', 'text/csv',
+             lambda: table.to_csv(index=False), 'ranking',
+             view=VIEWS[view], minimum=minimum, liver=require_liver, search=search)
     if table.empty:
         st.info('No matches in this view. Try all features or another symbol/ID.')
         return
@@ -144,9 +128,7 @@ def main():
             mode = 'Annotations'
             st.info('Showing annotations while expression is unavailable.')
     if mode == 'Annotations':
-        spots = [s for s in load_metadata(ROOT / 'Visium_Meta_data.txt').values() if s.mouse == mouse]
-        points = pd.DataFrame([dict(barcode=s.barcode, mouse=s.mouse, time_hours=s.time_hours,
-                                    x=s.x, y=s.y, annotated=s.fibrogenic) for s in spots])
+        points = pd.DataFrame(annotation_rows(mouse))
     fig, ax = plt.subplots(figsize=(8, 6))
     if mode == 'Annotations':
         for flag, color, label in [(False, '#b9c5ce', 'Other'), (True, '#d77731', 'Annotated')]:
@@ -169,10 +151,18 @@ def main():
     ax.set_aspect('equal', adjustable='box')
     ax.invert_yaxis()
     ax.set(xlabel='Visium x', ylabel='Visium y', title=f'{mouse} · {mode}')
-    st.pyplot(fig)
+    if HTTP_EXPORTS:
+        image = BytesIO()
+        fig.savefig(image, format='png', dpi=150, bbox_inches='tight')
+        st.image('data:image/png;base64,' + b64encode(image.getvalue()).decode('ascii'),
+                 width='stretch')
+    else:
+        st.pyplot(fig)
     plt.close(fig)
-    map_csv = saved if mode == 'Selected target expression' and saved is not None else points.to_csv(index=False)
-    st.download_button('Download displayed map data (full barcodes)', map_csv, f'{mouse}_{feature_id}_spots.csv', 'text/csv')
+    expression_mode = mode == 'Selected target expression'
+    download('Download displayed map data (full barcodes)', f'{mouse}_{feature_id}_spots.csv',
+             'text/csv', lambda: saved if expression_mode and saved is not None else points.to_csv(index=False),
+             'map', mouse=mouse, feature_id=feature_id, expression=expression_mode)
 
     st.subheader('Human tissue and reported liabilities')
     st.write('Liability evidence:', profile['liability_status'])
@@ -216,14 +206,16 @@ def main():
                 st.write(entry[field])
             for i, link in enumerate((entry['target_sources'] + ' | ' + entry['compound_sources']).split(' | '), 1):
                 st.link_button(f"{entry['compound']} study {i}", link)
-        st.download_button('Download reviewed compound evidence (CSV)',
-                           (ROOT / 'results/compound_activity/reviewed_compounds.csv').read_bytes(),
-                           'reviewed_compounds.csv', 'text/csv')
+        download('Download reviewed compound evidence (CSV)', 'reviewed_compounds.csv',
+                 'text/csv', (ROOT / 'results/compound_activity/reviewed_compounds.csv').read_bytes,
+                 'compounds')
     with st.expander('Disease evidence and tractability records'):
         st.json({'disease': profile['disease_evidence'], 'tractability': profile['tractability']})
     for i, link in enumerate(profile['source_links'], 1):
         st.link_button(f'Target source {i}', link)
-    st.download_button('Download complete selected evidence profile (JSON)', json.dumps(profile, indent=2), f'{feature_id}_evidence.json', 'application/json')
+    download('Download complete selected evidence profile (JSON)', f'{feature_id}_evidence.json',
+             'application/json', lambda: json.dumps(profile, indent=2),
+             'profile', feature_id=feature_id)
 
 
 if __name__ == '__main__':

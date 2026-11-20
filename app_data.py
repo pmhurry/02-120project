@@ -76,3 +76,10 @@ def read_packaged_map(mouse, feature_id):
     if hashlib.sha256(payload).hexdigest() != expected:
         raise ValueError(f'Packaged map checksum mismatch: {name}')
     return gzip.decompress(payload)
+
+
+def annotation_rows(mouse):
+    return [dict(barcode=spot.barcode, mouse=spot.mouse, time_hours=spot.time_hours,
+                 x=spot.x, y=spot.y, annotated=spot.fibrogenic)
+            for spot in load_metadata(ROOT / 'Visium_Meta_data.txt').values()
+            if spot.mouse == mouse]

@@ -65,6 +65,15 @@ All 30 unit tests passed after the hosting change.
 
 The anonymous Vercel build using `requirements.txt` reported a 378.04 MB
 optimized function bundle and stopped at its 225 MB temporary-deployment
-limit. Vercel documents a 500 MB standard Python Function limit. A signed-in
-Vercel project and fresh hosted verification are pending.
+limit. Vercel documents a 500 MB standard Python Function limit. The student authorized Vercel sign-in and the authenticated build deployed.
+
+The first production deployment responded to health checks, but some images
+and downloads returned 404 because Streamlit kept those files in memory on
+the WebSocket's function instance. The redeployment sends map images inline
+and implements HTTP export routes that reconstruct results from versioned files.
+A fresh Chrome profile opened the public app, rendered the expression layer,
+and downloaded the exact reviewed compound CSV. Full and filtered ranking,
+expression-map, profile JSON, and compound downloads matched local outputs.
+All 30 unit tests and the app integration check passed.
+[Verified public Vercel app](https://spatial-target-evidence.vercel.app)
 [Vercel Python runtime limits](https://vercel.com/docs/functions/runtimes/python#controlling-what-gets-bundled)
