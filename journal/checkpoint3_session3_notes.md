@@ -77,3 +77,20 @@ expression-map, profile JSON, and compound downloads matched local outputs.
 All 30 unit tests and the app integration check passed.
 [Verified public Vercel app](https://spatial-target-evidence.vercel.app)
 [Vercel Python runtime limits](https://vercel.com/docs/functions/runtimes/python#controlling-what-gets-bundled)
+
+## React comparison preview
+
+The student requested a React preview alongside Streamlit after the Vercel
+deployment. The preview uses the same shared ranking filters and versioned
+profiles, spot maps, and compound measurements. It includes target search,
+paginated rankings, score components, spatial maps, compound evidence,
+tissue context, and downloads. The Streamlit interface remains at the root.
+
+Verified both deployed interfaces in fresh Chrome. The React check covered
+desktop and 390-pixel mobile layout, annotation and expression layers,
+time and gene selection, reviewed compound activity, tissue evidence,
+and empty searches. Paginated ranking and filter outputs matched the
+existing CSV exports. The Streamlit health endpoint, expression map, and
+compound CSV download also passed. The 30 unit tests and existing
+application integration checks passed.
+[Public React preview](https://spatial-target-evidence.vercel.app/preview)

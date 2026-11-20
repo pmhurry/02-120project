@@ -12,3 +12,4 @@ results/compound_activity/galectin3_*
 results/spatial/*.csv
 results/spatial/*.csv.gz
 TA_QUIZ.md
+frontend/node_modules/

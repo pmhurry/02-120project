@@ -1,0 +1,8 @@
+{
+  "name": "spatial-target-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {"build": "node build.mjs"},
+  "dependencies": {"papaparse": "^5.5.3", "react": "^19.2.0", "react-dom": "^19.2.0"},
+  "devDependencies": {"esbuild": "^0.27.0"}
+}

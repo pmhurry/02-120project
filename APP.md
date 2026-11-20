@@ -126,3 +126,22 @@ The local archive-free test used 40.5 MiB of app files and data, rendered in
 1.10 seconds, and peaked at 309.1 MiB RSS including AppTest during target
 switching. Hosted memory and startup latency were not separately measured. The production
 release was published using the Vercel CLI from the reviewed app files.
+
+## React preview
+
+The [React preview](https://spatial-target-evidence.vercel.app/preview) is served at `/preview`. It uses the same ranking and
+filter functions, profile JSON, and versioned spot and compound CSVs as the
+Streamlit interface at `/`. The preview shows the target list, score
+components, spatial evidence, curated compounds and tissue context. The
+profile JSON includes the full underlying clinical and source records.
+
+To build and open the preview locally with Node.js and the app dependencies:
+
+```sh
+npm ci --prefix frontend
+npm run build --prefix frontend
+.venv/bin/python -m uvicorn main:app --host 127.0.0.1 --port 8522
+```
+
+Open `http://127.0.0.1:8522/preview/`. Vercel's build command produces the
+same static frontend from the package lockfile.

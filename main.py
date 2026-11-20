@@ -7,6 +7,7 @@ from typing import Annotated, Literal
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse, Response, StreamingResponse
+from fastapi.staticfiles import StaticFiles
 import pandas as pd
 import streamlit as st
 
@@ -83,5 +84,36 @@ def map_csv(mouse: MouseID, feature_id: FeatureID, expression: bool = False):
     return Response(payload, media_type='text/csv',
                     headers=attachment(f'{mouse}_{feature_id}_spots.csv'))
 
+
+@app.get('/api/preview/ranking')
+def preview_ranking(
+    view: Literal['priority_rank', 'spatial_rank', 'feature_id'] = 'priority_rank',
+    minimum: Annotated[float, Query(ge=0, le=1)] = 0,
+    liver: bool = False,
+    search: Annotated[str, Query(max_length=500)] = '',
+    offset: Annotated[int, Query(ge=0)] = 0,
+):
+    frame, tissue = ranking_inputs()
+    table, excluded_tractability, excluded_tissue = filter_components(
+        frame, tissue, view, minimum, liver, search)
+    columns = ['feature_id', 'symbol', 'human_symbol', 'human_ensembl_id', 'S', 'T', 'D',
+               'priority', 'priority_rank', 'spatial_rank', 'exclusion_reasons',
+               'mapping_method', 'annotation_linked_marker']
+    rows = table.iloc[offset:offset + 25][columns]
+    return {
+        'rows': json.loads(rows.to_json(orient='records', double_precision=15)),
+        'total': len(table),
+        'excluded_tractability': excluded_tractability,
+        'excluded_tissue': excluded_tissue,
+    }
+
+
+preview = ROOT / 'frontend_dist'
+if preview.is_dir():
+    @app.get('/preview')
+    def preview_page():
+        return FileResponse(preview / 'index.html')
+
+    app.mount('/preview', StaticFiles(directory=preview, html=True))
 
 app.mount('/', streamlit_app)
