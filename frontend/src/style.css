@@ -247,3 +247,9 @@ footer { width: min(1380px, calc(100% - 48px)); margin: 0 auto 24px; color: var(
   .guide { width: calc(100% - 24px); margin-top: 15px; }
   .guide-methods { grid-template-columns: 1fr; }
 }
+
+.prediction-plot { display: block; max-width: 100%; height: auto; margin: 1rem auto; background: white; }
+.prediction-scroll { overflow: auto; max-height: 24rem; }
+.prediction-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.prediction-table th, .prediction-table td { text-align: left; padding: 0.6rem; border-bottom: 1px solid currentColor; }
+.prediction-table td { font-variant-numeric: tabular-nums; }

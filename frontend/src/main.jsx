@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import Papa from 'papaparse';
+import Predictions from './Predictions.jsx';
 import ProjectGuide from './ProjectGuide.jsx';
 import './style.css';
 
@@ -258,17 +259,25 @@ function Explorer() {
   </>;
 }
 
+function PredictionView() {
+  const {data, error} = useEvidence('/assets/heldout_evaluation.json');
+  return <Predictions report={data} error={error}/>;
+}
+
 function App() {
-  const showGuide = new URLSearchParams(window.location.search).get('view') === 'guide';
+  const view = new URLSearchParams(window.location.search).get('view');
+  const showGuide = view === 'guide';
+  const showPredictions = view === 'predictions';
   return <>
     <header className="topbar">
       <a className="brand" href="/"><span className="mark" aria-hidden="true">✳</span><span>Spatial Target Evidence</span></a>
       <nav className="top-links" aria-label="Main navigation">
-        <a href="/" aria-current={!showGuide ? 'page' : undefined}>Explorer</a>
+        <a href="/" aria-current={!showGuide && !showPredictions ? 'page' : undefined}>Explorer</a>
         <a href="/?view=guide" aria-current={showGuide ? 'page' : undefined}>Project guide</a>
+        <a href="/?view=predictions" aria-current={showPredictions ? 'page' : undefined}>Predictions</a>
       </nav>
     </header>
-    {showGuide ? <ProjectGuide/> : <Explorer/>}
+    {showGuide ? <ProjectGuide/> : showPredictions ? <PredictionView/> : <Explorer/>}
   </>;
 }
 

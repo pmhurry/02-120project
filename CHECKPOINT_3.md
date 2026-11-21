@@ -93,18 +93,21 @@ November 19 results are recorded in the [deployment and model notes](journal/che
 
 ## Session 4 — November 20: Methods, demonstration, and submission
 
-- [ ] Explain normalization, spatial contrasts, mapping gates, component weights, missing-data policy, and sensitivity findings in the app.
-- [ ] State sample size, differing annotations, cell mixtures, lack of controls/perturbations, and limitations of tissue/safety annotations.
-- [ ] Update README with install, data retrieval, launch, deployed URL, and validated output versions.
-- [ ] Explain how compounds were selected, what published experiments actually measured, and why a highly ranked gene does not automatically justify blocking it.
-- [ ] Draft a demo following one top gene from spatial signal to a compound, published evidence, unresolved questions, and a proposed laboratory experiment.
-- [ ] Evaluate the frozen model once on the untouched test compounds. Report RMSE, MAE, and R² for both the Random Forest and training-mean predictor on the same test set, plus test size, scaffold coverage, activity range, and a predicted-versus-measured plot. Explain that a one-unit pActivity difference corresponds to a tenfold concentration ratio; report uncertainty in performance where practical without treating correlated compounds as independent. Retain weak or negative results; do not retune against the final test.
-- [ ] Add a compact prediction view and downloadable results showing the target, predicted measurement and units/scale, model version, and whether the compound resembles training examples. Flag compounds outside the model's demonstrated scope; a similarity flag is not a calibrated confidence interval. Verify displayed predictions against saved outputs.
-- [ ] Explain that held-out compounds already have experimental measurements used to evaluate the model; predictions for genuinely untested compounds remain unverified hypotheses. Predicting target activity does not establish blocking/activation direction, liver benefit, or safety.
-- [ ] Freeze core features and list remaining correctness issues.
+- [x] Explain normalization, spatial contrasts, mapping gates, component weights, missing-data policy, and sensitivity findings in the app.
+- [x] State sample size, differing annotations, cell mixtures, lack of controls/perturbations, and limitations of tissue/safety annotations.
+- [x] Update README with install, data retrieval, launch, deployed URL, and validated output versions.
+- [x] Explain how compounds were selected, what published experiments actually measured, and why a highly ranked gene does not automatically justify blocking it.
+- [x] Draft a demo following one top gene from spatial signal to a compound, published evidence, unresolved questions, and a proposed laboratory experiment.
+- [x] Evaluate the frozen model once on the untouched test compounds. Report RMSE, MAE, and R² for both the Random Forest and training-mean predictor on the same test set, plus test size, scaffold coverage, activity range, and a predicted-versus-measured plot. Explain that a one-unit pActivity difference corresponds to a tenfold concentration ratio; report uncertainty in performance where practical without treating correlated compounds as independent. Retain weak or negative results; do not retune against the final test.
+- [x] Add a compact prediction view and downloadable results showing the target, predicted measurement and units/scale, model version, and whether the compound resembles training examples. Flag compounds outside the model's demonstrated scope; a similarity flag is not a calibrated confidence interval. Verify displayed predictions against saved outputs.
+- [x] Explain that held-out compounds already have experimental measurements used to evaluate the model; predictions for genuinely untested compounds remain unverified hypotheses. Predicting target activity does not establish blocking/activation direction, liver benefit, or safety.
+- [x] Freeze core features and list remaining correctness issues.
 
-- [ ] Fix correctness/deployment blockers and rerun affected checks.
+- [x] Fix correctness/deployment blockers and rerun affected checks.
 - [ ] Verify URL, repository, sources, and required journals; submit checkpoint materials.
+  The public prediction view is live. Canvas submission and receipt are pending.
+
+[Evaluation, demo script, and feature freeze](journal/checkpoint3_session4_notes.md)
 
 **Done means:** the public engine reproduces the reviewed rankings, makes trade-offs
 and unknowns visible, and connects selected top genes to a traceable compound

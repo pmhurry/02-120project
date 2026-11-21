@@ -16,6 +16,7 @@ export default function ProjectGuide() {
         <li><strong>Built the ranking engine.</strong> The engine combines replicated mouse expression contrasts with evidence for human orthologs, small-molecule tractability, and hepatic fibrosis. The default ranking contains 2,248 eligible features. <a href={file('ENGINE_DESIGN.md')}>Ranking design</a></li>
         <li><strong>Reviewed compound evidence.</strong> We froze the first three targets in ranking order, CD74, LGALS3, and CTSS, before reviewing published studies. Profiles distinguish a compound’s action, what the experiment measured, and whether the result supports follow-up in acute injury. <a href="/exports/compounds">Download reviewed compounds</a></li>
         <li><strong>Deployed a React evidence explorer.</strong> The site combines searchable rankings, filters, score breakdowns, spatial maps, tissue and liability context, and downloads. FastAPI serves the same versioned outputs to React and the <a href="/streamlit/">Streamlit comparison</a>.</li>
+        <li><strong>Evaluated one compound activity model.</strong> The frozen galectin-3 Random Forest predicts pIC50 for a single biochemical assay. The held-out evaluation compares it with a training-mean predictor. <a href="/?view=predictions">View test results and downloads</a></li>
       </ol>
     </section>
 
@@ -35,10 +36,10 @@ export default function ProjectGuide() {
       <div className="score-grid guide-validation">
         <div className="metric"><span>Training compounds</span><strong>226</strong></div>
         <div className="metric"><span>Validation compounds</span><strong>48</strong></div>
-        <div className="metric"><span>Reserved test compounds</span><strong>48</strong></div>
+        <div className="metric"><span>Held-out test compounds</span><strong>48</strong></div>
       </div>
-      <p>On validation, the model achieved <strong>0.449 pIC50 RMSE</strong> versus <strong>0.683</strong> for the training-mean baseline. These validation results guided model selection. Final test evaluation and a prediction view are pending. Compounds in the held-out sets already have assay measurements for comparison.</p>
-      <div className="source-links"><a href={file('results/compound_activity/galectin3_model_manifest.json')}>Model manifest</a><a href={file('results/compound_activity/galectin3_validation.csv')}>Validation predictions</a></div>
+      <p>On validation, the model achieved <strong>0.449 pIC50 RMSE</strong> versus <strong>0.683</strong> for the training-mean baseline. These validation results guided model selection. The frozen model was then evaluated on the reserved test compounds. Compounds in the held-out sets already have assay measurements for comparison.</p>
+      <div className="source-links"><a href={file('results/compound_activity/galectin3_model_manifest.json')}>Model manifest</a><a href={file('results/compound_activity/galectin3_validation.csv')}>Validation predictions</a><a href="/?view=predictions">Held-out test results</a></div>
     </section>
 
     <section className="card guide-section" aria-labelledby="deliverables">

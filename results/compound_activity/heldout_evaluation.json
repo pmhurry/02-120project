@@ -1,0 +1,514 @@
+{
+  "version": "galectin3-rf-v1",
+  "dataset_version": "galectin3-ic50-v1",
+  "model_manifest_sha256": "1bd3bcf0c2382b75a1fb2fc016247feecc80414c24b046aa243b6cf4ccdc1648",
+  "target": "CHEMBL4531",
+  "assay": "CHEMBL5737905",
+  "endpoint": "HTRF competition IC50 (nM), exported as pIC50 = 9 - log10(IC50 in nM)",
+  "test_count": 48,
+  "test_scaffolds": 29,
+  "development_scaffold_overlap": 0,
+  "measured_pIC50_range": [
+    5.0,
+    7.5376020021
+  ],
+  "rf": {
+    "rmse": 0.48213670236982015,
+    "mae": 0.3608161502085554,
+    "r2": 0.3412325954151173
+  },
+  "baseline": {
+    "rmse": 0.6973995188285876,
+    "mae": 0.5413074307699669,
+    "r2": -0.37833569371961007
+  },
+  "bootstrap_rmse_gain_95": [
+    0.10927670800640683,
+    0.31201983740601413
+  ],
+  "bootstrap_method": "5000 paired resamples of whole test scaffolds, seed 19",
+  "similarity_cutoff": 0.7012987012987013,
+  "below_cutoff": 9,
+  "predictions": [
+    {
+      "compound_ids": "CHEMBL5761102",
+      "smiles": "COCCO[C@@H]1[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@@H](O)[C@@H](CO)O[C@H]1n1nncc1-c1cccc(Cl)c1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 6.2433638918,
+      "rf_predicted_pIC50": 6.573771474247293,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.5777777777777777,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5957258",
+      "smiles": "COc1cccc(-c2cnnn2[C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4cc(F)c(F)c(F)c4)nn3)[C@H]2O)c1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 6.801342913,
+      "rf_predicted_pIC50": 6.165393006424398,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.6875,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5788601",
+      "smiles": "COc1cccc(-c2cnnn2[C@H]2C[C@@H](n3cc(-c4cc(F)c(F)c(F)c4)nn3)[C@@H](O)[C@@H](CO)O2)c1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 6.2153827074,
+      "rf_predicted_pIC50": 6.271535201682339,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.5402298850574713,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5957560",
+      "smiles": "O=C(O)CO[C@@H]1[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@@H](O)[C@@H](CO)O[C@H]1n1nncc1-c1cccc(Cl)c1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 5.0743270061,
+      "rf_predicted_pIC50": 6.535469569145282,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.5842696629213483,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5981719",
+      "smiles": "O=C(O)c1nnn([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4cc(F)c(F)c(F)c4)nn3)[C@H]2O)c1-c1ccc(Cl)c(Cl)c1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 6.735182177,
+      "rf_predicted_pIC50": 6.404019244512026,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.5476190476190477,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5805120",
+      "smiles": "OC[C@H]1O[C@@H](n2nncc2-c2ccc(Cl)cc2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 6.4828041021,
+      "rf_predicted_pIC50": 6.337212042843616,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7397260273972602,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5826572",
+      "smiles": "OC[C@H]1O[C@@H](n2nncc2-c2ccccc2)C[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 6.0447934625,
+      "rf_predicted_pIC50": 6.178188519496845,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.5301204819277109,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5754939",
+      "smiles": "OC[C@H]1O[C@@H](n2nncc2-c2ccccc2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 6.209714836,
+      "rf_predicted_pIC50": 6.052893483487444,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7361111111111112,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5742430",
+      "smiles": "OC[C@H]1O[C@H](n2nncc2-c2ccc(Cl)c(Cl)c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccccc4)C3)nn2)cc1",
+      "measured_pIC50": 5.0,
+      "rf_predicted_pIC50": 6.363005007787677,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.6410256410256411,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5897633",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4cc(F)c(Br)c(F)c4)nn3)[C@H]2O)n(-c2cc(Cl)ccc2C2CC2)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4ccccc4C4CC4)C3)nn2)cc1",
+      "measured_pIC50": 6.8210230527,
+      "rf_predicted_pIC50": 7.44790535972341,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7901234567901234,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5794082",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4cc(F)c(Cl)c(F)c4)nn3)[C@H]2O)n(-c2cc(Cl)ccc2C2CC2)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4ccccc4C4CC4)C3)nn2)cc1",
+      "measured_pIC50": 7.3372421683,
+      "rf_predicted_pIC50": 7.435426440170682,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8513513513513513,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5964229",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4ccc(Br)c(F)c4)nn3)[C@H]2O)n(-c2cc(Cl)ccc2C2CC2)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4ccccc4C4CC4)C3)nn2)cc1",
+      "measured_pIC50": 7.1426675036,
+      "rf_predicted_pIC50": 7.403337933574281,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8125,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5896088",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4ccc(Cl)c(F)c4)nn3)[C@H]2O)n(-c2cc(Cl)ccc2C2CC2)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4ccccc4C4CC4)C3)nn2)cc1",
+      "measured_pIC50": 7.2291479884,
+      "rf_predicted_pIC50": 7.30525049038941,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8648648648648649,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5917869",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4ccc(Cl)c(F)c4F)nn3)[C@H]2O)n(-c2cc(Cl)ccc2C2CC2)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4ccccc4C4CC4)C3)nn2)cc1",
+      "measured_pIC50": 6.8538719643,
+      "rf_predicted_pIC50": 7.58987742978713,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8648648648648649,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5854692",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4cc(F)c(Cl)c(F)c4)nn3)[C@H]2O)n(-c2cc(Cl)cnc2C(F)(F)F)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4cccnc4)C3)nn2)cc1",
+      "measured_pIC50": 7.5376020021,
+      "rf_predicted_pIC50": 7.342066036844076,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7866666666666666,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL6025973",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4cc(F)c(F)c(F)c4)nn3)[C@H]2O)n(-c2cncc(Cl)c2)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4cccnc4)C3)nn2)cc1",
+      "measured_pIC50": 6.6575773192,
+      "rf_predicted_pIC50": 6.970713392589808,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8571428571428571,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL6046548",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4ccc(Br)c(F)c4)nn3)[C@H]2O)n(-c2cc(Cl)cnc2C(F)(F)F)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4cccnc4)C3)nn2)cc1",
+      "measured_pIC50": 7.30980392,
+      "rf_predicted_pIC50": 7.275789442775086,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7441860465116279,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL6052968",
+      "smiles": "CNC(=O)c1cn([C@H]2[C@@H](O)[C@@H](CO)O[C@@H](c3ncnn3-c3ccc4nc(C)sc4c3)[C@@H]2O)nn1",
+      "scaffold": "c1cn(C2CCOC(c3ncnn3-c3ccc4ncsc4c3)C2)nn1",
+      "measured_pIC50": 5.9355420108,
+      "rf_predicted_pIC50": 6.334846683189158,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.825,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5991507",
+      "smiles": "Cc1nc2ccc(-n3ncnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(C(=O)N(C)C)nn4)[C@H]3O)cc2s1",
+      "scaffold": "c1cn(C2CCOC(c3ncnn3-c3ccc4ncsc4c3)C2)nn1",
+      "measured_pIC50": 5.2479515522,
+      "rf_predicted_pIC50": 6.228349912406842,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7590361445783133,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5946277",
+      "smiles": "Cc1nc2ccc(-n3ncnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(C(N)=O)nn4)[C@H]3O)cc2s1",
+      "scaffold": "c1cn(C2CCOC(c3ncnn3-c3ccc4ncsc4c3)C2)nn1",
+      "measured_pIC50": 5.388276692,
+      "rf_predicted_pIC50": 6.412681323574307,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7777777777777778,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL6040351",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4cc(F)c(Cl)c(F)c4)nn3)[C@H]2O)n(-c2cc(Cl)cc3ccncc23)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4cccc5ccncc45)C3)nn2)cc1",
+      "measured_pIC50": 7.2924298239,
+      "rf_predicted_pIC50": 7.407058706000847,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7894736842105263,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL6024666",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4ccc(Br)c(F)c4)nn3)[C@H]2O)n(-c2cc(Cl)cc3ccncc23)n1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4cccc5ccncc45)C3)nn2)cc1",
+      "measured_pIC50": 6.793174124,
+      "rf_predicted_pIC50": 7.371502804755388,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.735632183908046,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5754105",
+      "smiles": "CC(=O)N1CCN(c2ccc(-n3cnnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(-c5cc(F)c(F)c(F)c5)nn4)[C@H]3O)cc2Cl)CC1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4ccc(N5CCNCC5)cc4)C3)nn2)cc1",
+      "measured_pIC50": 6.5228787453,
+      "rf_predicted_pIC50": 6.614735953237682,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.759493670886076,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5958248",
+      "smiles": "CN1CCN(c2ccc(-n3cnnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(-c5cc(F)c(F)c(F)c5)nn4)[C@H]3O)cc2Cl)CC1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4ccc(N5CCNCC5)cc4)C3)nn2)cc1",
+      "measured_pIC50": 6.8860566477,
+      "rf_predicted_pIC50": 6.652790357260758,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5975459",
+      "smiles": "Cc1ncc(Cl)cc1-n1cnnc1[C@@H]1O[C@H](CO)[C@H](O)[C@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4cccnc4)C3)nn2)cc1",
+      "measured_pIC50": 7.3979400087,
+      "rf_predicted_pIC50": 6.699655610230344,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7671232876712328,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5847562",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2cncc(F)c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4cccnc4)C3)nn2)cc1",
+      "measured_pIC50": 6.3419886033,
+      "rf_predicted_pIC50": 6.290268062564369,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8088235294117647,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5777372",
+      "smiles": "Cc1nc2ccc(-n3ncnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(C(=O)NC5CCC5)nn4)[C@H]3O)cc2s1",
+      "scaffold": "O=C(NC1CCC1)c1cn(C2CCOC(c3ncnn3-c3ccc4ncsc4c3)C2)nn1",
+      "measured_pIC50": 6.4436974992,
+      "rf_predicted_pIC50": 6.328125035385366,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.974025974025974,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5896577",
+      "smiles": "Cc1nc2ccc(-n3ncnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(C(=O)NCc5cccc(F)c5)nn4)[C@H]3O)cc2s1",
+      "scaffold": "O=C(NCc1ccccc1)c1cn(C2CCOC(c3ncnn3-c3ccc4ncsc4c3)C2)nn1",
+      "measured_pIC50": 6.0655015488,
+      "rf_predicted_pIC50": 6.356503835904542,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7252747252747253,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5798758",
+      "smiles": "Cc1nnc(NS(=O)(=O)c2ccc(-n3cnnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(-c5cc(F)c(F)c(F)c5)nn4)[C@H]3O)cc2)s1",
+      "scaffold": "O=S(=O)(Nc1nncs1)c1ccc(-n2cnnc2C2CC(n3cc(-c4ccccc4)nn3)CCO2)cc1",
+      "measured_pIC50": 5.8096683018,
+      "rf_predicted_pIC50": 6.264767107360628,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7349397590361446,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5792863",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2cccc(-c3ccccc3)c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cccc(-n3cnnc3C3CC(n4cc(-c5ccccc5)nn4)CCO3)c2)cc1",
+      "measured_pIC50": 6.3279021421,
+      "rf_predicted_pIC50": 6.657813565141968,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8656716417910447,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5945612",
+      "smiles": "OC[C@H]1O[C@@H](c2ncnn2-c2ccc3nc(N4CCOCC4)sc3c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4ccc5nc(N6CCOCC6)sc5c4)C3)nn2)cc1",
+      "measured_pIC50": 6.920818754,
+      "rf_predicted_pIC50": 7.063802891314014,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7738095238095238,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5971788",
+      "smiles": "OC[C@H]1O[C@@H](c2ncnn2-c2ccccn2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4-c4ccccn4)C3)nn2)cc1",
+      "measured_pIC50": 5.9625735021,
+      "rf_predicted_pIC50": 5.98179903938387,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8088235294117647,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5980433",
+      "smiles": "OC[C@H]1O[C@@H](c2ncnn2[C@@H]2CCCC[C@H]2O)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4ncnn4C4CCCCC4)C3)nn2)cc1",
+      "measured_pIC50": 5.6946486306,
+      "rf_predicted_pIC50": 5.915625047813755,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7714285714285715,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5968992",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2ccc(-c3nnn[nH]3)cc2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4ccc(-c5nnn[nH]5)cc4)C3)nn2)cc1",
+      "measured_pIC50": 6.0861861476,
+      "rf_predicted_pIC50": 6.176256693805721,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8533333333333334,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5966899",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2ccc(Cc3ccncc3)cc2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4ccc(Cc5ccncc5)cc4)C3)nn2)cc1",
+      "measured_pIC50": 6.2839966564,
+      "rf_predicted_pIC50": 6.111391052402016,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8115942028985508,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5926999",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2ccc3c(c2)OCO3)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4ccc5c(c4)OCO5)C3)nn2)cc1",
+      "measured_pIC50": 6.920818754,
+      "rf_predicted_pIC50": 6.44183140613552,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7857142857142857,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5760281",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2ccc3ccncc3c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4ccc5ccncc5c4)C3)nn2)cc1",
+      "measured_pIC50": 6.5686362358,
+      "rf_predicted_pIC50": 6.368359230340256,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7638888888888888,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL6067946",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2ccc3nc(N4CCOCC4)sc3c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4ccc5nc(N6CCOCC6)sc5c4)C3)nn2)cc1",
+      "measured_pIC50": 6.9586073148,
+      "rf_predicted_pIC50": 6.7893344873402635,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.6790123456790124,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5851714",
+      "smiles": "Cc1nc2cc(-n3cnnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(-c5cc(F)c(F)c(F)c5)nn4)[C@H]3O)ccc2s1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4ccc5scnc5c4)C3)nn2)cc1",
+      "measured_pIC50": 6.3872161433,
+      "rf_predicted_pIC50": 6.839426352240593,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.782051282051282,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL6040371",
+      "smiles": "Cc1nc2cccc(-n3cnnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(-c5cc(F)c(F)c(F)c5)nn4)[C@H]3O)c2s1",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4cccc5ncsc45)C3)nn2)cc1",
+      "measured_pIC50": 6.585026652,
+      "rf_predicted_pIC50": 6.64294310356876,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7432432432432432,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5930970",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2cnc3ccccc3c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4-c4cnc5ccccc5c4)C3)nn2)cc1",
+      "measured_pIC50": 7.0,
+      "rf_predicted_pIC50": 6.538742174255082,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8266666666666667,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5765416",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2Cc2cccs2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(c4nncn4Cc4cccs4)C3)nn2)cc1",
+      "measured_pIC50": 5.8927900304,
+      "rf_predicted_pIC50": 6.1708446116517885,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.7368421052631579,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5796830",
+      "smiles": "CC(C)(C)c1cnnn1[C@@H]1O[C@H](CO)[C@H](O)[C@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4ccnn4)C3)nn2)cc1",
+      "measured_pIC50": 6.4365189146,
+      "rf_predicted_pIC50": 5.983196812997845,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.6363636363636364,
+      "similarity_flag": "Below validation similarity range"
+    },
+    {
+      "compound_ids": "CHEMBL5899414",
+      "smiles": "OC[C@H]1O[C@@H](n2nncc2-c2ccc3cn[nH]c3c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(-c2cn(C3CCOC(n4nncc4-c4ccc5cn[nH]c5c4)C3)nn2)cc1",
+      "measured_pIC50": 6.3062730511,
+      "rf_predicted_pIC50": 5.9842709273442,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8873239436619719,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5850647",
+      "smiles": "Cc1nc([C@@H]2O[C@H](CO)[C@H](O)[C@H](n3cc(-c4ccc5nccnc5c4)nn3)[C@H]2O)n(-c2cc(Cl)ccc2C(F)(F)F)n1",
+      "scaffold": "c1ccc(-n2ncnc2C2CC(n3cc(-c4ccc5nccnc5c4)nn3)CCO2)cc1",
+      "measured_pIC50": 6.681936665,
+      "rf_predicted_pIC50": 7.094049133051681,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8125,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5802949",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2cccc(OCc3ccccc3)c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(COc2cccc(-n3cnnc3C3CC(n4cc(-c5ccccc5)nn4)CCO3)c2)cc1",
+      "measured_pIC50": 6.4317982759,
+      "rf_predicted_pIC50": 6.651272753510621,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8026315789473685,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL5843494",
+      "smiles": "OC[C@H]1O[C@@H](c2nncn2-c2cccc(Oc3ccccc3)c2)[C@H](O)[C@@H](n2cc(-c3cc(F)c(F)c(F)c3)nn2)[C@H]1O",
+      "scaffold": "c1ccc(Oc2cccc(-n3cnnc3C3CC(n4cc(-c5ccccc5)nn4)CCO3)c2)cc1",
+      "measured_pIC50": 6.0809219076,
+      "rf_predicted_pIC50": 6.65170164361153,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8472222222222222,
+      "similarity_flag": "Within validation similarity range or higher"
+    },
+    {
+      "compound_ids": "CHEMBL6059661",
+      "smiles": "Cc1nc2ccc(-n3ncnc3[C@@H]3O[C@H](CO)[C@H](O)[C@H](n4cc(-c5cc(F)c(N6CCOCC6)c(F)c5)nn4)[C@H]3O)cc2s1",
+      "scaffold": "c1nc(C2CC(n3cc(-c4ccc(N5CCOCC5)cc4)nn3)CCO2)n(-c2ccc3ncsc3c2)n1",
+      "measured_pIC50": 7.096910013,
+      "rf_predicted_pIC50": 6.8172032920645265,
+      "training_mean_predicted_pIC50": 6.8329727656929204,
+      "nearest_train_tanimoto": 0.8214285714285714,
+      "similarity_flag": "Within validation similarity range or higher"
+    }
+  ]
+}

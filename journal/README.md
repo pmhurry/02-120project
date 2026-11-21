@@ -1,5 +1,12 @@
 # Build journal
 
+Session 16 (November 20) covers Checkpoint 3 held-out evaluation, the prediction
+view, and demo preparation. See the [conversation copy](session16.txt),
+[work notes](checkpoint3_session4_notes.md),
+[readable export](readable/rollout-2026-11-20T19-33-19-01a1fb85-9911-7d71-a1d8-bc571b2209d9.md), and
+[raw export](codex/rollout-2026-11-20T19-33-19-01a1fb85-9911-7d71-a1d8-bc571b2209d9.jsonl).
+The conversation copy includes recorded messages available at export time.
+
 Session 15 (November 19) covers deployment preparation and galectin-3 model
 training and validation. See the [conversation copy](session15.txt),
 [work notes](checkpoint3_session3_notes.md),

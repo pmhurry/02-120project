@@ -8,31 +8,55 @@ causality, treatment direction, drug efficacy, oral delivery, or clinical safety
 **Workflow:** spatial evidence → human mapping → tractability → safety review →
 ranked hypotheses for experimental follow-up.
 
-**Current status (November 10):** the full-data workflow and local Streamlit
-interface pass checkpoint 2 automated review. The hepatic-fibrosis export screens 32,285 features and
-ranks 2,248 complete-evidence hypotheses. The app includes mapping exclusions,
-mouse-level evidence, spatial maps, tissue context, liabilities, and downloads.
-See [app setup and validation](APP.md).
+## Checkpoint 3 · November 20, 2026
 
-All 17,370 spots from six mice are recovered; none has a zero library. Of 32,285
-features, 4,789 pass mapping and 2,248 enter the complete ranking; 30,037 remain
-outside it with explicit reasons. Exclusion categories overlap. Complete ranking
-favors mapped, previously studied targets. The 24 h view is separate context;
-ranks combine 48/72 h. Chronic hepatic-fibrosis associations contextualize acute
-injury. Tissue expression and absent liability reports cannot establish safety.
+Open the [deployed React explorer](https://spatial-target-evidence.vercel.app/),
+[project guide](https://spatial-target-evidence.vercel.app/?view=guide), or
+[galectin-3 predictions](https://spatial-target-evidence.vercel.app/?view=predictions).
 
-See [November 10 validation notes](journal/checkpoint2_session5_notes.md).
-Student explanation review is complete, and the student confirmed browser review.
-TA feedback and submission confirmation remain pending.
+The hepatic-fibrosis ranking screens 32,285 features from 17,370 spots across
+six mice, two per time point. Of those features, 4,789 pass mapping and 2,248
+enter the complete ranking. Ranks combine 48 h and 72 h spatial evidence.
+The 24 h annotation provides separate context. Three reviewed targets have
+packaged expression maps and compound evidence.
+
+### Install and run locally
+
+Use Python 3.11+ and Node.js with npm. The application uses the checked exports.
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
-.venv/bin/streamlit run app.py --server.address localhost
+npm ci --prefix frontend
+npm run build --prefix frontend
+.venv/bin/python -m uvicorn main:app
 ```
 
-The interface requires Python 3.11+. Expression maps require the original archives
-in `data/source/`; annotation maps and saved target evidence work without them.
+Open `http://127.0.0.1:8000`. Run the Streamlit comparison directly with
+`.venv/bin/streamlit run app.py --server.address localhost`.
+The included data support the ranking, annotation maps, and reviewed expression
+maps. To rebuild spatial outputs and access other genes' expression maps
+locally, retrieve the six source archives according to
+[data provenance and checksums](DATA_PROVENANCE.md). See
+[app setup](APP.md) and [external data sources](TARGET_DATA.md).
+
+### Validated outputs
+
+- [Hepatic-fibrosis ranking-v1](results/ranking/HP_0001395/manifest.json) and
+  [reviewed expression maps](results/spatial/reviewed_maps/manifest.json).
+- [ChEMBL 37 galectin3-ic50-v1 split](results/compound_activity/galectin3_manifest.json)
+  and [galectin3-rf-v1 model](results/compound_activity/galectin3_model_manifest.json).
+- [Held-out results](results/compound_activity/heldout_evaluation.json),
+  [prediction CSV](results/compound_activity/heldout_predictions.csv), and
+  [predicted-versus-measured plot](results/compound_activity/heldout_plot.svg).
+  RMSE was 0.482 pIC50 for the frozen model and 0.697 for the training mean
+  on 48 compounds across 29 test scaffolds.
+
+To reproduce the saved evaluation without training, use Python 3.14.7 in a
+model environment with `requirements-model.txt` and `matplotlib==3.11.2`,
+then run `python scripts/evaluate_compound_activity.py`.
+The [checkpoint demo](journal/checkpoint3_session4_notes.md#demo-script) walks
+through LGALS3, TD139, and the limits of the single-assay activity model.
 
 - [Engine design and scoring rubric](ENGINE_DESIGN.md)
 - [Supporting data, coverage, and source limitations](TARGET_DATA.md)

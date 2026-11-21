@@ -15,3 +15,8 @@ await build({
   define: {'process.env.NODE_ENV': '"production"'},
 });
 await copyFile(new URL('index.html', import.meta.url), new URL('index.html', output));
+await Promise.all(
+  ['heldout_evaluation.json', 'heldout_predictions.csv', 'heldout_plot.svg'].map(name =>
+    copyFile(new URL('../results/compound_activity/' + name, import.meta.url), new URL(name, output))
+  )
+);
